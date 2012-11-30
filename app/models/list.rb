@@ -1,3 +1,8 @@
 class List < ActiveRecord::Base
-  # attr_accessible :title, :body
+  include ActiveModel::ForbiddenAttributesProtection
+  has_many :pulls
+  has_many :titles, :through => :pulls
+  belongs_to :store
+  belongs_to :user
 end
+

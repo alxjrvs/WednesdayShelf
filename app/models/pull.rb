@@ -1,3 +1,5 @@
 class Pull < ActiveRecord::Base
-  # attr_accessible :title, :body
+  include ActiveModel::ForbiddenAttributesProtection
+  belongs_to :list
+  belongs_to :title
 end

@@ -1,3 +1,4 @@
 class Variant < ActiveRecord::Base
-  # attr_accessible :title, :body
+  include ActiveModel::ForbiddenAttributesProtection
+  belongs_to :issue
 end

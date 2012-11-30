@@ -1,3 +1,6 @@
 class Issue < ActiveRecord::Base
-  # attr_accessible :title, :body
+  include ActiveModel::ForbiddenAttributesProtection
+  has_many :variant
+  belongs_to :title, :release
+
 end

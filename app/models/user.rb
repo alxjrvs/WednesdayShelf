@@ -1,3 +1,5 @@
 class User < ActiveRecord::Base
-  # attr_accessible :title, :body
+  include ActiveModel::ForbiddenAttributesProtection
+  has_many :lists
+  belongs_to :store
 end
