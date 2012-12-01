@@ -9,14 +9,15 @@ class CreateIssues < ActiveRecord::Migration
       t.string      :stock_no
       t.string      :image_link
       t.string      :ship_date
-      t.string      :price
+      t.float       :price
       t.string      :writer_name
       t.string      :artist_name
       t.string      :cover_artist_name
       t.string      :series_name
-      t.string      :issue_no
+      t.integer     :issue_no
+      t.integer     :max_issue
       t.string      :publisher_name
-      t.string      :page_count
+      t.integer      :page_count
       t.timestamps
     end
   end
