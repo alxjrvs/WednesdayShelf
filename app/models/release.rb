@@ -1,3 +1,6 @@
 class Release < ActiveRecord::Base
-  # attr_accessible :title, :body
+
+  has_many :issues
+  has_many :series, :through => :issues
+  #accepts_nested_attributes_for :issues
 end

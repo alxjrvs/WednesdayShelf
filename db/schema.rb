@@ -49,11 +49,13 @@ ActiveRecord::Schema.define(:version => 20121122215918) do
   end
 
   create_table "releases", :force => true do |t|
+    t.string   "ship_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "series", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

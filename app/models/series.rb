@@ -3,4 +3,5 @@ class Series < ActiveRecord::Base
   has_many :issues
   has_many :pulls
   has_many :lists, :through => :pulls
+  has_many :releases, :through => :issues
 end
