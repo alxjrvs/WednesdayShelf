@@ -31,7 +31,7 @@ group :production do
 end
 
 gem 'mechanize'
-gem 'nokogiri '
+gem 'nokogiri'
 gem 'strong_parameters'
 gem 'devise'
 gem 'rollr'
