@@ -1,0 +1,9 @@
+-@books.each do |book|
+  %h1= book[0].name
+  %ul
+    -book[1].each do |title|
+      %p=title.title
+
+
+
+
