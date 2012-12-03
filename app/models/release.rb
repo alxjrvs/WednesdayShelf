@@ -3,9 +3,6 @@ class Release < ActiveRecord::Base
   has_many :issues
   has_many :series, :through => :issues, :uniq => true
 
-  def r_date
-    DateTime.strptime(self.ship_date, "%m/%d/%Y")
-  end
 
   def issues_by_series
     return @issues_by_series if @issue_by_series.present?
@@ -20,8 +17,8 @@ class Release < ActiveRecord::Base
     @issues_by_series = collection
   end
   def self.all_future
-    all.sort_by(&:r_date).map do |release|
-      release unless release.r_date < Date.today
+    all.sort_by(&:ship_date).map do |release|
+      release unless release.ship_date < Date.today
     end.compact
   end
 

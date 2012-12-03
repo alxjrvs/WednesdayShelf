@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20121203025319) do
   end
 
   create_table "releases", :force => true do |t|
-    t.string   "ship_date"
+    t.date     "ship_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
