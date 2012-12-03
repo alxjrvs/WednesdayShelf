@@ -6,6 +6,6 @@ class Issue < ActiveRecord::Base
 
   has_attached_file :cover,
       :path => ":rails_root/app/assets/images/covers/:filename",
-      :url => ":rails_root/public/images/covers/:filename",
+      :url => ":rails_root/public/assets/covers/:filename",
       :styles => { :home => "150x230"}
 end

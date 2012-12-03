@@ -31,6 +31,8 @@ group :production do
 end
 
 gem 'paperclip'
+gem 'aws-sdk'
+gem 'aws-s3'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'strong_parameters'

@@ -10,7 +10,7 @@ class Release < ActiveRecord::Base
     #collection = Hash.new([])
     collection = {}
     issues.each do |issue|
-      #binding.pry
+      next if issue.series.nil?
       collection[issue.series] ||= []
       collection[issue.series] << issue
     end
