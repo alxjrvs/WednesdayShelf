@@ -1,4 +1,8 @@
+namespace :scrape
 desc "Download all comics"
-task :download_issues => :environment do
-  Scrape.new.total_scrape
+task :all => :environment do
+  scraper = Scrape.new
+  scraper.backlog_scrape
+  scraper.total_scrape
+  scraper.download_all_covers
 end
