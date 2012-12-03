@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203025319) do
+ActiveRecord::Schema.define(:version => 20121203113403) do
 
   create_table "issues", :force => true do |t|
     t.integer  "release_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121203025319) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string   "local_link"
   end
 
   create_table "lists", :force => true do |t|

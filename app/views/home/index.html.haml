@@ -1,11 +1,6 @@
--#-binding.pry
 -@books.each do |book|
-  %h1= book[0].name
-
-  -#= image_tag
-  -#%ul
-    -#-book[1].each do |title|
-      -#%p=title.title
+  .cover_box
+    = image_tag book[1][0].local_link, {:class => "home_comic_cover"}
 
 
 
