@@ -8,6 +8,7 @@
 # Ignore bundler config
 /.bundle
 /app/dr_parse
+/app/assets/images/covers
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
