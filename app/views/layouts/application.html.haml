@@ -21,9 +21,10 @@
     .container-fluid
       .row-fluid
         .span3
+          .sidebar_container
+            .sidebar_title
         .span9
           = yield
-
       .row-fluid
         .span12
           #footer
@@ -33,3 +34,4 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+

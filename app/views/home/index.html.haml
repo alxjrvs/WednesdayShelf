@@ -1,6 +1,7 @@
--@books.each do |book|
-  .cover_box
-    = image_tag book[1][0].local_link, {:class => "home_comic_cover"}
+.shelves
+  -@books.each do |book|
+    .cover_box
+      = image_tag book[1][0].local_link, {:class => "home_comic_cover", :id => "#{book[1][0].diamond_no}_cover"}
 
 
 
