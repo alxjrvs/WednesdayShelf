@@ -1,5 +1,28 @@
-<% @issues = @release[Publisher.find_by_name("DC COMICS")] %>
-  <div class="pub" >
-    <%= image_tag "logos/dc_logo.png", {:class => "logo", :id => "DC"} %>
+<div class="shelves">
+  <div id="DC_COMICS">
+    <% @publisher = Publisher.find_by_name("DC COMICS") %>
+    <% @issues = @release[Publisher.find_by_name("DC COMICS")] %>
+      <div class="pub row" >
+        <div class="one centered">
+        <%= image_tag "logos/dc_logo.png", {:class => "logo", :id => "DC_logo"} %>
+        </div>
+      </div>
+      <%= render "series_loop" %>
   </div>
-  <%= render "series_loop" %>
+  <div id="MARVEL_COMICS">
+    <% @issues = @release[Publisher.find_by_name("MARVEL COMICS")] %>
+      <div class="pub row" >
+        <div class="one centered">
+          <%= image_tag "logos/marvel_logo.png", {:class => "logo", :id => "Marvel_logo"} %>
+        </div>
+      </div>
+      <%= render "series_loop" %>
+  </div>
+
+  <% @issues = @release[Publisher.find_by_name("IMAGE COMICS")] %>
+    <div class="pub" >
+      <%#<%= image_tag "logos/dc_logo.png", {:class => "logo", :id => "Image_logo"} %>
+    </div>
+    <%= render "series_loop" %>
+
+</div>

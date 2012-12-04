@@ -11,14 +11,11 @@
 }
 
 .pub {
-  float:left;
-  width:100px;
-  position:relative;
-  height:240px;
+  clear:none;
+
 }
 
 .logo {
-  position:relative;
 }
 
 .cover_box {
@@ -29,9 +26,25 @@
 .home_comic_cover {
   position: absolute;
   bottom:0;
+  -webkit-box-shadow: 0px 5px 10px rgba(50, 50, 50, 0.55);
+  -moz-box-shadow:    0px 5px 10px rgba(50, 50, 50, 0.55);
+  box-shadow:         0px 5px 10px rgba(50, 50, 50, 0.55);
 }
 
+
+@media only screen and (max-width: 767px) {
+.left {
+  float:inherit;
+}
+
+ }
+
 /*Special styles*/
-#DC {
-  margin: 50% 0 0 50%;
+#DC_logo {
+  /*margin: 50% 0 0 50%;*/
+  /*width: 100px*/
+}
+
+#Marvel_logo {
+  /*width: 195px;*/
 }
