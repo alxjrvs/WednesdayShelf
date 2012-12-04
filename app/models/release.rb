@@ -11,8 +11,10 @@ class Release < ActiveRecord::Base
     collection = {}
     issues.where(:is_comic => true).order('title').each do |issue|
       next if issue.series.nil?
-      collection[issue.series] ||= []
-      collection[issue.series] << issue
+      publisher = issue.series.publisher
+      collection[publisher] ||= {}
+      collection[publisher][issue.series] ||= []
+      collection[publisher][issue.series] << issue
     end
     @issues_by_series = collection
   end
@@ -23,7 +25,13 @@ class Release < ActiveRecord::Base
   end
 
   def self.next
-    all_future.first
+    all_future[0]
+  end
+  def self.week_after
+    all_future[1]
+  end
+  def self.two_weeks
+    all_future[2]
   end
 end
 

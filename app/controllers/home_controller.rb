@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @books = Release.next.issues_by_series
+    @release = Release.next.issues_by_series
   end
 
 end

@@ -2,4 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.row.first {
+  margin-top: -20px;
+}
 
+.left {
+  float:left !important;
+}
+
+.pub {
+  float:left;
+  width:100px;
+  position:relative;
+  height:240px;
+}
+
+.logo {
+  position:relative;
+}
+
+.cover_box {
+  position:relative;
+  height: 240px;
+  margin:1px;
+}
+.home_comic_cover {
+  position: absolute;
+  bottom:0;
+}
+
+/*Special styles*/
+#DC {
+  margin: 50% 0 0 50%;
+}

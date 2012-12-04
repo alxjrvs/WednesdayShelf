@@ -1,0 +1,17 @@
+<% @issues.each_with_index do |issue, i| %>
+  <% if i == 0  %>
+    <div class="row first">
+  <% end  %>
+  <%if i%6 == 0 and i != 0  %>
+    </div>
+    <div class="row">
+  <% end %>
+    <div class="two columns left">
+      <div class="cover_box">
+        <%= image_tag issue[1][0].local_link, {:class => "home_comic_cover"} %>
+      </div>
+    </div>
+  <% if i == @issues.size - 1 %>
+    </div>
+  <% end %>
+ <%end%>  <%#end of issues block%>
