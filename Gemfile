@@ -55,7 +55,7 @@ group :assets do
   gem 'therubyracer'
   gem 'compass-rails'
   gem 'less-rails'
-  gem 'zurb-foundation', '~> 2.2'
+  gem 'zurb-foundation'
   gem 'uglifier', '>= 1.0.3'
 end
 
