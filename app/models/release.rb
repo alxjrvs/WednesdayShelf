@@ -9,7 +9,7 @@ class Release < ActiveRecord::Base
 
     #collection = Hash.new([])
     collection = {}
-    issues.order('title').each do |issue|
+    issues.where(:is_comic => true).order('title').each do |issue|
       next if issue.series.nil?
       collection[issue.series] ||= []
       collection[issue.series] << issue

@@ -4,9 +4,9 @@ class Issue < ActiveRecord::Base
   belongs_to :series
   belongs_to :release
 
-  has_attached_file :cover,
-      :path => ":rails_root/app/assets/images/covers/:filename",
-      :url => ":rails_root/public/assets/covers/:filename",
-      :styles => { :small => "150x230", :medium => "300x460"}
+  #has_attached_file :cover,
+      #:path => ":rails_root/app/assets/images/covers/:filename",
+      #:url => ":rails_root/public/assets/covers/:filename",
+      #:styles => { :small => "150x230", :medium => "300x460"}
 
 end

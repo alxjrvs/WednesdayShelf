@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203113403) do
+ActiveRecord::Schema.define(:version => 20121204181156) do
 
   create_table "issues", :force => true do |t|
     t.integer  "release_id"
@@ -38,11 +38,18 @@ ActiveRecord::Schema.define(:version => 20121203113403) do
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
     t.string   "local_link"
+    t.boolean  "is_comic"
   end
 
   create_table "lists", :force => true do |t|
     t.integer  "user_id"
     t.integer  "store_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "publishers", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -62,8 +69,9 @@ ActiveRecord::Schema.define(:version => 20121203113403) do
 
   create_table "series", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "publisher_id"
   end
 
   create_table "stores", :force => true do |t|
