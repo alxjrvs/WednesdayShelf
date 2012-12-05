@@ -24,25 +24,30 @@ class Release < ActiveRecord::Base
     end.compact
   end
 
-  #def popular_comics
-    #return @popular_comics if @popular_comics.present?
-    #issues = self.issues_by_series
-    #organized_hash = {}
-    #issues.keys.each do |publisher|
-      #case publisher.title
-      #when "DC COMICS"
-        #organized_hash["DC COMICS"] = issues[publisher]
-      #when "DC COMICS"
-        #organized_hash["DC COMICS"] = issues[publisher]
-      #when "DC COMICS"
-        #organized_hash["DC COMICS"] = issues[publisher]
-      #when "DC COMICS"
-        #organized_hash["DC COMICS"] = issues[publisher]
-      #when "DC COMICS"
-        #organized_hash["DC COMICS"] = issues[publisher]
-      #end
-    #end
-  #end
+
+  def find_and_organize(hash, name)
+    pub = Publisher.where(:name => name).first
+    organized_hash = {}
+    organized_hash[pub.name] = hash[pub]
+    hash.delete pub
+    return organized_hash
+  end
+  #Organize the issues in the correct format for the view
+  def organized_issues
+    return @popular_comics if @popular_comics.present?
+    issues_by_series = self.issues_by_series
+    organized_hash = {}
+    organized_hash.merge! find_and_organize(issues_by_series, "DC COMICS")
+    organized_hash.merge! find_and_organize(issues_by_series, "MARVEL COMICS")
+    organized_hash.merge! find_and_organize(issues_by_series, "IMAGE COMICS")
+    organized_hash.merge! find_and_organize(issues_by_series, "IDW PUBLISHING")
+    organized_hash.merge! find_and_organize(issues_by_series, "DARK HORSE COMICS")
+    organized_hash["OTHER"]= {}
+    issues_by_series.keys.each do |pub|
+      organized_hash["OTHER"].merge! issues_by_series[pub]
+    end
+    @popular_comics = organized_hash
+  end
 
   def self.next
     all_future[0]

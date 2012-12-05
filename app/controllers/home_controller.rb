@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @release = Release.next.issues_by_series
+    @release = Release.next.organized_issues
   end
 
 end
