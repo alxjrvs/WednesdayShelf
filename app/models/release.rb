@@ -24,6 +24,26 @@ class Release < ActiveRecord::Base
     end.compact
   end
 
+  #def popular_comics
+    #return @popular_comics if @popular_comics.present?
+    #issues = self.issues_by_series
+    #organized_hash = {}
+    #issues.keys.each do |publisher|
+      #case publisher.title
+      #when "DC COMICS"
+        #organized_hash["DC COMICS"] = issues[publisher]
+      #when "DC COMICS"
+        #organized_hash["DC COMICS"] = issues[publisher]
+      #when "DC COMICS"
+        #organized_hash["DC COMICS"] = issues[publisher]
+      #when "DC COMICS"
+        #organized_hash["DC COMICS"] = issues[publisher]
+      #when "DC COMICS"
+        #organized_hash["DC COMICS"] = issues[publisher]
+      #end
+    #end
+  #end
+
   def self.next
     all_future[0]
   end

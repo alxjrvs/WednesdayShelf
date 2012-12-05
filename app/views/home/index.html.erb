@@ -1,28 +1,72 @@
 <div class="shelves">
-  <div id="DC_COMICS">
+  <div class ="publisher" id="DC_COMICS">
     <% @publisher = Publisher.find_by_name("DC COMICS") %>
-    <% @issues = @release[Publisher.find_by_name("DC COMICS")] %>
-      <div class="pub row" >
-        <div class="one centered">
-        <%= image_tag "logos/dc_logo.png", {:class => "logo", :id => "DC_logo"} %>
+    <% @issues = @release[@publisher] %>
+    <% @release.delete(@publisher) %>
+      <div class=" row" >
+        <div class="pub_logo four column centered">
+        <%= image_tag "logos/dc_logo.png", {:class => "logo_img", :id => "DC_logo"} %>
         </div>
       </div>
       <%= render "series_loop" %>
   </div>
-  <div id="MARVEL_COMICS">
-    <% @issues = @release[Publisher.find_by_name("MARVEL COMICS")] %>
-      <div class="pub row" >
-        <div class="one centered">
-          <%= image_tag "logos/marvel_logo.png", {:class => "logo", :id => "Marvel_logo"} %>
+  <div class="publisher" id="MARVEL_COMICS">
+    <% @publisher = Publisher.find_by_name("MARVEL COMICS") %>
+    <% @issues = @release[@publisher] %>
+    <% @release.delete(@publisher) %>
+      <div class=" row" >
+        <div class="pub_logo four column centered">
+          <%= image_tag "logos/marvel_logo.png", {:class => "logo_img", :id => "Marvel_logo"} %>
         </div>
       </div>
       <%= render "series_loop" %>
   </div>
 
-  <% @issues = @release[Publisher.find_by_name("IMAGE COMICS")] %>
-    <div class="pub" >
-      <%#<%= image_tag "logos/dc_logo.png", {:class => "logo", :id => "Image_logo"} %>
+  <div class="publisher" id="IMAGE_COMICS">
+    <% @publisher = Publisher.find_by_name("IMAGE COMICS") %>
+    <% @issues = @release[@publisher] %>
+    <% @release.delete(@publisher) %>
+      <div class=" row" >
+        <div class="pub_logo four column centered">
+          <%= image_tag "logos/marvel_logo.png", {:class => "logo_img", :id => "image_logo"} %>
+        </div>
+      </div>
+      <%= render "series_loop" %>
+  </div>
+
+  <div class="publisher" id="IDW">
+    <% @publisher = Publisher.find_by_name("IDW PUBLISHING") %>
+    <% @issues = @release[@publisher] %>
+    <% @release.delete(@publisher) %>
+      <div class=" row" >
+        <div class="pub_logo four column centered">
+          <%= image_tag "logos/marvel_logo.png", {:class => "logo_img", :id => "idw_logo"} %>
+        </div>
+      </div>
+      <%= render "series_loop" %>
+  </div>
+
+  <div class="publisher" id="DARK_HORSE">
+    <% @publisher = Publisher.find_by_name("DARK HORSE COMICS") %>
+    <% @issues = @release[@publisher] %>
+    <% @release.delete(@publisher) %>
+      <div class=" row" >
+        <div class="pub_logo four column centered">
+          <%= image_tag "logos/marvel_logo.png", {:class => "logo_img", :id => "dark_horse_logo"} %>
+        </div>
+      </div>
+      <%= render "series_loop" %>
+  </div>
+  <% @issues = [] %>
+  <% @release.keys.each do |pub| %>
+    <% @issues << @release[pub].to_a[0] %>
+  <% end %>
+  <div class="publisher" id="OTHER">
+    <div class=" row" >
+      <div class="pub_logo four column centered">
+        <%= image_tag "logos/marvel_logo.png", {:class => "logo_img", :id => "dark_horse_logo"} %>
+      </div>
     </div>
     <%= render "series_loop" %>
-
+  </div>
 </div>
