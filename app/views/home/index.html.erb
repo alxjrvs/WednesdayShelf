@@ -1,4 +1,4 @@
-<div class="shelves">
+<shelves>
   <div class ="publisher" id="DC_COMICS">
     <% @release.keys.each do |publisher| %>
       <% @issues = @release[publisher] %>
@@ -11,4 +11,4 @@
       <%= render "series_loop" %>
     <% end %>
   </div>
-</div>
+</shelves>

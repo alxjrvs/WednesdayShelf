@@ -24,20 +24,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class=" container top-bar fixed">
-    <nav class="top-bar">
-    <ul>
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
-          <a href="#" class="magellan-top active">WednesdayShelf </a>
-          <%#<a href="#DC_COMICS" data-magellan-arrival="DC_COMICS" class="magellan-top">DC</a>%>
-        </h1>
-      </li>
-      <li class="toggle-topbar"><a href="#"></a></li>
-    </ul>
-    </nav>
+  <div class="container">
+    <%= yield %>
   </div>
-  <%= yield %>
 </body>
 </html>
