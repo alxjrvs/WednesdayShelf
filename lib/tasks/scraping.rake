@@ -1,33 +1,45 @@
 namespace :scrape do
   desc "Download all comics"
   task :all => :environment do
-    scraper = Scrape.new
-    scraper.backlog_scrape
-    scraper.total_scrape
+    scraper = Scraper.new
+    scraper.get_backlog
+    scraper.get_previews
   end
 
+  desc "Download only from latest"
+  task :latest => :environment do
+    scraper = Scraper.new
+    scraper.get_previews
+  end
+  desc "Download backlog"
+  task :backlog => :environment do
+    scraper = Scraper.new
+    scraper.get_backlog
+  end
   desc "Download comic Covers"
   task :covers => :environment do
-    scraper = Scrape.new
-    scraper.download_all_covers
   end
 
   desc "Download the Latest of the latest"
   task :new => :environment do
-    scraper = Scrape.new
-    scraper.store_in_database scraper.get_new
-    scraper.store_in_database scraper.get_upcoming
-    scraper.store_in_database scraper.get_two_weeks
   end
   desc "Download the Latest previews"
   task :previews => :environment do
-    scraper = Scrape.new
-    scraper.store_in_database scraper.get_previews
   end
 
   desc "Download the backlog"
   task :backlog => :environment do
-    scraper = Scrape.new
-    scraper.backlog_scrape
+  end
+end
+
+namespace :digest do
+
+  desc "digest all the previews"
+  task :previews => :environment do
+    digester = Digester.new
+    Preview.where(:digested => false).each do |preview|
+    #Preview.all.each do |preview|
+      digester.digest(preview)
+    end
   end
 end

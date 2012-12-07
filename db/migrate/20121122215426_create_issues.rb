@@ -7,17 +7,12 @@ class CreateIssues < ActiveRecord::Migration
       t.text        :description
       t.string      :diamond_no
       t.string      :stock_no
-      t.string      :image_link
-      t.string      :ship_date
-      t.float       :price
-      t.string      :writer_name
-      t.string      :artist_name
-      t.string      :cover_artist_name
-      t.string      :series_name
+      t.string      :writer
+      t.string      :artist
+      t.string      :cover_artist
       t.integer     :issue_no
       t.integer     :max_issue
-      t.string      :publisher_name
-      t.integer      :page_count
+      t.float       :price
       t.timestamps
     end
   end

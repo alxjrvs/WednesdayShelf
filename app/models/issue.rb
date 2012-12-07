@@ -1,6 +1,6 @@
 class Issue < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
-  has_many :variant
+  has_many :variants
   belongs_to :series
   belongs_to :release
 
