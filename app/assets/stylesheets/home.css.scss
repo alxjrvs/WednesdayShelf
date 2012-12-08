@@ -2,56 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.row.first {
-  margin-top: -20px;
+@import "bourbon";
+@import "neat";
+
+div.shelves {
+  background-color:rgba(51,51,51,0.2);
+  @include span-columns(12);
+  margin: 20px 0 150px 0;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -moz-box-shadow: inset 0 0 23px -5px #000;
+  -webkit-box-shadow: inset 0 0 23px -5px #000;
+  box-shadow: inset 0 0 23px -5px #000;
+  padding: 0 0 40px 40px;
 }
 
-.left {
-  float:left !important;
+div.cover_box {
+  @include span-columns(3 of 12);
+  @include nth-omega(4n);
+  height:250px;
+  text-align:center;
+  margin: 10px 0 10px 0;
 }
 
-.pub_logo {
-  position:relative;
-  padding:0 0 10px 0;
+div.pub_logo {
+  @include span-columns(12);
+  margin: 10px 0 10px 0;
+  text-align:center;
 }
 
-.logo_img {
-  display: block;
-  max-height: 150px;
+img.logo_img {
+  max-height: 250px;
   margin: 0 auto;
-}
-
-.publisher{
-  margin: 5% 0 0 0;
-}
-
-.cover_box {
-  position:relative;
-  height: 240px;
-  margin:1px;
-  z-index: 2
+  display: block;
 }
 
 .home_comic_cover {
-  position: absolute;
-  bottom:0;
-  -webkit-box-shadow: 0px 5px 10px rgba(50, 50, 50, 0.55);
-  -moz-box-shadow:    0px 5px 10px rgba(50, 50, 50, 0.55);
-  box-shadow:         0px 5px 10px rgba(50, 50, 50, 0.55);
+  margin: 0 auto;
+  width: 150px;
+  display: block;
 }
 
-.issue_text {
-  position:absolute;
-  width:80%;
-
-}
-
-
-@media only screen and (max-width: 767px) {
-.left {
-  float:inherit;
-}
-
- }
 
 /*Special styles*/

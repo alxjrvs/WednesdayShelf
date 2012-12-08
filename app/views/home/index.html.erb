@@ -1,14 +1,13 @@
-<shelves>
-  <div class ="publisher" id="DC_COMICS">
-    <% @release.keys.each do |publisher| %>
-      <% @issues = @release[publisher] %>
-      <% publisher = publisher.gsub(" ", "_") %>
-      <div class=" row" >
-        <div data-magellan-destination="<%= publisher %>" class="pub_logo four column centered">
-          <%= image_tag "logos/#{publisher}_logo.png", {:class => "logo_img", :id => "#{publisher}_logo"} %>
-        </div>
+<div class="shelves">
+  <% @release.keys.each do |publisher| %>
+    <% @issues = @release[publisher] %>
+    <% publisher = publisher.gsub(" ", "_") %>
+    <div class ="publisher" id= <%= publisher %> >
+      <div class="pub_logo">
+        <h1> <%= publisher.titleize %> </h1>
+        <%#<%= image_tag "logos/#{publisher}_logo.png", {:class => "logo_img", :id => "#{publisher}_logo"} %>
       </div>
       <%= render "series_loop" %>
-    <% end %>
-  </div>
-</shelves>
+    </div>
+  <% end %>
+</div>

@@ -1,18 +1,8 @@
 <% @issues.each_with_index do |issue, i| %>
-  <% if i == 0  %>
-    <div class="row first">
-  <% end  %>
-  <%if i%6 == 0 and i != 0  %>
-    </div>
-    <div class="row">
-  <% end %>
-    <div class="two mobile-three columns left">
-      <div class="cover_box">
-        <%= image_tag "covers/#{issue[1][0].diamond_no}.png", {:class => "home_comic_cover"} %>
+    <div class="cover_box">
+      <%= image_tag "covers/#{issue[1][0].diamond_no}.png", {:class => "home_comic_cover"} %>
+      <div class="anchor">
+        <p class="issue_text"> <%= issue[1][0].title.titleize  %></p>
       </div>
-        <p class="issue_text"> <%= issue[1][0].title  %></p>
     </div>
-  <% if i == @issues.size - 1 %>
-    </div>
-  <% end %>
  <%end%>  <%#end of issues block%>

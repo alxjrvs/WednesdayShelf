@@ -1,0 +1,10 @@
+@import "bourbon";
+@import "neat";
+
+body {
+  background: url('/assets/retina_wood.png');
+
+ }
+div.container {
+  @include outer-container;
+}
