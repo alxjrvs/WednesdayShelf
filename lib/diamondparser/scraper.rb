@@ -14,11 +14,11 @@ class Scraper
 
   def login
     @agent = Mechanize.new
-    page = @agent.get(LOGIN)
+    page = @agent.get(ENV['LOGIN'])
     form = page.form
-    form.UserName =  USERNAME
-    form.EnteredCustNo =  CUST_NO
-    form.Password =  PASSWORD
+    form.UserName =  ENV['USERNAME']
+    form.EnteredCustNo =  ENV['CUST_NO']
+    form.Password =  ENV['PASSWORD']
     page = @agent.submit(form)
     page = @agent.page.links_with(:text => "Data Files")[0].click
   end
@@ -58,8 +58,8 @@ class Scraper
     login
     total_hash = {}
     puts "Getting Backlog"
-    master_page = @agent.get("https://retailerservices.diamondcomics.com/Downloads/Archives/monthly_tools/previews_master_data_file")
-    db_page = @agent.get("https://retailerservices.diamondcomics.com/Downloads/Archives/monthly_tools/previews_product_copy")
+    master_page = @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file")
+    db_page = @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_product_copy")
     puts array[0]
     puts array[1]
     master_link = master_page.links_with(:href => array[0])[0]
