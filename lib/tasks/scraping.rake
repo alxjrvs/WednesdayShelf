@@ -16,13 +16,7 @@ namespace :scrape do
     scraper = Scraper.new
     scraper.get_backlog
   end
-  desc "Download comic Covers"
-  task :covers => :environment do
-  end
 
-  desc "Download the Latest of the latest"
-  task :new => :environment do
-  end
   desc "Download the Latest previews"
   task :previews => :environment do
   end
@@ -41,5 +35,15 @@ namespace :digest do
     #Preview.all.each do |preview|
       digester.digest(preview)
     end
+  end
+  desc "Download comic Covers"
+  task :covers => :environment do
+    digester = Digester.new
+    digester.download_all_covers
+  end
+  desc "get updated shipping information"
+  task :shipping => :environment do
+    digester = Digester.new
+    digester.update_shipping
   end
 end

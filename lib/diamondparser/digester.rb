@@ -1,5 +1,5 @@
 class Digester < Scraper
-
+  include DiamondParser
   def is_comic_filter(listing)
     return false if listing.publisher == ""
     return false if listing.price.gsub("$", "").to_f > 7.00
@@ -66,7 +66,6 @@ class Digester < Scraper
   return nil
   end
 
-  #everything after this is confusing to 
   def update_shipping
     login
     Release.all_future.each do |release|
@@ -103,16 +102,16 @@ class Digester < Scraper
     trailing_num = stock_no[2..30]
     if trailing_num.to_i == 0
       if key_num.odd?
-        url = "https://retailerservices.diamondcomics.com/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
+        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
       else
-        url = "https://retailerservices.diamondcomics.com/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 2}0001-#{head_num}#{key_num}0000&pf=#{stock}.jpg"
+        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 2}0001-#{head_num}#{key_num}0000&pf=#{stock}.jpg"
 
       end
     else
       if key_num.odd?
-        url = "https://retailerservices.diamondcomics.com/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
+        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
       else
-        url = "https://retailerservices.diamondcomics.com/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num}0001-#{head_num}#{key_num + 2}0000&pf=#{stock}.jpg"
+        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num}0001-#{head_num}#{key_num + 2}0000&pf=#{stock}.jpg"
       end
     end
   end
