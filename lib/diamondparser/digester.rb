@@ -34,6 +34,7 @@ class Digester < Scraper
 
       @release = Release.where(:ship_date => ship_date).first_or_create
       create_hash = digest_into_create_hash listing
+      create_hash[:cover_url => "https://s3.amazonaws.com/wscovers/#{create_hash[:diamond_no]}_cover.png"]
       if listing.full_title.include? @name
         var = Variant.where(create_hash).first_or_create
         var.issue = Issue.where(:title => @name)[0]
@@ -139,13 +140,23 @@ class Digester < Scraper
       :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY']
     })
      directory = connection.directories.get('wscovers')
-    Issue.where(:cover_url => nil).each do |issue|
+    Issue.all.each do |issue|
       puts "Grabbing Standard Issues..."
-       download_image(issue, @agent, directory)
+      if directory.files.get("#{issue.diamond_no}_cover.png") == nil
+        download_image(issue, @agent, directory)
+      else
+        puts "Already downloaded, next"
+        next
+      end
     end
-    Variant.where(:cover_url => nil).each do |issue|
+    Variant.all.each do |issue|
       puts "Grabbing Variants..."
-      download_image(issue, @agent)
+      if directory.files.get("#{issue.diamond_no}_cover.png") == nil
+        download_image(issue, @agent, directory)
+      else
+        puts "Already downloaded, next"
+        next
+      end
     end
   end
 end
