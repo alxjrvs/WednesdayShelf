@@ -7,7 +7,7 @@
 .DS_Store
 # Ignore bundler config
 /.bundle
-/app/dr_parse
+/lib/dr_parse
 /app/assets/images/covers
 
 # Ignore the default SQLite database.
