@@ -13,7 +13,6 @@ class CreateIssues < ActiveRecord::Migration
       t.integer     :issue_no
       t.integer     :max_issue
       t.float       :price
-      t.string      :cover_url
       t.timestamps
     end
   end
