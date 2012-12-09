@@ -8,7 +8,7 @@
 # Ignore bundler config
 /.bundle
 /app/assets/images/covers
-lib/diamondparser/diamond_parser.rb
+/config/initializers/secret_constants.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

@@ -68,7 +68,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    commonjs (0.2.6)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -117,11 +116,6 @@ GEM
     json (1.7.5)
     launchy (2.1.2)
       addressable (~> 2.3)
-    less (2.2.2)
-      commonjs (~> 0.2.6)
-    less-rails (2.2.6)
-      actionpack (>= 3.1)
-      less (~> 2.2.0)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -188,8 +182,6 @@ GEM
     rake (10.0.2)
     rdoc (3.12)
       json (~> 1.4)
-    ref (1.0.2)
-    rollr (0.0.6)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -243,8 +235,6 @@ GEM
       actionpack (~> 3.1)
       activemodel (~> 3.1)
       railties (~> 3.1)
-    therubyracer (0.11.0)
-      ref
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -293,7 +283,6 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   launchy (~> 2.1.0)
-  less-rails
   mechanize
   nokogiri
   paperclip
@@ -301,7 +290,6 @@ DEPENDENCIES
   pry
   pry-rails
   rails (= 3.2.8)
-  rollr
   rspec-pride
   rspec-rails
   rspec-subject-extensions
@@ -311,7 +299,6 @@ DEPENDENCIES
   simple_form
   sqlite3
   strong_parameters
-  therubyracer
   thin
   uglifier (>= 1.0.3)
   zurb-foundation

@@ -1,5 +1,4 @@
 class Digester < Scraper
-  include DiamondParser
   def is_comic_filter(listing)
     return false if listing.publisher == ""
     return false if listing.price.gsub("$", "").to_f > 7.00
@@ -72,7 +71,7 @@ class Digester < Scraper
       release.issues.each do |issue|
         code = issue.diamond_no
         puts "Logging in to code #{code}"
-        html = @agent.get(DiamondParser::BASE_URL + DiamondParser::FANCYBOX_URL + code).body
+        html = @agent.get(BASE_URL + FANCYBOX_URL + code).body
         doc = Nokogiri::HTML(html)
       if doc.search("[text()*='could not be found or is currently not in stock.']").empty? == false
         issue.variants.destroy_all
@@ -102,16 +101,16 @@ class Digester < Scraper
     trailing_num = stock_no[2..30]
     if trailing_num.to_i == 0
       if key_num.odd?
-        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
+        url = "#{BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
       else
-        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 2}0001-#{head_num}#{key_num}0000&pf=#{stock}.jpg"
+        url = "#{BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 2}0001-#{head_num}#{key_num}0000&pf=#{stock}.jpg"
 
       end
     else
       if key_num.odd?
-        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
+        url = "#{BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num - 1}0001-#{head_num}#{key_num + 1}0000&pf=#{stock}.jpg"
       else
-        url = "#{DiamondParser::BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num}0001-#{head_num}#{key_num + 2}0000&pf=#{stock}.jpg"
+        url = "#{BASE_URL}/Image/Display?pd=webdata/catalogimages/STK_IMAGES/STK#{head_num}#{key_num}0001-#{head_num}#{key_num + 2}0000&pf=#{stock}.jpg"
       end
     end
   end

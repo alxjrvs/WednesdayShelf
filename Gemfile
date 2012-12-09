@@ -37,23 +37,19 @@ gem 'aws-sdk'
 gem 'aws-s3'
 gem 'strong_parameters'
 gem 'devise'
-gem 'rollr'
 gem 'google-analytics-rails'
-gem 'thin'
 gem 'haml-rails'
 gem 'ruby_parser'
 gem 'pry'
 gem 'simple_form'
-
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'therubyracer'
   gem 'compass-rails'
-  gem 'less-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
 end

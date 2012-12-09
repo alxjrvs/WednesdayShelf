@@ -14,11 +14,11 @@ class Scraper
 
   def login
     @agent = Mechanize.new
-    page = @agent.get(DiamondParser::DIAMD_URL)
+    page = @agent.get(LOGIN)
     form = page.form
-    form.UserName = DiamondParser::USERNAME
-    form.EnteredCustNo = DiamondParser::CUST_NO
-    form.Password = DiamondParser::PASSWORD
+    form.UserName =  USERNAME
+    form.EnteredCustNo =  CUST_NO
+    form.Password =  PASSWORD
     page = @agent.submit(form)
     page = @agent.page.links_with(:text => "Data Files")[0].click
   end
