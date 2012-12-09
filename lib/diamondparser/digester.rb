@@ -34,7 +34,9 @@ class Digester < Scraper
 
       @release = Release.where(:ship_date => ship_date).first_or_create
       create_hash = digest_into_create_hash listing
-      create_hash[:cover_url => "https://s3.amazonaws.com/wscovers/#{create_hash[:diamond_no]}_cover.png"]
+      create_hash[:cover_url => "https://s3.amazonaws.com/wscovers/blank_cover.png"]
+      issue.cover_url = file.public_url
+      issue.save
       if listing.full_title.include? @name
         var = Variant.where(create_hash).first_or_create
         var.issue = Issue.where(:title => @name)[0]
@@ -126,8 +128,8 @@ class Digester < Scraper
       :body => tempfile,
       :public => true
     )
-    issue.cover_url = file.public_url
     puts "Cover for #{issue.title} Downloaded!"
+    return file
   end
   def download_all_covers
     puts "================"
@@ -142,21 +144,27 @@ class Digester < Scraper
      directory = connection.directories.get('wscovers')
     Issue.all.each do |issue|
       puts "Grabbing Standard Issues..."
+      file = directory.files.get("#{issue.diamond_no}_cover.png")
       if directory.files.get("#{issue.diamond_no}_cover.png") == nil
         download_image(issue, @agent, directory)
       else
         puts "Already downloaded, next"
-        next
       end
+      issue.cover_url = file.public_url
+      issue.save
+      puts "#{issue.title} saved to #{issue.cover_url}"
     end
     Variant.all.each do |issue|
       puts "Grabbing Variants..."
+      file = directory.files.get("#{issue.diamond_no}_cover.png")
       if directory.files.get("#{issue.diamond_no}_cover.png") == nil
         download_image(issue, @agent, directory)
       else
         puts "Already downloaded, next"
-        next
       end
+      issue.cover_url = file.public_url
+      issue.save
+      puts "#{issue.title} saved to #{issue.cover_url}"
     end
   end
 end
