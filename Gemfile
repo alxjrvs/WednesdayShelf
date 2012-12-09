@@ -30,6 +30,7 @@ group :production do
   gem 'sendgrid'
 end
 
+gem 'fog'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'paperclip'

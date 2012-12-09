@@ -118,8 +118,13 @@ class Digester < Scraper
 
   def download_image(issue, agent)
     imgurl = get_imgurl(issue.stock_no)
-    agent.download(imgurl, "./app/assets/images/covers/#{issue.diamond_no}.png")
+    file = File.open("#{issue.diamond_no}.png", "wb") do |fo|
+      fo.write open imgurl
+    end
+    binding.pry
+    #file = agent.download(imgurl, "./app/assets/images/covers/#{issue.diamond_no}.png")
     puts "Cover for #{issue.title} Downloaded!"
+    return file
   end
 
   def attach_covers
@@ -149,12 +154,12 @@ class Digester < Scraper
     cover_path = './app/assets/images/covers/*.png'
     Issue.all.each do |issue|
     puts "Grabbing Standard Issues..."
-      unless Dir.glob(cover_path).entries.include? "./app/assets/images/covers/#{issue.diamond_no}.png"
+      #unless Dir.glob(cover_path).entries.include? "./app/assets/images/covers/#{issue.diamond_no}.png"
         download_image(issue, @agent)
-      else
-        puts "Cover already there, Next!"
-        next
-      end
+      #else
+        #puts "Cover already there, Next!"
+        #next
+      #end
     end
     Variant.all.each do |issue|
       puts "Grabbing Variants..."
@@ -165,6 +170,5 @@ class Digester < Scraper
         next
       end
     end
-    #attach_covers
   end
 end
