@@ -116,59 +116,36 @@ class Digester < Scraper
   end
 
 
-  def download_image(issue, agent)
-    imgurl = get_imgurl(issue.stock_no)
-    file = File.open("#{issue.diamond_no}.png", "wb") do |fo|
-      fo.write open imgurl
-    end
-    binding.pry
-    #file = agent.download(imgurl, "./app/assets/images/covers/#{issue.diamond_no}.png")
-    puts "Cover for #{issue.title} Downloaded!"
-    return file
-  end
 
-  def attach_covers
-    cover_path = './app/assets/images/covers/*.png'
-    Dir.glob(cover_path).entries.each do |cover|
-      diamond_no = cover.match(/[A-Z]{3}\d+/).to_s
-      is = Issue.find_by_diamond_no diamond_no
-      if is == nil
-        puts "=============="
-        puts "NO ISSUE WITH: #{diamond_no}"
-        puts "=============="
-        next
-      end
-      cover_file = File.open(cover)
-      next if is.cover == cover_file
-      is.cover = cover_file
-      cover_file.close
-      puts "Saved the cover of #{is.id}"
-      is.save
-    end
+  def download_image(issue, agent, directory)
+    imgurl = get_imgurl(issue.stock_no)
+    tempfile = agent.get(imgurl).body_io
+    file = directory.files.create(
+      :key => "#{issue.diamond_no}_cover.png",
+      :body => tempfile,
+      :public => true
+    )
+    issue.cover_url = file.public_url
+    puts "Cover for #{issue.title} Downloaded!"
   end
   def download_all_covers
     puts "================"
     puts "DOWNLOADING COVERS"
     puts "================"
     login
-    cover_path = './app/assets/images/covers/*.png'
-    Issue.all.each do |issue|
-    puts "Grabbing Standard Issues..."
-      #unless Dir.glob(cover_path).entries.include? "./app/assets/images/covers/#{issue.diamond_no}.png"
-        download_image(issue, @agent)
-      #else
-        #puts "Cover already there, Next!"
-        #next
-      #end
+    connection = Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY']
+    })
+     directory = connection.directories.get('wscovers')
+    Issue.where(:cover_url => nil).each do |issue|
+      puts "Grabbing Standard Issues..."
+       download_image(issue, @agent, directory)
     end
-    Variant.all.each do |issue|
+    Variant.where(:cover_url => nil).each do |issue|
       puts "Grabbing Variants..."
-      unless Dir.glob(cover_path).entries.include? "./app/assets/images/covers/#{issue.diamond_no}.png"
-        download_image(issue, @agent)
-      else
-        puts "Cover already there, Next!"
-        next
-      end
+      download_image(issue, @agent)
     end
   end
 end

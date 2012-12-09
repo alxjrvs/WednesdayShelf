@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209055919) do
+ActiveRecord::Schema.define(:version => 20121209201806) do
 
   create_table "issues", :force => true do |t|
     t.integer  "release_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20121209055919) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string   "cover_url"
   end
 
   create_table "listings", :force => true do |t|
@@ -153,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20121209055919) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string   "cover_url"
   end
 
 end
