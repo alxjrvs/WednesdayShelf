@@ -1,8 +1,8 @@
-<% @issues.each_with_index do |issue, i| %>
-    <div class="cover_box">
-      <%= image_tag "covers/#{issue[1][0].diamond_no}.png", {:class => "home_comic_cover"} %>
-      <div class="anchor">
-        <p class="issue_text"> <%= issue[1][0].title.titleize  %></p>
-      </div>
-    </div>
- <%end%>  <%#end of issues block%>
+  <% @issues.keys.each do |series| %>
+      <li class="cover_box <%= series.publisher.name.gsub(" ", "_")%> ">
+        <div class="anchor ">
+        <%= image_tag "covers/#{@issues[series].diamond_no}.png", {:class => "home_comic_cover"} %>
+        </div>
+        <p class="issue_text"> <%= @issues[series].title.titleize  %></p>
+      </li>
+   <%end%>  <%#end of issues block%>

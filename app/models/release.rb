@@ -4,20 +4,32 @@ class Release < ActiveRecord::Base
   has_many :series, :through => :issues, :uniq => true
 
 
-  def issues_by_series
-    return @issues_by_series if @issue_by_series.present?
+  def issues_by_publisher_and_series
+    return @issues_by_publisher_and_series if @issue_by_publisher_and_series.present?
 
     #collection = Hash.new([])
     collection = {}
     issues.order('title').each do |issue|
       next if issue.series.nil?
-      publisher = issue.series.publisher
       collection[publisher] ||= {}
       collection[publisher][issue.series] ||= []
       collection[publisher][issue.series] << issue
     end
+    @issues_by_publisher_and_series = collection
+  end
+
+  def issues_by_series
+    return @issues_by_series if @issue_by_series.present?
+
+    collection = {}
+    issues.order('title').each do |issue|
+      next if issue.series.nil?
+      #collection[issue.series] ||= []
+      collection[issue.series] = issue
+    end
     @issues_by_series = collection
   end
+
   def self.all_future
     all.sort_by(&:ship_date).map do |release|
       release unless release.ship_date < Date.today

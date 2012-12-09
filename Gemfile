@@ -56,7 +56,7 @@ group :assets do
   gem 'compass-rails'
   gem 'less-rails'
   gem 'uglifier', '>= 1.0.3'
-  gem 'neat'
+  gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'
