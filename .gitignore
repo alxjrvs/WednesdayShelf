@@ -7,8 +7,8 @@
 .DS_Store
 # Ignore bundler config
 /.bundle
-/lib/dr_parse
 /app/assets/images/covers
+lib/diamondparser/diamond_parser.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
