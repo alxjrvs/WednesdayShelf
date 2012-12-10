@@ -31,10 +31,11 @@ group :production do
 end
 
 gem 'fog'
+gem 'mechanize_clip'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.3.4'
 gem 'paperclip-aws'
 gem 'strong_parameters'
 gem 'devise'
