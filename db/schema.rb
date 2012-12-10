@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(:version => 20121210123934) do
     t.integer  "issue_no"
     t.integer  "max_issue"
     t.float    "price"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "cover_url"
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.boolean  "has_cover"
+    t.boolean  "has_cover",          :default => false
   end
 
   create_table "listings", :force => true do |t|
@@ -149,14 +149,14 @@ ActiveRecord::Schema.define(:version => 20121210123934) do
     t.integer  "issue_no"
     t.integer  "max_issue"
     t.float    "price"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "cover_url"
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.boolean  "has_cover"
+    t.boolean  "has_cover",          :default => false
   end
 
 end
