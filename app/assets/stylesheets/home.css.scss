@@ -3,7 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-width: 1170px;
+  width: 1170px;
+  margin-right: auto;
+  margin-left: auto;
 }
 body {
   background: url('/assets/retina_wood.png');
