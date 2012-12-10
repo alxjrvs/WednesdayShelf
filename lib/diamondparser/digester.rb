@@ -134,6 +134,7 @@ class Digester < Scraper
     issue.cover = file
     issue.save
     puts "Cover for #{issue.title} Downloaded!"
+    puts issue.cover.url
   end
   def download_all_covers
     puts "================"

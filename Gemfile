@@ -7,6 +7,8 @@ gem 'rails', '3.2.8'
 
 group :development do
   gem 'pry-rails'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development, :test do

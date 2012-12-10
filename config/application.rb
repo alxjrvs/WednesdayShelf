@@ -23,6 +23,8 @@ module Wednesdayshelf
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.serve_static_assets = true
+
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     # Custom directories with classes and modules you want to be autoloadable.
@@ -50,7 +52,7 @@ module Wednesdayshelf
     config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.
-    config.paperclip_defaults = {:storage => :fog, :fog_credentials => {:provider => "Local", :local_root => "#{Rails.root}/public"}, :fog_directory => "", :fog_host => "localhost"}
+    config.paperclip_defaults = {:storage => :fog, :fog_credentials => {:provider => "Local", :local_root => "#{Rails.root}/public"}, :fog_directory => "", :fog_host => "localhost:3000"}
 
     config.active_support.escape_html_entities_in_json = true
 

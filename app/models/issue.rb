@@ -9,4 +9,7 @@ class Issue < ActiveRecord::Base
         :small => ["150x230", :png],
         :medium => ["300x460", :png]
         }
+    #:url => "/system/assets/images/:class:attachment/:id_partition/:style/:basename.:extension",
+    #:path => "app/assets/images/:class/:attachment/:id_partition/:style/:basename.:extension"
+
 end
