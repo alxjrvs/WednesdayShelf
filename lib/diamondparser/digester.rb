@@ -133,7 +133,7 @@ class Digester < Scraper
   #end
   def download_image(issue, agent)
     file = MechanizeClip.get("http://images5.fanpop.com/image/photos/31000000/comic-book-covers-superheroes-of-today-31077665-300-429.jpg")
-    binding.pry
+    #binding.pry
     issue.cover = file
     issue.save
     puts "Cover for #{issue.title} Downloaded!"
