@@ -52,15 +52,26 @@ module Wednesdayshelf
     config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.
-    config.paperclip_defaults = {
-      :storage => :fog, 
-      :fog_credentials => {
-        :provider => "Local", 
-        :local_root => "#{Rails.root}/public"
-                          }, 
-        :fog_directory => "", 
-        :fog_host => "localhost:3000"
-                                }
+    #config.paperclip_defaults = {
+      #:storage => :s3,
+      #:s3_credentials => {
+        #:access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+        #:secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
+                          #},
+      #:s3_permissions =>  :public,
+      #:bucket => ENV['AWS_BUCKET'],
+      #:url => ":s3_domain_url",
+      #:path => "app/assets/images/:class/:attachment/:id_partition/:style/:basename.:extension"
+                                 #}
+    #config.paperclip_defaults = {
+      #:storage => :fog,
+      #:fog_credentials => {
+        #:provider => "Local",
+        #:local_root => "#{Rails.root}/public"
+                          #},
+        #:fog_directory => "",
+        #:fog_host => "localhost:3000"
+                                #}
 
     config.active_support.escape_html_entities_in_json = true
 
