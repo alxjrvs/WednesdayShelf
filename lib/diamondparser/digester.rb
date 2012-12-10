@@ -132,11 +132,10 @@ class Digester < Scraper
     puts "DOWNLOADING COVERS"
     puts "================"
     login
-    cover = Issue.last.cover #NOTE: There is going to be a better way to do this. I need to grab the 'missing' object.
-    Issue.where(:cover => cover).each do |issue|
+    Issue.all.each do |issue|
       download_image(issue, @agent)
     end
-    Variant.where(:cover => cover).each do |issue|
+    Variant.all.each do |issue|
       download_image(issue, @agent)
     end
   end
