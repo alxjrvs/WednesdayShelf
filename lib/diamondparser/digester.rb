@@ -72,13 +72,9 @@ class Digester < Scraper
     Release.all_future.each do |release|
       release.issues.each do |issue|
         code = issue.diamond_no
-        puts "Logging in to code #{code}"
-        puts "BASE URL => #{ENV['BASE_URL']}"
-        puts "FANCBOX => #{ENV['FANCBOX_URL']}"
-        puts "CODE => #{code}"
-        url = "#{ENV['BASE_URL']}#{ENV['FANCBOX_URL']}#{code}".gsub("\n", "")
+        url = "#{ENV['BASE_URL']}#{ENV['FANCBOX_URL']}#{code}".gsub("\n", "")  #NOTE Ugly Gsub fix.
         puts url
-        html = @agent.get(url).body #NOTE Ugly Gsub fix.
+        html = @agent.get(url).body
         doc = Nokogiri::HTML(html)
       if doc.search("[text()*='could not be found or is currently not in stock.']").empty? == false
         issue.variants.destroy_all
@@ -137,6 +133,7 @@ class Digester < Scraper
   #end
   def download_image(issue, agent)
     file = MechanizeClip.get("http://images5.fanpop.com/image/photos/31000000/comic-book-covers-superheroes-of-today-31077665-300-429.jpg")
+    binding.pry
     issue.cover = file
     issue.save
     puts "Cover for #{issue.title} Downloaded!"
@@ -147,44 +144,11 @@ class Digester < Scraper
     puts "DOWNLOADING COVERS"
     puts "================"
     login
-    #connection = Fog::Storage.new({
-      #:provider                 => 'AWS',
-      #:aws_access_key_id        => ENV['AWS_ACCESS_KEY_ID'],
-      #:aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY']
-    #})
-     #directory = connection.directories.get('wscovers')
     Issue.all.each do |issue|
       download_image(issue, @agent)
-      #puts "Grabbing Standard Issues..."
-      ##file = directory.files.get("blank_cover.png")
-      #if directory.files.get("#{issue.diamond_no}_cover.png") == nil
-        #file = download_image(issue, @agent, directory)
-      #else
-        #puts "Already downloaded, next"
-        #file = directory.files.get("#{issue.diamond_no}_cover.png")
-      #end
-      #puts "============"
-      #puts file.public_url
-      #puts "============"
-      #issue.cover_url = file.public_url
-      #issue.save
-      #puts "#{issue.title} saved to #{issue.cover_url}"
     end
     Variant.all.each do |issue|
       download_image(issue, @agent)
-      #puts "Grabbing Variants..."
-      #if directory.files.get("#{issue.diamond_no}_cover.png") == nil
-        #file =  download_image(issue, @agent, directory)
-      #else
-        #puts "Already downloaded, next"
-        #file = directory.files.get("#{issue.diamond_no}_cover.png")
-      #end
-      #puts "============"
-      #puts file.public_url
-      #puts "============"
-      #issue.cover_url = file.public_url
-      #issue.save
-      #puts "#{issue.title} saved to #{issue.cover_url}"
     end
   end
 end
