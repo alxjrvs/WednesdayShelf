@@ -118,7 +118,6 @@ class Digester < Scraper
     end
   end
 
-
   def download_image(issue, agent)
     imgurl = get_imgurl(issue.stock_no)
     file = MechanizeClip.get(imgurl, agent)
@@ -127,15 +126,17 @@ class Digester < Scraper
     puts "Cover for #{issue.title} Downloaded!"
     puts issue.cover.url
   end
+
   def download_all_covers
     puts "================"
     puts "DOWNLOADING COVERS"
     puts "================"
     login
-    Issue.all.each do |issue|
+    cover = Issue.last.cover #NOTE: There is going to be a better way to do this. I need to grab the 'missing' object.
+    Issue.where(:cover => cover).each do |issue|
       download_image(issue, @agent)
     end
-    Variant.all.each do |issue|
+    Variant.where(:cover => cover).each do |issue|
       download_image(issue, @agent)
     end
   end

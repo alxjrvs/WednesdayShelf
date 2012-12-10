@@ -9,6 +9,7 @@ Wednesdayshelf::Application.configure do
         :aws_secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
         :region => 'us-east-1'
                           },
+      :fog_public => true,
       :fog_directory => ENV['AWS_BUCKET'],
       :path => "covers/:class/:id_partition/:style/:basename.:extension"
                                  }
