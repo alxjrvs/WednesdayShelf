@@ -76,7 +76,8 @@ class Digester < Scraper
         puts "BASE URL => #{ENV['BASE_URL']}"
         puts "FANCBOX => #{ENV['FANCBOX_URL']}"
         puts "CODE => #{code}"
-        html = @agent.get(ENV['BASE_URL'] + ENV['FANCBOX_URL'] + code).body
+        url = ENV['BASE_URL'] + ENV['FANCBOX_URL'] + code
+        html = @agent.get(url.gsub("%0A", "")).body #NOTE Ugly Gsub fix.
         doc = Nokogiri::HTML(html)
       if doc.search("[text()*='could not be found or is currently not in stock.']").empty? == false
         issue.variants.destroy_all
