@@ -73,6 +73,9 @@ class Digester < Scraper
       release.issues.each do |issue|
         code = issue.diamond_no
         puts "Logging in to code #{code}"
+        puts "BASE URL => #{ENV['BASE_URL']}"
+        puts "FANCBOX => #{ENV['FANCBOX_URL']}"
+        puts "CODE => #{code}"
         html = @agent.get("#{ENV['BASE_URL']}#{ENV['FANCBOX_URL']}#{code}").body
         doc = Nokogiri::HTML(html)
       if doc.search("[text()*='could not be found or is currently not in stock.']").empty? == false
