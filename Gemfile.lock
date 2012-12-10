@@ -143,7 +143,7 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (~> 0.0, >= 0.0.9)
-    mechanize_clip (0.1.2)
+    mechanize_clip (0.1.3)
       mechanize (>= 2.2.0)
     method_source (0.8.1)
     mime-types (1.19)
@@ -306,7 +306,7 @@ DEPENDENCIES
   jquery-rails
   launchy (~> 2.1.0)
   mechanize
-  mechanize_clip
+  mechanize_clip (~> 0.1.3)
   nokogiri
   paperclip
   paperclip-aws

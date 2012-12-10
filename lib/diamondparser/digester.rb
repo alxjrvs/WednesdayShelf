@@ -119,21 +119,9 @@ class Digester < Scraper
   end
 
 
-
-  #def download_image(issue, agent, directory)
-    #imgurl = get_imgurl(issue.stock_no)
-    #tempfile = agent.get(imgurl).body_io
-    #file = directory.files.create(
-      #:key => "#{issue.diamond_no}_cover.png",
-      #:body => tempfile,
-      #:public => true
-    #)
-    #puts "Cover for #{issue.title} Downloaded!"
-    #return file
-  #end
   def download_image(issue, agent)
-    file = MechanizeClip.get("http://images5.fanpop.com/image/photos/31000000/comic-book-covers-superheroes-of-today-31077665-300-429.jpg")
-    #binding.pry
+    imgurl = get_imgurl(issue.stock_no)
+    file = MechanizeClip.get(imgurl, agent)
     issue.cover = file
     issue.save
     puts "Cover for #{issue.title} Downloaded!"

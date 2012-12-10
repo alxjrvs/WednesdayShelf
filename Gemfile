@@ -33,7 +33,7 @@ group :production do
 end
 
 gem 'fog'
-gem 'mechanize_clip'
+gem 'mechanize_clip','~> 0.1.3'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'paperclip'
