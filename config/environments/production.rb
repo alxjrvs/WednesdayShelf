@@ -10,7 +10,7 @@ Wednesdayshelf::Application.configure do
         :region => 'us-east-1'
                           },
       :fog_directory => ENV['AWS_BUCKET'],
-      :path => "covers/:class/:attachment/:id_partition/:style/:basename.:extension"
+      :path => "covers/:class/:id_partition/:style/:basename.:extension"
                                  }
 
     #config.paperclip_defaults = {
