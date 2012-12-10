@@ -4,11 +4,11 @@ class Issue < ActiveRecord::Base
   belongs_to :series
   belongs_to :release
 
-  #has_attached_file :cover,
-      #styles: {
-        #:small => "150x230>",
-        #:medium => "300x460>"
-        #},
+  has_attached_file :cover,
+      styles: {
+        :small => "150x230>",
+        :medium => "300x460>"
+        }
       #:s3_credentials => {
         #:bucket => ENV['AWS_BUCKET'],
         #secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],

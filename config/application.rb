@@ -50,6 +50,8 @@ module Wednesdayshelf
     config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.
+    config.paperclip_defaults = {:storage => :fog, :fog_credentials => {:provider => "Local", :local_root => "#{Rails.root}/public"}, :fog_directory => "", :fog_host => "localhost"}
+
     config.active_support.escape_html_entities_in_json = true
 
     # Use SQL instead of Active Record's schema dumper when creating the database.

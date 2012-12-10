@@ -142,24 +142,31 @@ class Digester < Scraper
      directory = connection.directories.get('wscovers')
     Issue.all.each do |issue|
       puts "Grabbing Standard Issues..."
-      file = directory.files.get("#{issue.diamond_no}_cover.png")
+      #file = directory.files.get("blank_cover.png")
       if directory.files.get("#{issue.diamond_no}_cover.png") == nil
-        download_image(issue, @agent, directory)
+        file = download_image(issue, @agent, directory)
       else
         puts "Already downloaded, next"
+        file = directory.files.get("#{issue.diamond_no}_cover.png")
       end
+      puts "============"
+      puts file.public_url
+      puts "============"
       issue.cover_url = file.public_url
       issue.save
       puts "#{issue.title} saved to #{issue.cover_url}"
     end
     Variant.all.each do |issue|
       puts "Grabbing Variants..."
-      file = directory.files.get("#{issue.diamond_no}_cover.png")
       if directory.files.get("#{issue.diamond_no}_cover.png") == nil
-        download_image(issue, @agent, directory)
+        file =  download_image(issue, @agent, directory)
       else
         puts "Already downloaded, next"
+        file = directory.files.get("#{issue.diamond_no}_cover.png")
       end
+      puts "============"
+      puts file.public_url
+      puts "============"
       issue.cover_url = file.public_url
       issue.save
       puts "#{issue.title} saved to #{issue.cover_url}"
