@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 class Digester < Scraper
   def is_comic_filter(listing)
     return false if listing.publisher == ""
@@ -34,7 +36,6 @@ class Digester < Scraper
 
       @release = Release.where(:ship_date => ship_date).first_or_create
       create_hash = digest_into_create_hash listing
-      create_hash[:cover_url => "https://s3.amazonaws.com/wscovers/blank_cover.png"]
       if listing.full_title.include? @name
         var = Variant.where(create_hash).first_or_create
         var.issue = Issue.where(:title => @name)[0]
