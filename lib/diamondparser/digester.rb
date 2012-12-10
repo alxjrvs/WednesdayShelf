@@ -132,11 +132,15 @@ class Digester < Scraper
     puts "DOWNLOADING COVERS"
     puts "================"
     login
-    Issue.all.each do |issue|
+    Issue.where(:has_cover => false).each do |issue|
       download_image(issue, @agent)
+      issue.has_cover = true
+      issue.save
     end
-    Variant.all.each do |issue|
+    Variant.where(:has_cover => false).each do |issue|
       download_image(issue, @agent)
+      issue.has_cover = true
+      issue.save
     end
   end
 end

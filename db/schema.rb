@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210052350) do
+ActiveRecord::Schema.define(:version => 20121210124142) do
 
   create_table "issues", :force => true do |t|
     t.integer  "release_id"
@@ -26,13 +26,14 @@ ActiveRecord::Schema.define(:version => 20121210052350) do
     t.integer  "issue_no"
     t.integer  "max_issue"
     t.float    "price"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "cover_url"
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.boolean  "has_cover",          :default => false
   end
 
   create_table "listings", :force => true do |t|
@@ -148,13 +149,14 @@ ActiveRecord::Schema.define(:version => 20121210052350) do
     t.integer  "issue_no"
     t.integer  "max_issue"
     t.float    "price"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "cover_url"
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.boolean  "has_cover",          :default => false
   end
 
 end
