@@ -48,6 +48,7 @@ gem 'pry'
 gem 'simple_form'
 gem 'thin'
 
+gem 'zurb-foundation', '>=3.0.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -55,7 +56,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
   gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation', '>=3.0.0'
 end
 
 gem 'jquery-rails'
