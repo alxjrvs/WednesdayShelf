@@ -2,16 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-  width: 1170px;
-  margin-right: auto;
-  margin-left: auto;
-}
-body {
-  background: url('/assets/retina_wood.png');
-
- }
-div.container {
+div.shelves {
+  background:white;
+  padding: 10px 0 10px 0px;
   -webkit-border-bottom-right-radius: 20px;
   -webkit-border-bottom-left-radius: 20px;
   -moz-border-radius-bottomright: 20px;
@@ -21,55 +14,6 @@ div.container {
   -moz-box-shadow: 0 0 23px -5px #000;
   -webkit-box-shadow: 0 0 23px -5px #000;
   box-shadow: 0 0 23px -5px #000;
-  background:black;
-}
-
-.header {
-  color:white;
-  text-align: center;
-  width:100%;
-  background:black;
-  height:5%;
-  h1 {
-
-  }
-}
-
-img.logo_img {
-
-  margin-top: 5px;
-  vertical-align: middle;
-  display: block;
-  float:left;
-  width:40px;
-}
-
-.top-bar > ul .name h1 {
-  line-height: 45px;
-  margin: 0;
-  float:right;
-}
-
-.top-bar > ul .name img {
-  margin-top: 0px;
-  vertical-align: middle;
-}
-
-
-.subhead {
-  color: white;
-  line-height: 49px;
-  vertical-align: middle;
-  font-size: 17px;
-  padding: 0 2px;
-}
-
-.top-bar ul > li:not(.name):hover, .top-bar ul > li:not(.name).active {
-  background:inherit;
-}
-div.shelves {
-  background:white;
-  padding: 10px 0 40px 0px;
 }
 
 div.cover_box {
