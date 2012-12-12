@@ -18,7 +18,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.3.0'
   gem 'factory_girl_rspec', :git => "https://github.com/chendrix/factory_girl_rspec.git"
   gem 'rspec-subject-extensions'
-  gem 'thin'
 end
 
 group :test do
@@ -33,6 +32,7 @@ group :production do
   gem 'sendgrid'
 end
 
+gem 'thin'
 gem 'fog'
 gem 'mechanize_clip','~> 0.1.3'
 gem 'nokogiri'
