@@ -1,8 +1,10 @@
-  <% @issues.keys.each do |series| %>
-      <li class="cover_box <%= series.publisher.name.gsub(" ", "_")%> ">
-        <div class="anchor ">
-          <%= image_tag @issues[series].cover.url(:small), {:class => "home_comic_cover"} %>
-        </div>
-        <p class="issue_text"> <%= @issues[series].title.titleize  %></p>
-      </li>
-   <%end%>  <%#end of issues block%>
+<% @issues.keys.each do |series| %>
+  <li class="cover_box <%= series.publisher.name.gsub(" ", "_")%> "  >
+    <div class="anchor ">
+      <a href="#" data-reveal-id="<%= @issues[series].diamond_no%>_details">
+        <%= image_tag @issues[series].cover.url(:small), {:class => "home_comic_cover"} %>
+      </a>
+    </div>
+    <p class="issue_text"> <%= @issues[series].title.titleize  %></p>
+  </li>
+<%end%>  <%#end of issues block%>
