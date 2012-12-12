@@ -39,6 +39,15 @@ img.logo_img {
   width: 75%;
 }
 
+.home_comic_cover:hover {
+  margin: 0 auto;
+  width: 150px;
+  display: block;
+  -mox-box-shadow:2px 6px 8px rgba(100, 139, 227, 0.57);
+  -webkit-box-shadow:2px 6px 8px rgba(100, 139, 227, 0.57);
+  box-shadow:2px 6px 8px rgba(100, 139, 227, 0.57);
+
+}
 .home_comic_cover {
   margin: 0 auto;
   width: 150px;
