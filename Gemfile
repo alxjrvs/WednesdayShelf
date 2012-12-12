@@ -18,6 +18,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.3.0'
   gem 'factory_girl_rspec', :git => "https://github.com/chendrix/factory_girl_rspec.git"
   gem 'rspec-subject-extensions'
+  gem 'thin'
 end
 
 group :test do
@@ -38,21 +39,19 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'paperclip'
 gem 'aws-sdk'
-gem 'paperclip-aws'
+#gem 'paperclip-aws'
 gem 'strong_parameters'
 gem 'devise'
 gem 'google-analytics-rails'
-gem 'haml-rails'
 gem 'ruby_parser'
 gem 'pry'
 gem 'simple_form'
-gem 'thin'
 
-gem 'zurb-foundation', '>=3.0.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'zurb-foundation', '>=3.0.0'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
   gem 'uglifier', '>= 1.0.3'
