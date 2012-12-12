@@ -1,6 +1,6 @@
 <% @issues.keys.each do |series| %>
   <div id="<%= @issues[series].diamond_no %>_details" class="reveal-modal large">
     <p><%= @issues[series].title %></p>
-    <%= image_tag @issues[series].cover.url(:medium), {:class => "home_comic_cover"} %>
+    <%= image_tag @issues[series].cover.url(:medium), {:class => "modal_comic_cover"} %>
   </div>
 <%end%>  <%#end of issues block%>

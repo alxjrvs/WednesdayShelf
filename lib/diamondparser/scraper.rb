@@ -21,6 +21,7 @@ class Scraper
     form.Password =  ENV['PASSWORD']
     page = @agent.submit(form)
     page = @agent.page.links_with(:text => "Data Files")[0].click
+    return @agent
   end
 
   #Take the 'Master Data File' string and make it a hash of headers => data

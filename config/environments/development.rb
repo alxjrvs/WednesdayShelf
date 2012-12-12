@@ -40,6 +40,6 @@ Wednesdayshelf::Application.configure do
         :local_root => "#{Rails.root}/public"
                           },
         :fog_directory => "",
-        :fog_host => "localhost:3000"
+        :fog_host => ""
                                 }
 end
