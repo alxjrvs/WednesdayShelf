@@ -1,23 +1,15 @@
-<div class="fixed contain-to-grid">
-  <nav class="top-bar">
-    <ul>
-      <li class="name"><%= image_tag "ws_logo2.png", {:class => "logo_img"} %><h1><a href="#">WednesdayShelf</a></h1></li>
-      <li class="toggle-topbar"><a href="#"></a></li>
-    </ul>
-    <section>
-      <ul class="left">
-      </ul>
+<% content_for :nav do %>
+<ul class="left">
+</ul>
 
-      <ul class="right">
-        <li><p class="subhead"> Comics coming </p></li>
-        <li class = "has-dropdown">
-          <p class="subhead"> <%= @release_date%></p>
+<ul class="right">
+  <li><p class="subhead"> Comics coming </p></li>
+  <li class = "has-dropdown">
+    <p class="subhead"> <%= @release_date%></p>
 
-        </li>
-      </ul>
-    </section>
-  </nav>
-</div>
+  </li>
+</ul>
+<% end %>
 
 <div class="container nine columns centered">
   <div class="shelves">
