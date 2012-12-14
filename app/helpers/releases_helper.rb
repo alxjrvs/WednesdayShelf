@@ -1,2 +1,2 @@
-module ReleaseHelper
+module ReleasesHelper
 end
