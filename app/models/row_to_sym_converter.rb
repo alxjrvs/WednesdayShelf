@@ -7,14 +7,15 @@ class RowToSymConverter
   end
 
   def hashes_to_sym
+    binding.pry
     @hash.keys.each do |key|
-      keyvalue =  Sanitize.new(@hash[key]).string
+      keyvalue =  SanitizeDiamond.new(@hash[key]).string
       if key == "INCREMENT"
         @branded_hash[:increment_no] = keyvalue
       else
         @branded_hash[key.parameterize.underscore.to_sym] = keyvalue
       end
-      @branded_hash
+      return @branded_hash
     end
   end
 end

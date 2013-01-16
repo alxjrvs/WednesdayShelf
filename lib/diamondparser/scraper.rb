@@ -125,7 +125,7 @@ BACKLOG_ARRAY = [
     #puts "#Previews recorded, Range: #{@p.first_diamd_no} - #{@p.last_diamd_no}"
   #end
   def get_previews
-    PreviewsRecorder.new(HashesToSymConverter.new(NewReleasesLogger.new).rebrand).record
+    PreviewsRecorder.new(HashesToSymConverter.new(NewReleasesLogger.new.digest).rebrand).record
   end
 
   def get_backlog
