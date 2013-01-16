@@ -1,41 +1,39 @@
 require 'nokogiri'
 
 class Digester < Scraper
-  def is_comic_filter(listing)
-    return false if listing.publisher == ""
-    return false if listing.price.gsub("$", "").to_f > 10.00
-    return false if listing.full_title.include? " TP"
-    return false if listing.full_title.include? " HC"
-    return true
-  end
+  #def is_comic_filter(listing)
+    #return false if listing.publisher == ""
+    #return false if listing.price.gsub("$", "").to_f > 10.00
+    #return false if listing.full_title.include? " TP"
+    #return false if listing.full_title.include? " HC"
+    #return true
+  #end
 
-  def digest_into_create_hash(listing)
-    create_hash = {}
-    #basic strings
-    create_hash[:title] = listing.full_title
-    create_hash[:description] = listing.full_desc
-    create_hash[:diamond_no] = listing.diamd_no
-    create_hash[:stock_no] = listing.stock_no
-    create_hash[:writer] = listing.writer
-    create_hash[:artist] = listing.artist
-    create_hash[:cover_artist] = listing.cover_artist
-    #integers
-    create_hash[:issue_no] = listing.issue_no.to_i
-    create_hash[:max_issue] = listing.max_issue.to_i
-    #float
-    create_hash[:price] = listing.price.gsub("S", "").to_f
-    return create_hash
-  end
+  #def digest_into_create_hash(listing)
+    #create_hash = {}
+    ##basic strings
+    #create_hash[:title] = listing.full_title
+    #create_hash[:description] = listing.full_desc
+    #create_hash[:diamond_no] = listing.diamd_no
+    #create_hash[:stock_no] = listing.stock_no
+    #create_hash[:writer] = listing.writer
+    #create_hash[:artist] = listing.artist
+    #create_hash[:cover_artist] = listing.cover_artist
+    ##integers
+    #create_hash[:issue_no] = listing.issue_no.to_i
+    #create_hash[:max_issue] = listing.max_issue.to_i
+    ##float
+    #create_hash[:price] = listing.price.gsub("S", "").to_f
+    #return create_hash
+  #end
 
   def digest(p)
     @name = "Alex Mother Loving Jarvis"
     p.listings.each do |listing|
-      is_comic = is_comic_filter(listing)
-      next if is_comic == false
+      next unless listing.is_comic?
       ship_date = DateTime.strptime(listing.ship_date, "%m/%d/%Y")
-
       @release = Release.where(:ship_date => ship_date).first_or_create
-      create_hash = digest_into_create_hash listing
+      create_hash = ListingCreateHasher.new(listing).digest
       if listing.full_title.include? @name
         var = Variant.where(create_hash).first_or_create
         var.issue = Issue.where(:title => @name)[0]
