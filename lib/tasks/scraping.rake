@@ -2,8 +2,8 @@ namespace :scrape do
   desc "Download all comics"
   task :all => :environment do
     scraper = Scraper.new
-    scraper.get_backlog
     scraper.get_previews
+    scraper.get_backlog
   end
 
   desc "Download only from latest"
