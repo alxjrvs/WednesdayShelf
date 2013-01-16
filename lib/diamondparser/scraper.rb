@@ -12,30 +12,30 @@ class Scraper
               ]
 
 
-  def login
-    @agent = Mechanize.new
-    page = @agent.get(ENV['LOGIN'])
-    form = page.form
-    form.UserName =  ENV['USERNAME']
-    form.EnteredCustNo =  ENV['CUST_NO']
-    form.Password =  ENV['PASSWORD']
-    page = @agent.submit(form)
-    page = @agent.page.links_with(:text => "Data Files")[0].click
-    return @agent
-  end
+  #def  agent = LoginAgent.new.login
+    #agent = Mechanize.new
+    #page = agent.get(ENV['LOGIN'])
+    #form = page.form
+    #form.UserName =  ENV['USERNAME']
+    #form.EnteredCustNo =  ENV['CUST_NO']
+    #form.Password =  ENV['PASSWORD']
+    #page = agent.submit(form)
+    #page = agent.page.links_with(:text => "Data Files")[0].click
+    #return agent
+  #end
 
   #Take the 'Master Data File' string and make it a hash of headers => data
-  def master_hasher(file)
-    master_array = file.split("\r\n")
-    keys = master_array[0].split("\t")
-    finished_array = []
-    master_array.each do |row|
-      next if row.split("\t").size != 42
-      next if row.split("\t") == keys
-      finished_array << Hash[keys.zip(row.split("\t"))]
-    end
-    finished_array
-  end
+  #def master_hasher(file)
+    #master_array = file.split("\r\n")
+    #keys = master_array[0].split("\t")
+    #finished_array = []
+    #master_array.each do |row|
+      #next if row.split("\t").size != 42
+      #next if row.split("\t") == keys
+      #finished_array << Hash[keys.zip(row.split("\t"))]
+    #end
+    #finished_array
+  #end
 
   #take the previewsDB string and make it into a hash of Diamond_numbers => fluff
 
@@ -45,7 +45,7 @@ class Scraper
 
   #merge the above two into a unified hash
   def d_parse(master, db)
-    hash_array = master_hasher(master)
+    hash_array = MasterHasher.new(master).digest
     preview_hash = db_hasher(db)
     total_hash = {}
     hash_array.each do |hash|
@@ -56,11 +56,11 @@ class Scraper
   end
 
   def previews_backlog(array)
-    login
+     agent = LoginAgent.new.login
     total_hash = {}
     puts "Getting Backlog"
-    master_page = @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file")
-    db_page = @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_product_copy")
+    master_page = agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file")
+    db_page = agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_product_copy")
     puts array[0]
     puts array[1]
     master_link = master_page.links_with(:href => array[0])[0]
@@ -75,7 +75,8 @@ class Scraper
   end
 
   def new_previews
-    page = login
+    page = LoginAgent.new.login.links_with(:text => "Data Files")[0].click
+    #page = agent.page.links_with(:text => "Data Files")[0].click
     total_hash = {}
     url = ["/FileExport/Misc/MasterDataFile-ITEMS.txt","/FileExport/MonthlyToolsTXT/previewsDB.txt"]
     #puts "Just the New Stuff"

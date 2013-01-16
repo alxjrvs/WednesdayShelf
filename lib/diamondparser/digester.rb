@@ -3,7 +3,7 @@ require 'nokogiri'
 class Digester < Scraper
   def is_comic_filter(listing)
     return false if listing.publisher == ""
-    return false if listing.price.gsub("$", "").to_f > 7.00
+    return false if listing.price.gsub("$", "").to_f > 10.00
     return false if listing.full_title.include? " TP"
     return false if listing.full_title.include? " HC"
     return true
@@ -40,9 +40,9 @@ class Digester < Scraper
         var = Variant.where(create_hash).first_or_create
         var.issue = Issue.where(:title => @name)[0]
         var.save
-        puts "-=+=- -=+=- -=+=- "
+        puts "-=+=- -=+=- -=+=-"
         puts "VARIANT RECORDED for #{var.issue.title} => #{var.title}"
-        puts "-=+=- -=+=- -=+=- "
+        puts "-=+=- -=+=- -=+=-"
         next
       end
       if listing.full_title.match(/^(.+)#\d+/)
@@ -52,9 +52,9 @@ class Digester < Scraper
       end
       create_hash.merge!(:title => @name)
       @issue = Issue.where(create_hash).first_or_create
-      puts "-=+=- -=+=- -=+=- "
+      puts "-=+=- -=+=- -=+=-"
       puts "ISSUE RECORDED - #{@issue.title}"
-      puts "-=+=- -=+=- -=+=- "
+      puts "-=+=- -=+=- -=+=-"
       @release.issues << @issue
       next if listing.main_desc == nil
       @series = Series.where(:name => listing.main_desc ).first_or_create
