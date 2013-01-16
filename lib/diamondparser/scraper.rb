@@ -39,24 +39,24 @@ class Scraper
 
   #take the previewsDB string and make it into a hash of Diamond_numbers => fluff
 
-  def db_hasher(file)
-    Hash[file.split("\r\n").map { |x| x.gsub("\"", "").split("\t") }.map {|row| [row[0], row[3]]}]
-  end
+  #def db_hasher(file)
+    #Hash[file.split("\r\n").map { |x| x.gsub("\"", "").split("\t") }.map {|row| [row[0], row[3]]}]
+  #end
 
   #merge the above two into a unified hash
-  def d_parse(master, db)
-    hash_array = MasterHasher.new(master).digest
-    preview_hash = db_hasher(db)
-    total_hash = {}
-    hash_array.each do |hash|
-      hash["FULL_DESC"]  = preview_hash[hash["DIAMD_NO"]]
-      total_hash.merge!(hash["DIAMD_NO"] => hash )
-    end
-    total_hash
-  end
+  #def d_parse(master, db)
+    #hash_array = MasterHasher.new(master).digest
+    #preview_hash = DbHasher.new(db).digest
+    #total_hash = {}
+    #hash_array.each do |hash|
+      #hash["FULL_DESC"]  = preview_hash[hash["DIAMD_NO"]]
+      #total_hash.merge!(hash["DIAMD_NO"] => hash )
+    #end
+    #total_hash
+  #end
 
   def previews_backlog(array)
-     agent = LoginAgent.new.login
+    agent = LoginAgent.new.login.links_with(:text => "Data Files")[0].click
     total_hash = {}
     puts "Getting Backlog"
     master_page = agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file")
@@ -69,20 +69,19 @@ class Scraper
     puts "==============WOOPS----------------"
     bext
     end
-    total_hash.merge! d_parse master_link.click.body, db_link.click.body
+    total_hash.merge! SourceWeaver.new(master_link.click.body, db_link.click.body).digest
     puts total_hash.size
     return total_hash
   end
 
   def new_previews
     page = LoginAgent.new.login.links_with(:text => "Data Files")[0].click
-    #page = agent.page.links_with(:text => "Data Files")[0].click
     total_hash = {}
     url = ["/FileExport/Misc/MasterDataFile-ITEMS.txt","/FileExport/MonthlyToolsTXT/previewsDB.txt"]
     #puts "Just the New Stuff"
     master_page = page
     db_page = page
-    total_hash.merge! d_parse master_page.links_with(:href =>url[0])[0].click.body, db_page.links_with(:href => url[1])[0].click.body
+    total_hash.merge! SourceWeaver.new(master_page.links_with(:href =>url[0])[0].click.body, db_page.links_with(:href => url[1])[0].click.body).digest
     total_hash
   end
 
