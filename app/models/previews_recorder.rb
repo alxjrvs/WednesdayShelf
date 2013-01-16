@@ -13,6 +13,7 @@ class PreviewsRecorder
   end
 
   def record
+    binding.pry
     @preview_hash.each_with_index do |listing, i|
       if i == 0
         @p.first_diamd_no = listing[:diamd_no]

@@ -6,8 +6,9 @@ class HashesToSymConverter
   end
 
   def rebrand
-    @hash.keys.map do |key|
-      RowToSymConverter.new(@hash[key]).hashes_to_sym
+    @hash.each do |key, value|
+      binding.pry
+      @hash[key] = RowToSymConverter.new(value).hashes_to_sym
     end
     return @hash
   end
