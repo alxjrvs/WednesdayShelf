@@ -3,13 +3,13 @@ class HashesToSymConverter
 
   def initialize(hash)
     @hash = hash
+    @array = []
   end
 
   def rebrand
     @hash.each do |key, value|
-      binding.pry
-      @hash[key] = RowToSymConverter.new(value).hashes_to_sym
+      @array << RowToSymConverter.new(value).hashes_to_sym
     end
-    return @hash
+    return @array
   end
 end

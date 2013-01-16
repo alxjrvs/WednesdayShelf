@@ -2,7 +2,7 @@ class PreviewsBacklogger
 
   def initialize(array)
     @array = array
-    @agent = LoginAgent.new.login.links_with(:text => "Data Files")[0].click
+    @agent = LoginAgent.new.login
     @master_link = @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file").links_with(:href => @array[0])[0]
     @db_link= @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_product_copy").links_with(:href => @array[1])[0]
     @total_hash = {}
