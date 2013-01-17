@@ -27,69 +27,58 @@ class Digester < Scraper
     #return create_hash
   #end
 
-  def digest(p)
-    @name = "Alex Mother Loving Jarvis"
-    p.listings.each do |listing|
-      next unless listing.is_comic?
-      ship_date = DateTime.strptime(listing.ship_date, "%m/%d/%Y")
-      @release = Release.where(:ship_date => ship_date).first_or_create
-      create_hash = ListingCreateHasher.new(listing).digest
-      if listing.full_title.include? @name
-        var = Variant.where(create_hash).first_or_create
-        var.issue = Issue.where(:title => @name)[0]
-        var.save
-        puts "-=+=- -=+=- -=+=-"
-        puts "VARIANT RECORDED for #{var.issue.title} => #{var.title}"
-        puts "-=+=- -=+=- -=+=-"
-        next
-      end
-      if listing.full_title.match(/^(.+)#\d+/)
-        @name = listing.full_title.match(/^(.+)#\d+/).to_s
-      else
-        @name = listing.full_title
-      end
-      create_hash.merge!(:title => @name)
-      @issue = Issue.where(create_hash).first_or_create
-      puts "-=+=- -=+=- -=+=-"
-      puts "ISSUE RECORDED - #{@issue.title}"
-      puts "-=+=- -=+=- -=+=-"
-      @release.issues << @issue
-      next if listing.main_desc == nil
-      @series = Series.where(:name => listing.main_desc ).first_or_create
-      @series.issues << @issue
-      @publisher = Publisher.where(:name => listing.publisher).first_or_create
-      @publisher.series << @series
-    end
-  p.digested = true
-  p.save
-  return nil
-  end
+  #def digest(p)
+    #@name = "Alex Mother Loving Jarvis"
+    #p.listings.each do |listing|
+      #next unless listing.is_comic?
+      #ship_date = DateTime.strptime(listing.ship_date, "%m/%d/%Y")
+      #@release = Release.where(:ship_date => ship_date).first_or_create
+      #create_hash = ListingCreateHasher.new(listing).digest
+      #if listing.full_title.include? @name
+        #var = Variant.where(create_hash).first_or_create
+        #var.issue = Issue.where(:title => @name)[0]
+        #var.save
+        #puts "-=+=- -=+=- -=+=-"
+        #puts "VARIANT RECORDED for #{var.issue.title} => #{var.title}"
+        #puts "-=+=- -=+=- -=+=-"
+        #next
+      #end
+      #if listing.full_title.match(/^(.+)#\d+/)
+        #@name = listing.full_title.match(/^(.+)#\d+/).to_s
+      #else
+        #@name = listing.full_title
+      #end
+      #create_hash.merge!(:title => @name)
+      #@issue = Issue.where(create_hash).first_or_create
+      #puts "-=+=- -=+=- -=+=-"
+      #puts "ISSUE RECORDED - #{@issue.title}"
+      #puts "-=+=- -=+=- -=+=-"
+      #@release.issues << @issue
+      #next if listing.main_desc == nil
+      #@series = Series.where(:name => listing.main_desc ).first_or_create
+      #@series.issues << @issue
+      #@publisher = Publisher.where(:name => listing.publisher).first_or_create
+      #@publisher.series << @series
+    #end
+  #p.digested = true
+  #p.save
+  #return nil
+  #end
 
   def update_shipping
     login
     Release.all_future.each do |release|
       release.issues.each do |issue|
-        code = issue.diamond_no
-        url = "#{ENV['BASE_URL']}#{ENV['FANCBOX_URL']}#{code}".gsub("\n", "")  #NOTE Ugly Gsub fix.
-        puts url
+        url = IssueUrlMaker.new(self.diamond_no).get_url
         html = @agent.get(url).body
         doc = Nokogiri::HTML(html)
-      if doc.search("[text()*='could not be found or is currently not in stock.']").empty? == false
-        issue.variants.destroy_all
-        issue.destroy
-        puts "GONE"
-        next
-      end
-      if doc.search("[text()*='CANCELLED']").empty?  == false
-        issue.variants.destroy_all
-        issue.destroy
-        puts "CANCELLED"
-        next
-      end
-        raw_ship = doc.search("[text()*='Est Ship Date']")[0].parent.parent.css('.LookupItemData_Value').text.strip
-        ship_date = DateTime.strptime(raw_ship, "%m/%d/%Y")
-        issue.release = Release.where(:ship_date => ship_date).first_or_create
-        issue.save
+        cancel_check = IssueCancelChecker.new(doc)
+        next if cancel_check.check_for_not_found
+        next if cancel_check.check_for_cancelled
+        #raw_ship = doc.search("[text()*='Est Ship Date']")[0].parent.parent.css('.LookupItemData_Value').text.strip
+        #ship_date = DateTime.strptime(raw_ship, "%m/%d/%Y")
+        self.release = Release.where(:ship_date => ShippingRowFinder.new(doc).format_date).first_or_create
+        self.save
       end
     end
   end
