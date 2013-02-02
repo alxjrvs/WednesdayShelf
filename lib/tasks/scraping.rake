@@ -1,28 +1,21 @@
 namespace :scrape do
   desc "Download all comics"
   task :all => :environment do
-    scraper = Scraper.new
-    scraper.get_backlog
-    scraper.get_previews
+    PreviewsRecorder.new(HashesToSymConverter.new(NewReleasesLogger.new.digest).rebrand).record
+    BACKLOG_ARRAY.each do |log|
+      PreviewsRecorder.new(HashesToSymConverter.new(PreviewsBacklogger.new(log).digest).rebrand).record
+    end
   end
 
   desc "Download only from latest"
   task :latest => :environment do
-    scraper = Scraper.new
-    scraper.get_previews
+    PreviewsRecorder.new(HashesToSymConverter.new(NewReleasesLogger.new.digest).rebrand).record
   end
   desc "Download backlog"
   task :backlog => :environment do
-    scraper = Scraper.new
-    scraper.get_backlog
-  end
-
-  desc "Download the Latest previews"
-  task :previews => :environment do
-  end
-
-  desc "Download the backlog"
-  task :backlog => :environment do
+    BACKLOG_ARRAY.each do |log|
+      PreviewsRecorder.new(HashesToSymConverter.new(PreviewsBacklogger.new(log).digest).rebrand).record
+    end
   end
 end
 
