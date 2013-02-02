@@ -23,4 +23,8 @@ class Issue < ActiveRecord::Base
     self.release = Release.where(:ship_date => ShippingRowFinder.new(doc).format_date).first_or_create
     self.save
   end
+
+  def download_cover
+    IssueImageDownloader.new(self, LoginAgent.new.login.agent)
+  end
 end
