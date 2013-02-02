@@ -16,27 +16,17 @@ class ListingDigester
       return false
     end
   end
-  def has_series?
-    if @listing.main_desc == nil
-      return false
-    else
-      return true
-    end
+
+  def title_stripper
+    @name = TitleStripper.new(@listing.full_title).strip
   end
 
   def digest
     if is_variant?
-      VariantRecorder.new(listing).record
+      VariantRecorder.new(@listing).record
     else
-      @name = TitleStripper.new(@listing.full_title).strip
-      issue = Issue.where(ListingCreateHasher.new(@listing).digest.merge!(:title => @name)).first_or_create
-      @release.issues << issue
-      if has_series?
-        series = Series.where(:name => @listing.main_desc ).first_or_create
-        series.issues << issue
-        publisher = Publisher.where(:name => @listing.publisher).first_or_create
-        publisher.series << series
-      end
+      title_stripper
+      IssueRecorder.new(@listing, @name, @release)
     end
   end
 
