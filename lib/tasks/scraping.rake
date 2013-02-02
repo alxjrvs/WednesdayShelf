@@ -23,20 +23,27 @@ namespace :digest do
 
   desc "digest all the previews"
   task :previews => :environment do
-    digester = Digester.new
     Preview.where(:digested => false).each do |preview|
-    #Preview.all.each do |preview|
-      digester.digest(preview)
+      preview.digest
     end
   end
   desc "Download comic Covers"
   task :covers => :environment do
-    digester = Digester.new
-    digester.download_all_covers
+    agent = LoginAgent.new.login.agent
+    Issue.where(:has_cover => false).each do |i|
+     i.download_cover
+    end
+    Variant.where(:has_cover => false).each do |i|
+     i.download_cover
+    end
   end
   desc "get updated shipping information"
   task :shipping => :environment do
-    digester = Digester.new
-    digester.update_shipping
+    page = LoginAgent.new.login
+    Release.all_future.each do |release|
+      release.issues.each do |issue|
+        issue.update_shipping
+      end
+    end
   end
 end
