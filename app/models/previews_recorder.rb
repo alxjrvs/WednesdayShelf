@@ -1,7 +1,8 @@
 class PreviewsRecorder
   def initialize(preview_hash)
-    @preview_hash = preview_hash
+    @preview_hash = HashesToSymConverter.new(preview_hash).rebrand
     @p = Preview.create
+  
   end
 
   def state_recorded
