@@ -1,20 +1,20 @@
 namespace :scrape do
   desc "Download all comics"
   task :all => :environment do
-    PreviewsRecorder.new(HashesToSymConverter.new(NewReleasesLogger.new.digest).rebrand).record
+    PreviewsRecorder.new(NewReleasesLogger.new.digest).record
     BACKLOG_ARRAY.each do |log|
-      PreviewsRecorder.new(HashesToSymConverter.new(PreviewsBacklogger.new(log).digest).rebrand).record
+      PreviewsRecorder.new(PreviewsBacklogger.new(log).digest).record
     end
   end
 
   desc "Download only from latest"
   task :latest => :environment do
-    PreviewsRecorder.new(HashesToSymConverter.new(NewReleasesLogger.new.digest).rebrand).record
+    PreviewsRecorder.new(NewReleasesLogger.new.digest).record
   end
   desc "Download backlog"
   task :backlog => :environment do
     BACKLOG_ARRAY.each do |log|
-      PreviewsRecorder.new(HashesToSymConverter.new(PreviewsBacklogger.new(log).digest).rebrand).record
+      PreviewsRecorder.new(PreviewsBacklogger.new(log).digest).record
     end
   end
 end
@@ -27,6 +27,9 @@ namespace :digest do
       preview.digest
     end
   end
+end
+
+namespace :update do
   desc "Download comic Covers"
   task :covers => :environment do
     agent = LoginAgent.new.login.agent
@@ -37,6 +40,7 @@ namespace :digest do
      i.download_cover
     end
   end
+
   desc "get updated shipping information"
   task :shipping => :environment do
     page = LoginAgent.new.login
