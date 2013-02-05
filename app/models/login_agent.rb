@@ -15,6 +15,5 @@ class LoginAgent
     form.EnteredCustNo =  ENV['CUST_NO']
     form.Password =  ENV['PASSWORD']
     @agent.submit(form)
-    return @agent
   end
 end
