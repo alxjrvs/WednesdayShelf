@@ -13,12 +13,9 @@ class MasterHasher
   end
 
   def digest
-    ending_hash = []
-    split_file.each do |row|
-      next if row.split("\t").size != 42
+    split_file.map do |row|
       next if row.split("\t") == get_keys
-      ending_hash << Hash[get_keys.zip(row.split("\t"))]
-    end
-    ending_hash
+      Hash[get_keys.zip(row.split("\t"))]
+    end.compact
   end
 end
