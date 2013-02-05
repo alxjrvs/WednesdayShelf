@@ -310,7 +310,7 @@ DEPENDENCIES
   pry
   pry-rails
   rails (= 3.2.11)
-  rspec-pride
+  rspec-pride (~> 2.2.0)
   rspec-rails
   rspec-subject-extensions
   ruby_parser
