@@ -6,6 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
+  gem 'zeus'
   gem 'pry-rails'
   gem "better_errors"
   gem "binding_of_caller"
