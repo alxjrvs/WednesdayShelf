@@ -5,11 +5,14 @@ class SourceWeaver
     @db = DbHasher.new(db).digest
   end
 
+  def fill_in_blurb(hash)
+    hash["FULL_DESC"]  = @db[hash["DIAMD_NO"]]
+  end
   def digest
     total_hash = {}
     @master.each do |hash|
-      hash["FULL_DESC"]  = @db[hash["DIAMD_NO"]]
-      total_hash.merge!(hash["DIAMD_NO"] => hash )
+      fill_in_blurb(hash)
+      total_hash.merge! Hash[hash["DIAMD_NO"] => hash]
     end
     total_hash
   end

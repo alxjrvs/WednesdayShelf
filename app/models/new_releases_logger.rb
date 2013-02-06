@@ -1,17 +1,13 @@
 class NewReleasesLogger
   def initialize
     @page = LoginAgent.new.login.links_with(:text => "Data Files")[0].click
-    @url = ["/FileExport/Misc/MasterDataFile-ITEMS.txt","/FileExport/MonthlyToolsTXT/previewsDB.txt"]
-    @master_link = @page.links_with(:href => @url[0])[0].click.body
-    @db_link = @page.links_with(:href => @url[1])[0].click.body
-    @total_hash = {}
   end
 
   def get_files
-    #herp
+    Hash[:master => FileDownloader.new(@page, "/FileExport/Misc/MasterDataFile-ITEMS.txt" ).download, :db => FileDownloader.new(@page, "/FileExport/MonthlyToolsTXT/previewsDB.txt" ).download]
   end
 
   def digest
-    @total_hash.merge! SourceWeaver.new(@master_link, @db_link).digest
+    SourceWeaver.new(get_files[:master], get_files[:db]).digest
   end
 end
