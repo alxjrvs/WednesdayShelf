@@ -10,7 +10,6 @@ class FileDownloader
   end
 
   def file_body
-    binding.pry
     get_file.body
   end
 end
