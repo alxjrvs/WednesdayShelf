@@ -4,7 +4,7 @@ class NewReleasesLogger
   end
 
   def get_files
-    Hash[:master => FileDownloader.new(@page, "/FileExport/Misc/MasterDataFile-ITEMS.txt" ).download, :db => FileDownloader.new(@page, "/FileExport/MonthlyToolsTXT/previewsDB.txt" ).download]
+    Hash[:master => FileDownloader.new(@page, "/FileExport/Misc/MasterDataFile-ITEMS.txt" ).file_body, :db => FileDownloader.new(@page, "/FileExport/MonthlyToolsTXT/previewsDB.txt" ).file_body]
   end
 
   def digest

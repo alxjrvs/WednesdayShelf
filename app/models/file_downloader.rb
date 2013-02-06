@@ -4,8 +4,13 @@ class FileDownloader
     @page = page
     @url = url
   end
+  def get_file
+    @page.links_with(:href => @url)[0].click
 
-  def download
-    @page.links_with(:href => @url)[0].click.body
+  end
+
+  def file_body
+    binding.pry
+    get_file.body
   end
 end
