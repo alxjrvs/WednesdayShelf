@@ -9,8 +9,10 @@ class DbHasher
   end
 
   def digest
-    split_into_rows.map do |x| 
-      x.gsub("\"", "").split("\t").map {|row| [row[0], row[3]]}
-    end
+    Hash[split_into_rows.map do |x|
+      x.gsub("\"", "").split("\t")
+    end.map do |row|
+      [row[0], row[3]]
+    end]
   end
 end

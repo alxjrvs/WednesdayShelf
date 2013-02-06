@@ -5,10 +5,6 @@ describe MasterHasher do
   before :each do 
     @master_hasher = build(:master_hasher)
   end
-  #it "should split the file on rows and new lines" do
-    #@master_hasher.split_into_rows.size.should eq(6)
-    #@master_hasher.split_into_rows.should eq(MH_SPLIT_EXPECTED)
-  #end
   it "should return the right keys" do
     @master_hasher.get_keys.should eq(MH_KEYS_EXPECTED)
   end

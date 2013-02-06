@@ -4,6 +4,6 @@ FactoryGirl.define do
     ignore do
       db DB_RAW
     end
-    initialize_with {DBHasher.new(db)}
+    initialize_with {DbHasher.new(db)}
   end
 end
