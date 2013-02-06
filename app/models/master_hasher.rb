@@ -4,16 +4,16 @@ class MasterHasher
     @master = master
   end
 
-  def split_file
-    @master.split("\r\n")
+  def split_into_rows
+    FileRowSplitter.new(@master).file
   end
 
   def get_keys
-    split_file[0].split("\t")
+    split_into_rows[0].split("\t")
   end
 
   def digest
-    split_file.map do |row|
+    split_into_rows.map do |row|
       next if row.split("\t") == get_keys
       Hash[get_keys.zip(row.split("\t"))]
     end.compact

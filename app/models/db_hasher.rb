@@ -4,7 +4,13 @@ class DbHasher
     @db = file
   end
 
+  def split_into_rows
+    FileRowSplitter.new(@db).file
+  end
+
   def digest
-    Hash[@db.split("\r\n").map { |x| x.gsub("\"", "").split("\t") }.map {|row| [row[0], row[3]]}]
+    split_into_rows.map do |x| 
+      x.gsub("\"", "").split("\t").map {|row| [row[0], row[3]]}
+    end
   end
 end
