@@ -13,9 +13,10 @@ class MasterHasher
   end
 
   def digest
+    diamond_keys = get_keys
     split_into_rows.map do |row|
-      next if row.split("\t") == get_keys
-      Hash[get_keys.zip(row.split("\t"))]
+      next if row.split("\t") == diamond_keys
+      Hash[diamond_keys.zip(row.split("\t"))]
     end.compact
   end
 end
