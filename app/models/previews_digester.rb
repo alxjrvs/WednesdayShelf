@@ -7,9 +7,7 @@ class PreviewsDigester
 
   def digest
     @previews.listings.each do |listing|
-      next unless listing.is_comic?
-      ld = ListingDigester.new(listing, @name)
-      @name = ld.name
+      @name = ListingDigester.new(listing, @name).digest if listing.is_comic?
     end
     pp "Previews Digested"
     @previews.digested = true

@@ -6,7 +6,9 @@ class SeriesRecorder
   end
 
   def record
-    Series.where(:name => @listing.main_desc).first_or_create << @issue
+    series = Series.where(:name => @listing.main_desc).first_or_create
+    series.issues << @issue
+    return series
   end
 
 end

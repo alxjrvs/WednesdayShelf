@@ -7,7 +7,7 @@ class TitleStripper
     if @title.match(/^(.+)#\d+/)
       return @title.match(/^(.+)#\d+/).to_s
     else
-      return @title.full_title
+      return @title
     end
   end
 end

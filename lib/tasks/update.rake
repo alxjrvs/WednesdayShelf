@@ -1,7 +1,9 @@
 namespace :update do
   desc "Download comic Covers"
   task :covers => :environment do
-    agent = LoginAgent.new.login.agent
+    agent = LoginAgent.new
+    agent.login
+    agent = agent.agent
     Issue.where(:has_cover => false).each do |i|
      i.download_cover
     end

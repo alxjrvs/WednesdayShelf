@@ -1,7 +1,5 @@
 class ListingDigester
 
-  attr_reader :name
-
   def initialize(listing, name)
     @listing = listing
     @ship_date = DateTime.strptime(listing.ship_date, "%m/%d/%Y")
@@ -23,11 +21,11 @@ class ListingDigester
 
   def digest
     if is_variant?
-      VariantRecorder.new(@listing).record
+      VariantRecorder.new(@listing, @name).record
     else
       title_stripper
-      IssueRecorder.new(@listing, @name, @release)
+      IssueRecorder.new(@listing, @name, @release).record
     end
+    return @name
   end
-
 end

@@ -2,19 +2,21 @@ class PreviewsBacklogger
 
   def initialize(array)
     @array = array
-    @agent = LoginAgent.new.login
-    @master_link = @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file").links_with(:href => @array[0])[0]
-    @db_link= @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_product_copy").links_with(:href => @array[1])[0]
-    @total_hash = {}
+    login_agent = LoginAgent.new
+    login_agent.login
+    @agent = login_agent.agent
   end
 
   def state_content
     puts @array[0]
     puts @array[1]
   end
+  def get_links
+    Hash[:master => @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_master_data_file").links_with(:href => @array[0])[0], :db => @agent.get("#{ENV['BASE_URL']}/Downloads/Archives/monthly_tools/previews_product_copy").links_with(:href => @array[1])[0]]
+  end
 
   def check_for_links
-    if @db_link.nil? or @master_link.nil?
+    if get_links[:master].nil? or get_links[:db].nil?
       puts "No appropriate links"
       return false
     else
@@ -25,11 +27,7 @@ class PreviewsBacklogger
   def digest
     state_content
     if check_for_links
-      @total_hash.merge! SourceWeaver.new(@master_link.click.body, @db_link.click.body).digest
-      puts @total_hash.size
-      return @total_hash
-    else
-      return false
+       Hash[SourceWeaver.new(get_links[:master].click.body, get_links[:db].click.body).digest]
     end
   end
 end
