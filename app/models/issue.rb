@@ -13,18 +13,20 @@ class Issue < ActiveRecord::Base
     #:path => "app/assets/images/:class/:attachment/:id_partition/:style/:basename.:extension"
 
   def update_shipping
-    @agent = LoginAgent.new.agent
+    login = MASTER_LOGIN
     url = IssueUrlMaker.new(self.diamond_no).get_url
-    html = @agent.get(url).body
+    html = login.agent.get(url).body
     doc = Nokogiri::HTML(html)
-    cancel_check = IssueCancelChecker.new(doc)
+    cancel_check = IssueCancelChecker.new(doc, self)
+    puts "Updating shipping for #{self.title}"
     return nil if cancel_check.check_for_not_found
     return nil if cancel_check.check_for_cancelled
     self.release = Release.where(:ship_date => ShippingRowFinder.new(doc).format_date).first_or_create
     self.save
+    puts "Updated Shipping for #{self.title}"
   end
 
   def download_cover
-    IssueImageDownloader.new(self, LoginAgent.new.login.agent)
+    IssueImageDownloader.new(self, MASTER_LOGIN.agent).download_to_issue
   end
 end

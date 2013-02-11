@@ -8,6 +8,9 @@ class LoginAgent
     @agent = Mechanize.new
   end
 
+  def backend_home
+    @agent.get(ENV['BASE_URL'])
+  end
   def login
     page = @agent.get(ENV['LOGIN'])
     form = page.form

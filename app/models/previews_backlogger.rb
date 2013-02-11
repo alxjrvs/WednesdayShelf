@@ -2,9 +2,7 @@ class PreviewsBacklogger
 
   def initialize(array)
     @array = array
-    login_agent = LoginAgent.new
-    login_agent.login
-    @agent = login_agent.agent
+    @agent = MASTER_LOGIN.agent
   end
 
   def state_content

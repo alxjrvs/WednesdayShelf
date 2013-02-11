@@ -1,6 +1,6 @@
 class NewReleasesLogger
   def initialize
-    @page = LoginAgent.new.login.links_with(:text => "Data Files")[0].click
+    @page = MASTER_LOGIN.backend_home.links_with(:text => "Data Files")[0].click
   end
 
   def get_files

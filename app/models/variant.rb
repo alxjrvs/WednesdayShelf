@@ -8,6 +8,6 @@ class Variant < ActiveRecord::Base
         }
     #:path =>":rails_root/app/assets/images/:class/:attachment/:id_partition/:style/:filename"
   def download_cover
-    IssueImageDownloader.new(self, LoginAgent.new.login.agent)
+    IssueImageDownloader.new(self, MASTER_LOGIN.agent)
   end
 end
