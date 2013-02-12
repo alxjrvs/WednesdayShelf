@@ -2,6 +2,7 @@ class ListingCreateHasher
 
   def initialize(listing)
     @listing = listing
+    #@popup_hash = PopupHasher.new(listing.diamd_no).to_hash
     @create_hash = {}
   end
 

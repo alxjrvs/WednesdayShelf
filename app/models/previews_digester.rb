@@ -7,7 +7,11 @@ class PreviewsDigester
 
   def digest
     @previews.listings.each do |listing|
-      @name = ListingDigester.new(listing, @name).digest if listing.is_comic?
+      if listing.is_comic?
+        @name = ListingDigester.new(listing, @name).digest
+      else
+         pp "#{listing.full_title} is Not A Comic"
+      end
     end
     pp "Previews Digested"
     @previews.digested = true
