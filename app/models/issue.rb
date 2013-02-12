@@ -20,8 +20,12 @@ class Issue < ActiveRecord::Base
     popup_hasher = PopupHasher.new(self.diamond_no)
     cancel_check = IssueCancelChecker.new(popup_hasher.get_html, self)
     puts "Updating shipping for #{self.title}"
+    pp "test"
     return nil if cancel_check.check_for_not_found
+    pp "test 2"
     return nil if cancel_check.check_for_cancelled
+    pp" test 3 "
+    pp self.id
     self.release = Release.where(:ship_date => DateFormatter.new(popup_hasher.to_hash["Est Ship Date"]).format_date).first_or_create
     self.save
     puts "Updated Shipping for #{self.title}"
