@@ -9,8 +9,12 @@ class PopupHasher
     IssueUrlMaker.new(@diamond_code).get_url
   end
 
+  def sanitize_html
+    HTMLSanitizer.new(@login.agent.get(get_url).content).sanitize
+  end
+
   def get_html
-    Nokogiri::HTML(@login.agent.get(get_url).body)
+    Nokogiri::HTML(sanitize_html)
   end
 
   def to_hash
