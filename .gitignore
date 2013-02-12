@@ -8,7 +8,7 @@
 # Ignore bundler config
 /.bundle
 /app/assets/images/covers
-/config/initializers/secret_constants.rb
+/config/initializers/hidden_constants.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

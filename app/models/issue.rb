@@ -21,7 +21,7 @@ class Issue < ActiveRecord::Base
     puts "Updating shipping for #{self.title}"
     return nil if cancel_check.check_for_not_found
     return nil if cancel_check.check_for_cancelled
-    self.release = Release.where(:ship_date => ShippingRowFinder.new(doc).format_date).first_or_create
+    self.release = Release.where(:ship_date => ShippingRowUpdater.new(doc).format_date).first_or_create
     self.save
     puts "Updated Shipping for #{self.title}"
   end
