@@ -6,17 +6,17 @@ class IssueRecorder
     @release = release
   end
 
-  def series_publsiher_record
-    unless @listing.main_desc == nil
-      SeriesRecorder.new(@listing, issue).record
-      PublisherRecorder.new(@listing, issue).record
-    end
-  end
 
   def record
     issue = Issue.where(ListingCreateHasher.new(@listing).digest.merge!(:title => @name)).first_or_create
+    puts "-=+=- -=+=- -=+=-"
+    puts "ISSUE RECORDED: #{issue.title}"
+    puts "-=+=- -=+=- -=+=-"
     @release.issues << issue
-    series_publisher_record
+    unless @listing.main_desc == nil
+      series = SeriesRecorder.new(@listing, issue).record
+      PublisherRecorder.new(@listing, series).record
+    end
   end
 end
 

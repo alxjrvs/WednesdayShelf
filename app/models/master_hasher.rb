@@ -4,21 +4,19 @@ class MasterHasher
     @master = master
   end
 
-  def split_file
-    @master.split("\r\n")
+  def split_into_rows
+    FileRowSplitter.new(@master).file
   end
 
   def get_keys
-    split_file[0].split("\t")
+    split_into_rows[0].split("\t")
   end
 
   def digest
-    ending_hash = []
-    split_file.each do |row|
-      next if row.split("\t").size != 42
-      next if row.split("\t") == get_keys
-      ending_hash << Hash[get_keys.zip(row.split("\t"))]
-    end
-    ending_hash
+    diamond_keys = get_keys
+    split_into_rows.map do |row|
+      next if row.split("\t") == diamond_keys
+      Hash[diamond_keys.zip(row.split("\t"))]
+    end.compact
   end
 end

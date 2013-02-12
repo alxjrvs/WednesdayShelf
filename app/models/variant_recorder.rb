@@ -1,11 +1,12 @@
 class VariantRecorder
 
-  def initialize(listing)
+  def initialize(listing, name)
     @listing = listing
+    @name = name
   end
 
   def record
-    var = Variant.where(ListingCreateHasher.new(listing).digest).first_or_create
+    var = Variant.where(ListingCreateHasher.new(@listing).digest).first_or_create
     var.issue = Issue.where(:title => @name)[0]
     var.save
     puts "-=+=- -=+=- -=+=-"

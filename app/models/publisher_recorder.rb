@@ -1,11 +1,11 @@
 class PublisherRecorder
 
-  def initialize(listing, issue)
+  def initialize(listing, series)
     @listing = listing
-    @issue = issue
+    @series = series
   end
 
   def record
-    Publisher.where(:name => @listing.publisher).first_or_create << @issue
+    Publisher.where(:name => @listing.publisher).first_or_create.series << @series
   end
 end

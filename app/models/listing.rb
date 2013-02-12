@@ -4,4 +4,5 @@ class Listing < ActiveRecord::Base
   def is_comic?
     ListingFilter.new(self).is_comic?
   end
+
 end

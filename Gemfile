@@ -6,6 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
+  gem 'zeus'
   gem 'pry-rails'
   gem "better_errors"
   gem "binding_of_caller"
@@ -15,7 +16,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'rspec-pride'
+  gem "rspec-pride", "~> 2.2.0"
   gem 'factory_girl_rails', '~> 3.3.0'
   gem 'factory_girl_rspec', :git => "https://github.com/chendrix/factory_girl_rspec.git"
   gem 'rspec-subject-extensions'
