@@ -5,7 +5,8 @@ class ShippingRowFinder
   end
 
   def get_row
-    @doc.search("[text()*='Est Ship Date']")[0].parent.parent.css('.LookupItemData_Value').text.strip
+    PopupToHasher.new(@doc).to_hash
+    #@doc.search("[text()*='Est Ship Date']")[0].parent.parent.css('.LookupItemData_Value').text.strip
   end
 
   def format_date
