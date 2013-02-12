@@ -9,7 +9,7 @@ namespace :update do
     end
   end
 
-  desc "get updated shipping information"
+  desc "get updated shipping information for future releases"
   task :shipping => :environment do
     Release.all_future.each do |release|
       release.issues.each do |issue|
