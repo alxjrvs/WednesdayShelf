@@ -22,7 +22,6 @@ class Issue < ActiveRecord::Base
     puts "Updating shipping for #{self.title}"
     return nil if cancel_check.check_for_not_found
     return nil if cancel_check.check_for_cancelled
-    return nil if PopupHasher.to_hash == {}
     self.release = Release.where(:ship_date => DateFormatter.new(popup_hasher.to_hash["Est Ship Date"]).format_date).first_or_create
     self.save
     puts "Updated Shipping for #{self.title}"
