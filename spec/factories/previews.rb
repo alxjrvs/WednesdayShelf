@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :preview do
+    first_diamd_no "AUG00001"
+    last_diamd_no "AUG00003"
+    digested false
   end
 end
