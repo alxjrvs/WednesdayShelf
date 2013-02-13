@@ -19,10 +19,12 @@ class IssueCancelChecker
   end
 
   def check_for_not_found
+    puts "testing for not_found"
     check_for_string("could not be found or is currently not in stock.")
   end
 
   def check_for_cancelled
+    puts "testing for cancelled"
     check_for_string("CANCELLED")
   end
 end
