@@ -34,7 +34,7 @@ group :production do
   gem 'sendgrid'
 end
 
-gem "net-scp", "~> 1.0.6"
+gem "net-scp", "~> 1.0.4"
 gem 'thin'
 gem 'fog'
 gem 'mechanize_clip','~> 0.1.3'

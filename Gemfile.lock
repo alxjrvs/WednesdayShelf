@@ -299,7 +299,7 @@ DEPENDENCIES
   mechanize
   mechanize_clip (~> 0.1.3)
   meta_request (= 0.1.3)
-  net-scp (~> 1.0.6)
+  net-scp (~> 1.0.4)
   nokogiri
   paperclip
   pg
