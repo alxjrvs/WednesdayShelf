@@ -13,7 +13,7 @@ class LoginAgent
   end
 
   def login
-    page = @agent.get(ENV['LOGIN'])
+    page = @agent.get("https://retailerservices.diamondcomics.com/Login/Login")
     form = page.form
     form.UserName =  ENV['USERNAME']
     form.EnteredCustNo =  ENV['CUST_NO']
