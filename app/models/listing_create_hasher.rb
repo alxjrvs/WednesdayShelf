@@ -11,9 +11,9 @@ class ListingCreateHasher
     @create_hash[:description] = @listing.full_desc
     @create_hash[:diamond_no] = @listing.diamd_no
     @create_hash[:stock_no] = @listing.stock_no
-    @create_hash[:writer] = @listing.writer
-    @create_hash[:artist] = @listing.artist
-    @create_hash[:cover_artist] = @listing.cover_artist
+    @create_hash[:writer] = CreatorNormalizer.new(@listing.writer).format
+    @create_hash[:artist] = CreatorNormalizer.new(@listing.artist).format
+    @create_hash[:cover_artist] = CreatorNormalizer.new(@listing.cover_artist).format
     #integers
     @create_hash[:issue_no] = @listing.issue_no.to_i
     @create_hash[:max_issue] = @listing.max_issue.to_i

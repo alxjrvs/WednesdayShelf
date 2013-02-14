@@ -36,7 +36,6 @@ group :production do
 end
 
 gem 'thin'
-gem "heroku-forward"
 gem 'fog'
 gem 'mechanize_clip','~> 0.1.3'
 gem 'nokogiri'
