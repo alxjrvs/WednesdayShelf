@@ -3,22 +3,15 @@
   <div id="<%= issue.diamond_no %>_details" class="reveal-modal xlarge">
     <p class="modal-title"><%= issue.title %></p>
     <div class = "four columns" >
-      
+
     <%= image_tag issue.cover.url(:medium), {:class => "modal_comic_cover"} %>
     </div>
     <div class="eight columns issue_info" >
-      <div class="row">
-        <p class="info-label two columns ">Written by</p>
-        <p class="info-text ten columns"><%= issue.writer %></p>
-      </div>
-      <div class="row">
-        <p class="info-label two columns ">Art by </p>
-        <p class="info-text ten columns"><%= issue.artist%></p>
-      </div>
-      <div class="row">
-        <p class="info-label two  columns ">Cover by</p>
-        <p class="info-text ten columns"><%= issue.cover_artist %></p>
-      </div>
+      <% CreatorStringFormatter.new(issue).format.each do |c| %>
+        <div class="row">
+          <p class="creator_text info-text twelve columns"><%= c %></p>
+        </div>
+      <% end %>
       <div class="row">
         <p class="info-text twelve columns"><%= issue.description %></p>
       </div>
