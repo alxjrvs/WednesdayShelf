@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
 
   def index
-    redirect_to release_url(Release.next.id)
+    @release = Release.next
+    @release_date = @release.ship_date.strftime('%a %d, %b %Y')
+    @issues = @release.issues_by_series
+    render 'releases/show'
   end
 
 end

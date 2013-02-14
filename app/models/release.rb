@@ -61,6 +61,12 @@ class Release < ActiveRecord::Base
     @popular_comics = organized_hash
   end
 
+  def next_week
+    ReleaseSorter.new(self).next_week
+  end
+  def last_week
+    ReleaseSorter.new(self).last_week
+  end
   def self.next
     all_future[0]
   end

@@ -3,19 +3,24 @@
   <li><p class="subhead"> Comics coming </p></li>
   <li class = "has-dropdown">
     <p class="subhead"> <%= @release_date%></p>
-
   </li>
 </ul>
 
 <ul class="right">
+  <li>
+    <a href="<%= release_url @release.last_week %>" class="button">&#172;Last Week</a>
+  </li>
+  <li>
+    <a href ="<%= release_url(@release.next_week) %>" class="button">Next Week&#187;</a>
+  </li>
 </ul>
 <% end %>
 
 <div class="container nine columns centered">
   <div class="shelves">
     <ul class="block-grid six-up mobile ">
-      <%= render "series_loop" %>
+      <%= render "releases/series_loop" %>
     </ul>
   </div>
 </div>
-<%= render "issue_detail_modal" %>
+<%= render "releases/issue_detail_modal" %>
