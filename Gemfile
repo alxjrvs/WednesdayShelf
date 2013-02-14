@@ -34,8 +34,6 @@ group :production do
   gem 'sendgrid'
 end
 
-gem "friendly_id"
-gem "net-scp", "~> 1.0.4"
 gem 'thin'
 gem 'fog'
 gem 'mechanize_clip','~> 0.1.3'
@@ -43,7 +41,6 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'paperclip'
 gem 'aws-sdk'
-#gem 'paperclip-aws'
 gem 'strong_parameters'
 gem 'devise'
 gem 'google-analytics-rails'
