@@ -34,6 +34,7 @@ group :production do
   gem 'sendgrid'
 end
 
+gem "friendly_id"
 gem "net-scp", "~> 1.0.4"
 gem 'thin'
 gem 'fog'
