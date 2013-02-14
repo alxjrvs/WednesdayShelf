@@ -20,6 +20,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.3.0'
   gem 'factory_girl_rspec', :git => "https://github.com/chendrix/factory_girl_rspec.git"
   gem 'rspec-subject-extensions'
+  gem 'pry'
 end
 
 group :test do
@@ -34,8 +35,8 @@ group :production do
   gem 'sendgrid'
 end
 
-gem "heroku-forward"
 gem 'thin'
+gem "heroku-forward"
 gem 'fog'
 gem 'mechanize_clip','~> 0.1.3'
 gem 'nokogiri'
@@ -46,7 +47,6 @@ gem 'strong_parameters'
 gem 'devise'
 gem 'google-analytics-rails'
 gem 'ruby_parser'
-gem 'pry'
 gem 'simple_form'
 
 # Gems used only for assets and not required

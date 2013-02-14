@@ -9,3 +9,4 @@ BACKLOG_ARRAY = [
 login = LoginAgent.new
 login.login
 MASTER_LOGIN = login
+RELEASE_ARRAY = Release.all.sort_by(&:ship_date)

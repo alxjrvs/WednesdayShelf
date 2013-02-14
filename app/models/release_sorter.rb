@@ -1,16 +1,12 @@
 class ReleaseSorter
   def initialize(release)
-    @release = release
-    @release_array = Release.all.sort_by(&:ship_date)
-  end
-  def release_index
-    @release_array.index(@release)
+    @release_day = release.ship_date.to_s
   end
   def next_week
-    @release_array[release_index + 1]
+    Release.where(ship_date: DateTime.parse(@release_day) + 7.days)[0]
   end
 
   def last_week
-    @release_array[release_index - 1]
+    Release.where(ship_date: DateTime.parse(@release_day) - 7.days)[0]
   end
 end
