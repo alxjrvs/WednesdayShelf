@@ -11,7 +11,6 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request', '0.1.3'
-  gem 'thin'
 end
 
 group :development, :test do
@@ -37,6 +36,7 @@ group :production do
 end
 
 gem 'fog'
+gem 'thin'
 gem 'mechanize_clip','~> 0.1.3'
 gem 'nokogiri'
 gem 'mechanize'
