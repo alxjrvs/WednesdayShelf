@@ -17,6 +17,11 @@
 <% end %>
 
 <div class="container nine columns centered">
+  <% if @home %>
+      <div class="">
+        <h1>See What's Coming.</h1>
+      </div>
+  <% end %>
   <div class="shelves">
     <ul class="block-grid six-up mobile ">
       <%= render "releases/series_loop" %>
