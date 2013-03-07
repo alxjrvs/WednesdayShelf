@@ -1,8 +1,8 @@
 class SourceWeaver
   #weave the two source documents - master.csv and db.txt - into a master hash
   def initialize(master, db)
-    @master = MasterHasher.new(master).digest
-    @db = DbHasher.new(db).digest
+    @master = FileHasher.new(master, :master).digest
+    @db = FileHasher.new(db, :db).digest
   end
 
   def fill_in_blurb(hash)

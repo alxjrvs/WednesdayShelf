@@ -1,11 +1,14 @@
-class MasterHasher
-  #Turns the Master.csv into a hash
-  def initialize(master)
-    @master = master
+class HashDigester
+  #turns the files into hashes for source_weaving
+
+  attr_reader :file
+
+  def initialize(file)
+    @file = file
   end
 
   def split_into_rows
-    FileRowSplitter.new(@master).file
+    file.split("\r\n")
   end
 
   def get_keys
