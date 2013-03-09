@@ -1,30 +1,16 @@
 class PreviewsRecorder
+  attr_reader :preview_hash, :preview
   def initialize(preview_hash)
-    @preview_hash = HashesToSymConverter.new(preview_hash).rebrand
-    @p = Preview.create
-  
+    @preview_hash = preview_hash
+    @preview = Preview.create
   end
 
-  def state_recorded
-    if @p.last_diamd_no
-      puts "Previews Recorded, Range: #{@p.first_diamd_no} - #{@p.last_diamd_no}"
-    else
-      puts "Preview incomplete."
-    end
+  def rebrand_hash
+    #something relating to Preview hash rebrander
   end
-
   def record
-    @preview_hash.each_with_index do |listing, i|
-      if i == 0
-        @p.first_diamd_no = listing[:diamd_no]
-        @p.save
-      end
-      ListingRecorder.new(listing, @p).record
-      if i == @preview_hash.size - 1
-        @p.last_diamd_no = listing[:diamd_no]
-        @p.save
-      end
+    preview_hash.each_with_index do |listing|
+      ListingRecorder.new(listing, preview).record
     end
-    state_recorded
   end
 end
