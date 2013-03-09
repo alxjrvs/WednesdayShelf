@@ -1,15 +1,17 @@
 class FileDownloader
 
-  def initialize(page, url)
-    @page = page
-    @url = url
-  end
-  def get_file
-    @page.links_with(:href => @url)[0].click
+  attr_reader :url
 
+  def initialize(url, agent = MASTER_AGENT)
+    @url = url
+    @agent = agent
+  end
+
+  def get_source_file
+    @agent.get(BASE_URL + url)
   end
 
   def file_body
-    get_file.body
+    @file_body ||= get_source_file.body
   end
 end

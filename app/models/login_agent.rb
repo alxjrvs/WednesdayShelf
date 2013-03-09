@@ -8,16 +8,14 @@ class LoginAgent
     @agent = Mechanize.new
   end
 
-  def backend_home
-    @agent.get(ENV['BASE_URL'])
-  end
 
   def login
-    page = @agent.get("https://retailerservices.diamondcomics.com/Login/Login")
+    page = @agent.get(LOGIN_URL)
     form = page.form
     form.UserName =  ENV['USERNAME']
     form.EnteredCustNo =  ENV['CUST_NO']
     form.Password =  ENV['PASSWORD']
     @agent.submit(form)
+    return @agent
   end
 end
