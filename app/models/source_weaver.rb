@@ -7,7 +7,7 @@ class SourceWeaver
   end
 
   def fill_in_blurb(hash)
-    hash["FULL_DESC"]  = db[hash["DIAMD_NO"]]
+    hash[:full_desc]  = db[hash[:diamd_no]]
   end
 
   def weave

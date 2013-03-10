@@ -11,8 +11,7 @@ class FileToHasher
   end
 
   def keys
-    downcase = rows[0].split("\t").map(&:downcase)
-    downcase.map(&:to_sym)
+    rows[0].split("\t").map(&:downcase).map(&:to_sym)
   end
 
   def digest_db
