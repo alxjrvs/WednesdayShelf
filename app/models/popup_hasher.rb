@@ -1,7 +1,7 @@
 class PopupHasher
 
   def initialize(diamond_code)
-    @login = MASTER_LOGIN
+    @agent = MASTER_AGENT
     @diamond_code = diamond_code
   end
 
@@ -10,7 +10,7 @@ class PopupHasher
   end
 
   def sanitize_html
-    HTMLSanitizer.new(@login.agent.get(get_url).content).sanitize
+    HTMLSanitizer.new(@agent.get(get_url).content).sanitize
   end
 
   def get_html
