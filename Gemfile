@@ -14,7 +14,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem "rspec-pride", "~> 2.2.0"
   gem 'factory_girl_rails', '~> 3.3.0'
@@ -35,6 +34,7 @@ group :production do
   gem 'sendgrid'
 end
 
+gem 'delayed_job_active_record'
 gem 'fog'
 gem 'thin'
 gem 'mechanize_clip','~> 0.1.3'
