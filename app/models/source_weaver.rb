@@ -7,7 +7,11 @@ class SourceWeaver
   end
 
   def fill_in_blurb(hash)
-    hash[:full_desc]  = db[hash[:diamd_no]]
+    if hash[:diamd_no] == "DIAMD_NO"
+      hash[:full_desc] = "FULL_DESC"
+    else
+      hash[:full_desc] = db[hash[:diamd_no]]
+    end
   end
 
   def weave

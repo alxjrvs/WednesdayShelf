@@ -2,12 +2,13 @@ class FileDownloader
 
   attr_reader :url
 
-  def initialize(url, agent = MASTER_AGENT)
+  def initialize(url, agent)
     @url = url
     @agent = agent
   end
 
   def get_source_file
+    puts BASE_URL + url
     @agent.get(BASE_URL + url)
   end
 

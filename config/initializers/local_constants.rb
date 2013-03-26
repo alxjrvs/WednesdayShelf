@@ -2,7 +2,7 @@ BASE_URL = "https://retailerservices.diamondcomics.com"
 
 LOGIN_URL = "https://retailerservices.diamondcomics.com/Login/Login"
 
-NEW_RELEASE_ARRAY = [["/FileExport/Misc/MasterDataFile-ITEMS.txt", "FileExport/MonthlyToolsTXT/previewsDB.txt"]]
+NEW_RELEASE_ARRAY = [["/FileExport/Misc/MasterDataFile-ITEMS.txt", "/FileExport/MonthlyToolsTXT/previewsDB.txt"]]
 
 BACKLOG_ARRAY = [
     ["/Downloads/Archives/monthlytools/previews_master_data_file/MasterDataFile-ITEMS_201208.txt", "/Downloads/Archives/monthlytools/previews_product_copy/previewsDB_201208.TXT"],
