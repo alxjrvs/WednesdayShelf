@@ -11,8 +11,7 @@ BACKLOG_ARRAY = [
     ["/Downloads/Archives/monthlytools/previews_master_data_file/MasterDataFile-ITEMS_201211.txt", "/Downloads/Archives/monthlytools/previews_product_copy/previewsDB_201211.TXT"],
     ["/Downloads/Archives/monthlytools/previews_master_data_file/MasterDataFile-ITEMS_201212.txt","/Downloads/Archives/monthlytools/previews_product_copy/previewsDB_201212.TXT"],
     ["/Downloads/Archives/monthlytools/previews_master_data_file/MasterDataFile-ITEMS_201301.txt","/Downloads/Archives/monthlytools/previews_product_copy/previewsDB_201301.TXT"],
+    ["/Downloads/Archives/monthlytools/previews_master_data_file/MasterDataFile-ITEMS_201302.txt","/Downloads/Archives/monthlytools/previews_product_copy/previewsDB_201302.TXT"],
   ]
 
 COMBINED_ARRAY = BACKLOG_ARRAY + NEW_RELEASE_ARRAY
-
-MASTER_AGENT = LoginAgent.new.login

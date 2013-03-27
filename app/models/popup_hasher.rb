@@ -1,7 +1,7 @@
 class PopupHasher
 
-  def initialize(diamond_code)
-    @agent = MASTER_AGENT
+  def initialize(diamond_code, agent)
+    @agent = agent
     @diamond_code = diamond_code
   end
 

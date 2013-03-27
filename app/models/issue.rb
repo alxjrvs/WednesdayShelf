@@ -16,8 +16,8 @@ class Issue < ActiveRecord::Base
     IssueUrlMaker.new(self.diamond_no).get_url
   end
 
-  def update_shipping
-    popup_hasher = PopupHasher.new(self.diamond_no)
+  def update_shipping(agent)
+    popup_hasher = PopupHasher.new(self.diamond_no, agent).to_hash
     cancel_check = IssueCancelChecker.new(popup_hasher.get_html, self)
     puts "Updating shipping for #{self.title}"
     return nil if cancel_check.check_for_not_found
@@ -27,7 +27,7 @@ class Issue < ActiveRecord::Base
     puts "Updated Shipping for #{self.title}"
   end
 
-  def download_cover
-    IssueImageDownloader.new(self, MASTER_LOGIN.agent).download_to_issue
+  def download_cover(agent)
+    IssueImageDownloader.new(self, agent ).download_to_issue
   end
 end

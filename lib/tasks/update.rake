@@ -12,8 +12,9 @@ namespace :update do
   desc "get updated shipping information for future releases"
   task :shipping => :environment do
     Release.all_future.each do |release|
+      agent = LoginAgent.new.login
       release.issues.each do |issue|
-        issue.update_shipping
+        issue.update_shipping(agent)
       end
     end
   end
