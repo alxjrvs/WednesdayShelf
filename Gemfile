@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+ruby "2.0.0"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.2.12'
 
 group :development do
   gem 'zeus'
@@ -14,12 +13,13 @@ group :development do
 end
 
 group :development, :test do
+  gem 'vcr'
+  gem 'factory_girl_rails'
+  gem 'minitest-rails'
   gem 'pry'
 end
 
 group :test do
-  gem 'factory_girl_rails'
-  gem 'minitest-rails'
   gem 'faker', "~> 1.0.1"
   gem 'database_cleaner', "~> 0.7.2"
   gem 'capybara', "~> 1.1.2"
