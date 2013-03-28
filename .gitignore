@@ -9,7 +9,7 @@
 /.bundle
 /app/assets/images/covers
 /config/initializers/hidden_constants.rb
-
+/fixtures
 # Ignore the default SQLite database.
 /db/*.sqlite3
 .*.swp

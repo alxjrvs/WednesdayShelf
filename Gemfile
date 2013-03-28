@@ -13,6 +13,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'webmock'
   gem 'vcr'
   gem 'factory_girl_rails'
   gem 'minitest-rails'

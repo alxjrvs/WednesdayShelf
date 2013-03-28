@@ -8,7 +8,12 @@ require "minitest/pride"
 require "factory_girl"
 
 class MiniTest::Spec
-    include FactoryGirl::Syntax::Methods
+  include FactoryGirl::Syntax::Methods
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
 end
 
 class ActiveSupport::TestCase
