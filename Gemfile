@@ -13,14 +13,14 @@ group :development do
 end
 
 group :development, :test do
-  gem 'webmock'
-  gem 'vcr'
   gem 'factory_girl_rails'
   gem 'minitest-rails'
   gem 'pry'
 end
 
 group :test do
+  gem 'vcr'
+  gem 'webmock', "~> 1.8.0"
   gem 'faker', "~> 1.0.1"
   gem 'database_cleaner', "~> 0.7.2"
   gem 'capybara', "~> 1.1.2"

@@ -2,8 +2,8 @@ require 'test_helper'
 
 describe LoginAgent do
   before  do
+    VCR.insert_cassette(__name__)
     @agent = build(:login_agent)
-    VCR.insert_cassette('LoginAgent Model Test')
   end
 
   after do

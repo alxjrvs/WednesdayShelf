@@ -244,9 +244,9 @@ GEM
     vcr (2.4.0)
     warden (1.2.1)
       rack (>= 1.0)
-    webmock (1.11.0)
+    webmock (1.8.11)
       addressable (>= 2.2.7)
-      crack (>= 0.3.2)
+      crack (>= 0.1.7)
     webrobots (0.1.1)
     websocket (1.0.7)
     xpath (0.1.4)
@@ -293,6 +293,6 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   vcr
-  webmock
+  webmock (~> 1.8.0)
   zeus
   zurb-foundation (>= 3.0.0)

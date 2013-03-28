@@ -8,7 +8,6 @@ class FileDownloader
   end
 
   def get_source_file
-    puts BASE_URL + url
     @agent.get(BASE_URL + url)
   end
 
