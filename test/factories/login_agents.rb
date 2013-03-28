@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :login_agent do
+
   end
 end
