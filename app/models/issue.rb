@@ -17,7 +17,7 @@ class Issue < ActiveRecord::Base
   end
 
   def update_shipping(agent)
-    popup_hasher = PopupHasher.new(self.diamond_no, agent).to_hash
+    popup_hasher = PopupHasher.new(self.diamond_no, agent)
     cancel_check = IssueCancelChecker.new(popup_hasher.get_html, self)
     puts "Updating shipping for #{self.title}"
     return nil if cancel_check.check_for_not_found
@@ -29,5 +29,6 @@ class Issue < ActiveRecord::Base
 
   def download_cover(agent)
     IssueImageDownloader.new(self, agent ).download_to_issue
+    puts "testing for cancelled"
   end
 end

@@ -1,14 +1,10 @@
 require 'test_helper'
 
+
 describe FileDownloader do
 
   before do
-    VCR.insert_cassette(__name__)
-    @file_downloader = FactoryGirl.build(:file_downloader)
-  end
-
-  after do
-    VCR.eject_cassette
+    @file_downloader = build(:file_downloader)
   end
 
   describe '#get_source_file' do

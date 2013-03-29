@@ -5,6 +5,6 @@ class DateFormatter
   end
 
   def format_date
-    DateTime.strptime(@date, "%m/%d/%Y")
+    DateTime.strptime(@date.to_s, "%m/%d/%Y")
   end
 end

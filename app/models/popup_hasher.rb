@@ -6,15 +6,15 @@ class PopupHasher
   end
 
   def get_url
-    IssueUrlMaker.new(@diamond_code).get_url
+    @get_url ||= IssueUrlMaker.new(@diamond_code).get_url
   end
 
   def sanitize_html
-    HTMLSanitizer.new(@agent.get(get_url).content).sanitize
+    @sanitize_html ||= HTMLSanitizer.new(@agent.get(get_url).content).sanitize
   end
 
   def get_html
-    Nokogiri::HTML(sanitize_html)
+    @get_html ||= Nokogiri::HTML(sanitize_html)
   end
 
   def to_hash

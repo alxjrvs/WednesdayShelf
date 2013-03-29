@@ -22,8 +22,8 @@ namespace :scrape do
   task :backlog => :environment do
     BACKLOG_ARRAY.each do |url_array|
       login = LoginAgent.new.login
-      master = FileDownloader.new(url_array[0]).file_body
-      db = FileDownloader.new(url_array[1]).file_body
+      master = FileDownloader.new(url_array[0], login).file_body
+      db = FileDownloader.new(url_array[1], login).file_body
       PreviewsRecorder.new(SourceWeaver.new(master, db).weave).record
     end
   end

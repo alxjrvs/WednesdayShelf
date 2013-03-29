@@ -7,11 +7,11 @@ class FileToHasher
   end
 
   def rows
-    file.split("\r\n")
+    @rows ||= file.split("\r\n")
   end
 
   def keys
-    rows[0].split("\t").map(&:downcase).map(&:to_sym)
+    @keys ||= rows[0].split("\t").map(&:downcase).map(&:to_sym)
   end
 
   def digest_db

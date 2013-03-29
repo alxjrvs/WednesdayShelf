@@ -5,6 +5,6 @@ class IssueUrlMaker
   end
 
   def get_url
-    "#{ENV['BASE_URL']}#{ENV['FANCBOX_URL']}#{@diamd_no}".gsub("\n", "")
+    "#{BASE_URL + FANCYBOX_URL}#{@diamd_no}".gsub("\n", "")
   end
 end

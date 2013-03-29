@@ -14,4 +14,5 @@ BACKLOG_ARRAY = [
     ["/Downloads/Archives/monthlytools/previews_master_data_file/MasterDataFile-ITEMS_201302.txt","/Downloads/Archives/monthlytools/previews_product_copy/previewsDB_201302.TXT"],
   ]
 
+FANCYBOX_URL = "/ShoppingList/AddItem/\n"
 COMBINED_ARRAY = BACKLOG_ARRAY + NEW_RELEASE_ARRAY
