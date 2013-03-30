@@ -1,20 +1,19 @@
 class PreviewsDigester
 
+  attr_reader :name, :previews
+  attr_writer :name
+
   def initialize(previews)
     @previews = previews
-    @name = "Alex Mother Loving Jarvis 12341234"
+    @name = "XxXxXxXxXxXxXxXxXxX"
   end
 
   def digest
-    @previews.listings.each do |listing|
-      if listing.is_comic?
-        @name = ListingDigester.new(listing, @name).digest
-      else
-         pp "#{listing.full_title} is Not A Comic"
-      end
+    previews.listings.each do |listing|
+      name = ListingDigester.new(listing, name).digest
     end
     pp "Previews Digested"
-    @previews.digested = true
-    @previews.save
+    previews.digested = true
+    previews.save
   end
 end

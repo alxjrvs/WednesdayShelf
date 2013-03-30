@@ -30,6 +30,11 @@ describe FileToHasher do
         hasher_digest = @hasher.digest
         should_be_a_hash hasher_digest
       end
+
+      it "should match expectations" do
+        @hasher.digest.must_equal DB_TO_HASHER_DIGEST
+      end
+
     end
   end
 
@@ -41,6 +46,10 @@ describe FileToHasher do
       it "Should digest into an array" do
         hasher_digest = @hasher.digest
         should_be_an_array hasher_digest
+      end
+
+      it "should match expectations" do
+        @hasher.digest.must_equal MASTER_TO_HASHER_DIGEST
       end
     end
   end

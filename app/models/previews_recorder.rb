@@ -3,7 +3,10 @@ class PreviewsRecorder
 
   def initialize(preview_hash)
     @preview_hash = preview_hash
-    @preview = Preview.create
+  end
+
+  def preview
+    @_preview ||= Preview.create
   end
 
   def sanitize_string(string)
