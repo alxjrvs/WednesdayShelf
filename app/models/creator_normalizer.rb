@@ -1,16 +1,17 @@
 class CreatorNormalizer
+  attr_reader :creator
 
   def initialize(creator)
-    if creator == ""
-      @creator = creator
-    else
-      @creator = creator.split(',')
-    end
+    @creator = creator
+  end
+
+  def creator_array
+    @_creator_array ||= creator.split(',')
   end
 
   def format
     return nil if @creator == ""
-    if @creator.size > 2
+    if creator_array.size > 2
       multiple_names
     else
       normal_name
@@ -18,11 +19,13 @@ class CreatorNormalizer
   end
 
   def normal_name
-    @creator.reverse.join(" ").strip
+    creator_array.reverse.join(" ").strip
   end
 
+  #not fully implemented
   def multiple_names
-    @creator.delete(' Various')
-    normal_name
+    creator_array.delete(' Various')
+    creator_array.map {|c| c.reverse.join("  ").strip}
+    creator_array.join(',')
   end
 end
