@@ -11,7 +11,7 @@ class CreatorNormalizer
 
   def format
     return nil if @creator == ""
-    if creator_array.size > 2
+    if creator_array.size == 1
       multiple_names
     else
       normal_name
@@ -22,10 +22,8 @@ class CreatorNormalizer
     creator_array.reverse.join(" ").strip
   end
 
-  #not fully implemented
   def multiple_names
     creator_array.delete(' Various')
-    creator_array.map {|c| c.reverse.join("  ").strip}
-    creator_array.join(',')
+    creator_array.first.split(";").join(",").strip
   end
 end
