@@ -1,10 +1,9 @@
 class ListingDigester
 
-  attr_reader :listing, :name
+  attr_reader :listing
 
-  def initialize(listing, name)
+  def initialize(listing)
     @listing = listing
-    @name = name
   end
 
   def ship_date
@@ -15,29 +14,16 @@ class ListingDigester
     @_release ||= Release.where(ship_date: ship_date).first_or_create
   end
 
-  def is_variant?
-    if listing.full_title.include? name
-      return true
-    else
-      return false
-    end
-  end
-
-  def title_stripper
-    TitleStripper.new(listing.full_title).strip
-  end
-
   def digest
     if listing.is_comic?
-      if is_variant?
-        VariantRecorder.new(listing, name).record
+      title = TitleStripper.new(listing.full_title, listing.variant_desc).strip
+      unless Issue.where(title: title).empty?
+        release << IssueRecorder.new(listing).record
       else
-        name = title_stripper
-        IssueRecorder.new(listing, name, release).record
+        VariantRecorder.new(listing).record
       end
     else
        pp "#{listing.full_title} is Not A Comic"
     end
-    return name
   end
 end

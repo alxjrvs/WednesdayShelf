@@ -1,22 +1,44 @@
 class IssueRecorder
 
-  def initialize(listing, name, release)
+  attr_reader :listing
+  def initialize(listing, release)
     @listing = listing
-    @name = name
-    @release = release
+  end
+
+  def create_hash
+    @_create_hash ||= ListingCreateHasher.new(listing).digest
   end
 
 
+  def issue
+    @_issue = Issue.where(create_hash).first_or_create
+  end
+
   def record
-    issue = Issue.where(ListingCreateHasher.new(@listing).digest.merge!(:title => @name)).first_or_create
+    issue
     puts "-=+=- -=+=- -=+=-"
     puts "ISSUE RECORDED: #{issue.title}"
     puts "-=+=- -=+=- -=+=-"
-    @release.issues << issue
-    unless @listing.main_desc == nil
-      series = SeriesRecorder.new(@listing, issue).record
-      PublisherRecorder.new(@listing, series).record
+    unless listing.main_desc == nil
+      record_series
+      record_publisher
     end
+  end
+
+  def series
+    @_series ||= Series.where(name: listing.main_desc).first_or_create
+  end
+
+  def publisher
+    @_publisher ||= Publisher.where(name: listing.publisher).first_or_create
+  end
+
+  def record_publisher
+    publisher.series << series
+  end
+
+  def record_series
+    series.issues << issue
   end
 end
 

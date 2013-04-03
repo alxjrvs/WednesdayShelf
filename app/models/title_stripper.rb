@@ -1,13 +1,13 @@
 class TitleStripper
-  def initialize(title)
+
+  attr_reader :title, :substring
+  def initialize(title, substring)
     @title = title
+    @substring = substring
   end
 
   def strip
-    if @title.match(/^(.+)#\d+/)
-      return @title.match(/^(.+)#\d+/).to_s
-    else
-      return @title
-    end
+    @_strip ||= title.gsub(substring, "")
   end
+
 end
