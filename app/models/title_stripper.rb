@@ -7,7 +7,7 @@ class TitleStripper
   end
 
   def strip
-    @_strip ||= title.gsub(substring, "")
+    @_strip ||= title.gsub(substring.squish, "").squish
   end
 
 end

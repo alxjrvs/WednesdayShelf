@@ -20,5 +20,6 @@ class VariantRecorder
     puts "-=+=- -=+=- -=+=-"
     puts "VARIANT RECORDED for #{var.issue.title} => #{var.title}"
     puts "-=+=- -=+=- -=+=-"
+    return var
   end
 end

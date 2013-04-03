@@ -1,7 +1,7 @@
 class IssueRecorder
 
   attr_reader :listing
-  def initialize(listing, release)
+  def initialize(listing)
     @listing = listing
   end
 
@@ -23,6 +23,7 @@ class IssueRecorder
       record_series
       record_publisher
     end
+    return issue
   end
 
   def series

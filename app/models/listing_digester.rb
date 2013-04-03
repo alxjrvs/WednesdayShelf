@@ -17,13 +17,17 @@ class ListingDigester
   def digest
     if listing.is_comic?
       title = TitleStripper.new(listing.full_title, listing.variant_desc).strip
-      unless Issue.where(title: title).empty?
-        release << IssueRecorder.new(listing).record
+      if Issue.where(title: title).empty?
+        issue = IssueRecorder.new(listing).record
+        issue.update_attributes(release_id: release.id)
+        return issue
       else
-        VariantRecorder.new(listing).record
+        variant = VariantRecorder.new(listing).record
+        return variant
       end
     else
        pp "#{listing.full_title} is Not A Comic"
+       return false
     end
   end
 end

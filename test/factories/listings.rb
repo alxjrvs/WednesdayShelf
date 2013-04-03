@@ -96,6 +96,7 @@ FactoryGirl.define do
       artist "Bagley, Mark"
       cover_artist "Bagley, Mark"
     end
+
     factory :variant_listing, class: Listing do
       diamd_no "DEC120651"
       stock_no "STK523334"
