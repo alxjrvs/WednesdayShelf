@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :series do
+    name "GREEN LANTERN"
   end
 end

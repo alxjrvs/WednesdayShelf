@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :release do
+    ship_date {Date.parse "2012-10-17"}
   end
 end
