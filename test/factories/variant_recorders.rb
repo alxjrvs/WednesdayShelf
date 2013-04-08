@@ -2,5 +2,9 @@
 
 FactoryGirl.define do
   factory :variant_recorder do
+    ignore do
+      listing {build(:variant_listing)}
+    end
+    initialize_with {new(listing)}
   end
 end

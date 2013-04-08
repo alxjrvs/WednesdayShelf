@@ -1,12 +1,13 @@
 class PopupHasher
 
+  attr_reader :agent, :diamond_code
   def initialize(diamond_code, agent)
     @agent = agent
     @diamond_code = diamond_code
   end
 
   def get_url
-    @get_url ||= IssueUrlMaker.new(@diamond_code).get_url
+    @_get_url ||= "#{BASE_URL + FANCYBOX_URL}#{diamd_no}".gsub("\n", "")
   end
 
   def sanitize_html
