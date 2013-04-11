@@ -4,7 +4,7 @@ class Preview < ActiveRecord::Base
   def digest
     return false if self.digested == true
     self.listings.each do |listing|
-      ListingDigester.new(listing).digest
+      listing.digest
     end
     pp "Previews Digested"
     self.update_attributes(digested: true)

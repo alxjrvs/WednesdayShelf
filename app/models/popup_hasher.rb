@@ -7,7 +7,7 @@ class PopupHasher
   end
 
   def get_url
-    @_get_url ||= "#{BASE_URL + FANCYBOX_URL}#{diamd_no}".gsub("\n", "")
+    @_get_url ||= "#{BASE_URL + FANCYBOX_URL}#{diamond_code}".gsub("\n", "")
   end
 
   def sanitize_html

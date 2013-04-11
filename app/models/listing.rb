@@ -10,4 +10,8 @@ class Listing < ActiveRecord::Base
     end
   end
 
+  def digest
+    ListingDigester.new(self).digest
+  end
+
 end

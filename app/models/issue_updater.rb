@@ -7,11 +7,11 @@ class IssueUpdater
   end
 
   def cancel_check
-    @_cancel_check ||= IssueCancelChecker.new(popup_hasher.get_html, self)
+    @_cancel_check ||= IssueCancelChecker.new(popup_hasher.get_html, issue)
   end
 
   def popup_hasher
-    @_popup_hasher ||= PopupHasher.new(self.diamond_no, agent)
+    @_popup_hasher ||= PopupHasher.new(issue.diamond_no, agent)
   end
 
   def release_date
@@ -22,13 +22,32 @@ class IssueUpdater
     @_updated_release ||= Release.where(ship_date: release_date).first_or_create
   end
 
+  def cancelled?
+    return true if cancel_check.check_for_not_found
+    return true if cancel_check.check_for_cancelled
+    return false
+  end
+
+  def is_updated?
+    if issue.release == updated_release
+      puts "#{issue.title} Has no Update"
+      return false
+    else
+      return true
+    end
+  end
+
+
   def update
-    return nil if cancel_check(agent).check_for_not_found
-    return nil if cancel_check(agent).check_for_cancelled
-    return false if issue.release == update_release
-    issue.update_attributes(release_id: updated_release.id)
-    puts "Updated Shipping for #{self.title}"
-    return true
+    return false if cancelled?
+    if is_updated?
+      issue.release = updated_release
+      issue.save
+      puts "Updated Shipping for #{issue.title}"
+      return true
+    else
+      return false
+    end
   end
 
 end

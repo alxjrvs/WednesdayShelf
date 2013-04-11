@@ -10,11 +10,11 @@ class Issue < ActiveRecord::Base
         :medium => ["300x460", :png]
         }
 
-  def update_shipping(agent)
+  def update_shipping(agent = LoginAgent.new.login)
     IssueUpdater.new(self, agent).update
   end
 
-  def download_cover(agent)
+  def download_cover(agent = LoginAgent.new.login)
     IssueImageDownloader.new(self, agent).download_to_issue
     puts "testing for cancelled"
   end
