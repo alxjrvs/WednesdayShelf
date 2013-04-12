@@ -32,7 +32,6 @@ group :production do
   gem 'sendgrid'
 end
 
-gem 'delayed_job_active_record'
 gem 'fog'
 gem 'thin'
 gem 'mechanize_clip','~> 0.1.3'
