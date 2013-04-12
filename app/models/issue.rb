@@ -1,6 +1,6 @@
 class Issue < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
-  has_many :variants
+  has_many :variants, dependent: :destroy
   belongs_to :series
   belongs_to :release
 
@@ -16,6 +16,5 @@ class Issue < ActiveRecord::Base
 
   def download_cover(agent = LoginAgent.new.login)
     IssueImageDownloader.new(self, agent).download_to_issue
-    puts "testing for cancelled"
   end
 end

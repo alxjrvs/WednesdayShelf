@@ -15,6 +15,7 @@ class ListingDigester
   end
 
   def digest
+    return false if listing.publisher == "DYNAMIC FORCES"
     if listing.is_comic?
       title = TitleStripper.new(listing.full_title, listing.variant_desc).strip
       if Issue.where(title: title).empty?

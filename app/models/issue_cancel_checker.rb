@@ -11,7 +11,6 @@ class IssueCancelChecker
       puts "=+=+=+=+=+=+=+=+=+=+=+"
       puts "#{issue.title} AND ALL VARIANTS CANCELLED "
       puts "=+=+=+=+=+=+=+=+=+=+=+"
-      issue.variants.destroy_all
       issue.destroy
       return true
     else
