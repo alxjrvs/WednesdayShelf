@@ -8,7 +8,6 @@ class LoginAgent
     @agent = Mechanize.new
   end
 
-
   def login
     page = @agent.get(LOGIN_URL)
     form = page.form
