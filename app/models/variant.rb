@@ -7,7 +7,7 @@ class Variant < ActiveRecord::Base
         :medium => ["300x460", :png]
         }
     #:path =>":rails_root/app/assets/images/:class/:attachment/:id_partition/:style/:filename"
-  def download_cover
-    IssueImageDownloader.new(self, MASTER_LOGIN.agent)
+  def download_cover(agent = LoginAgent.new.login)
+    IssueImageDownloader.new(self, agent).download_to_issue
   end
 end
