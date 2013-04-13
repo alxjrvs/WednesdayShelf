@@ -49,12 +49,10 @@ gem 'simple_form'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'compass-rails'
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'compass'
-  gem 'zurb-foundation'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'
