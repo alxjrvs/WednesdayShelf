@@ -7,9 +7,9 @@ module ApplicationHelper
     ]
   end
 
-  def interface_list
-    if content_for?(:interface_list)
-      content_for(:interface_list)
+  def render_interface_pane
+    if content_for?(:interface_pane)
+      content_for(:interface_pane)
     end
   end
 

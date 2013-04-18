@@ -27,7 +27,7 @@ class Release < ActiveRecord::Base
       #collection[issue.series] ||= []
       collection[issue.series] = issue
     end
-    @issues_by_series = collection
+    @issues_by_series = collection.values
   end
 
   def self.all_future

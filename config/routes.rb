@@ -1,4 +1,4 @@
 Wednesdayshelf::Application.routes.draw do
   resources :releases
-  root :to => 'home#index'
+  root :to => 'releases#show'
 end

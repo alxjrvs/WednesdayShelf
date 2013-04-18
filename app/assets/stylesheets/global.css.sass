@@ -1,0 +1,25 @@
+.touch.interface_pane
+  +grid-column(12)
+.touch.info_pane
+  display: none
+  +grid-column(0)
+
+#content
+  +grid-row("collapse")
+  max-width: none
+.interface_pane
+  +grid-column(2)
+  background: red
+  display:inline-block
+.info_pane
+  +grid-column(10)
+  background: blue
+  display:inline-block
+
+#nav-header
+  +grid-row("nest-collapse")
+  ul.nav
+    li.nav-item
+      display: inline
+      list-style:none
+      color: white

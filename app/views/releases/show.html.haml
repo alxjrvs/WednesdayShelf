@@ -1,0 +1,6 @@
+=content_for(:interface_pane) do
+  #issue-container
+    #issues
+      - @issues.each do |issue|
+        = image_tag issue.cover(:medium)
+

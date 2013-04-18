@@ -23,11 +23,12 @@
 
 %body{class: body_classes}
 
-  %section.interface_list
-    = render_interface_list
-  %section.content
+  %section#content
     = render_header
-    = yield
+    %section.interface_pane
+      = render_interface_pane
+    %section.info_pane
+      = yield
 
   = javascript_include_tag "application"
 
