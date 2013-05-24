@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Wednesdayshelf::Application.load_tasks
+WednesdayShelf::Application.load_tasks

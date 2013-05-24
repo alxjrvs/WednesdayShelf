@@ -4,16 +4,11 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-.DS_Store
 # Ignore bundler config
 /.bundle
-/app/assets/images/covers
-/config/initializers/hidden_constants.rb
-/test/cassettes
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
-.*.swp
-/public/
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

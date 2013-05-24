@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Wednesdayshelf::Application.config.secret_token = '8b3939b63f5dc924206e382342aedcaec271eece255b3a7653f787e1089d47d34f13eae448809dc6243f198f8c5e961ae7a4006368ed9e9b7aed1e3d15136b71'
+WednesdayShelf::Application.config.secret_token = '2fa3b41cb7c5a2dfce8001874c3514112f2103e8fbd84d1a7ecedc20aaa1c50d668698a04827e9c74cd9336dc4a6798bea46b7dd9da13cde1a51bb9195b174df'

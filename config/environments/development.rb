@@ -1,5 +1,6 @@
-Wednesdayshelf::Application.configure do
+WednesdayShelf::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -33,13 +34,4 @@ Wednesdayshelf::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-    config.paperclip_defaults = {
-      :storage => :fog,
-      :fog_credentials => {
-        :provider => "Local",
-        :local_root => "#{Rails.root}/public"
-                          },
-        :fog_directory => "",
-        :fog_host => ""
-                                }
 end

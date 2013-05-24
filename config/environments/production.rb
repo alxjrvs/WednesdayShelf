@@ -1,32 +1,6 @@
-Wednesdayshelf::Application.configure do
+WednesdayShelf::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-    config.paperclip_defaults = {
-      :storage => :fog,
-      :fog_credentials => {
-        :provider => 'AWS',
-        :aws_access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-        :aws_secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
-        :region => 'us-east-1'
-                          },
-      :fog_public => true,
-      :fog_directory => ENV['AWS_BUCKET'],
-      :path => "covers/:class/:id_partition/:style/:basename.:extension"
-                                 }
-
-    #config.paperclip_defaults = {
-      #:storage => :s3,
-      #:s3_credentials => {
-        #:access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-        #:secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
-                          #},
-      #:s3_permissions =>  :public,
-      #:bucket => ENV['AWS_BUCKET'],
-      #:url => ":s3_domain_url",
-      #:path => "app/assets/images/:class/:attachment/:id_partition/:style/:basename.:extension"
-                                 #}
-
-  GA.tracker = "UA-6951085-10"
   # Code is not reloaded between requests
   config.cache_classes = true
 

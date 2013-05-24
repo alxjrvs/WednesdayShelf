@@ -1,27 +1,18 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
-require "minitest/autorun"
+require "rails/test_help"
 require "minitest/rails"
-require "minitest/pride"
 
-require "factory_girl"
-require "vcr"
+# To add Capybara feature tests add `gem "minitest-rails-capybara"`
+# to the test group in the Gemfile and uncomment the following:
+# require "minitest/rails/capybara"
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'test/cassettes'
-  c.hook_into :webmock # or :fakeweb
-  c.default_cassette_options = { record: :new_episodes}
-end
+# Uncomment for awesome colorful output
+# require "minitest/pride"
 
-class WednesdayShelfTest < Minitest::Spec
-  include FactoryGirl::Syntax::Methods
-end
+class ActiveSupport::TestCase
+  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  fixtures :all
 
-class IntegrationTest < WedneshdayShelfTest
-end
-
-IntegrationTest.add_setup_hook { VCR.insert_cassette(__name__) }
-IntegrationTest.add_teardown_hook { VCR.eject_cassette }
-
-class UnitTest < WednesdayShelfTest
+  # Add more helper methods to be used by all tests here...
 end
