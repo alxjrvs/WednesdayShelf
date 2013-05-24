@@ -21,7 +21,13 @@ group :assets do
 end
 
 group :test do
+  gem 'minitest-rails-capybara'
   gem 'minitest-rails'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'pry-rails'
 end
 
 gem 'jquery-rails'
