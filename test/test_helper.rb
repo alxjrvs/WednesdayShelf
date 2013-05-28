@@ -10,4 +10,3 @@ Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
 end
-
