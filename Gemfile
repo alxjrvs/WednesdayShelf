@@ -13,7 +13,7 @@ gem 'haml-rails'
 gem 'stamp'
 gem 'font-awesome-rails'
 gem 'modernizr-rails'
-gem 'zurb-foundation'
+gem 'zurb-foundation', '~> 4.0.0'
 
 gem 'turbolinks'
 
@@ -37,7 +37,7 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
