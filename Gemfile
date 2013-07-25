@@ -20,7 +20,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :test do
-  gem 'factory-girl-rails'
+  gem 'factory_girl_rails'
   gem 'minitest-rails-capybara'
 end
 
