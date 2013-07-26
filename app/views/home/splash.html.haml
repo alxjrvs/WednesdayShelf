@@ -1,2 +1,23 @@
-%h1 
-  WE'RE ALIVE, BABY.
+#splash-container
+  .teaser-text
+    %h1
+      See What's Coming.
+
+    %p
+      Wednesday is Comic Day.
+
+    %p
+      %span
+        WednesdayShelf
+      is here to manage it for you.
+
+    %p
+      Sign up below and we'll let you know when there's something more to look at.
+
+  .call-to-action
+    = stylesheet_link_tag "http://cdn-images.mailchimp.com/embedcode/slim-081711.css"
+    #mc_embed_signup
+      =form_tag 'http://wednesdayshelf.us7.list-manage.com/subscribe/post?u=42b12a1568382790ff1b506b6&amp;id=eadf96562b', method: :post, id: "mc-embedded-subscribe-form", name: "mc-embedded-subscribe-form", class: "validate custom cta-form", target: "_blank", novaidate: true do
+        =email_field_tag 'EMAIL', '', type: 'email', class: 'email email-input', id: 'mce-mceEMAIL', placeholder: 'Your Email Please', class: 'cta-email-input', required: true
+        =button_tag type: 'submit', value: 'Subscribe', name: 'subscribe', id:'mc-embedded-subscribe', class: 'list-signup' do
+          Pull It

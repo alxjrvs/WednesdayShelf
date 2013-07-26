@@ -7,6 +7,7 @@ gem 'pg'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'haml-rails'
@@ -27,6 +28,7 @@ end
 group :test, :development do
   gem 'minitest-rails'
   gem 'pry-rails'
+  gem 'thin'
 end
 
 group :doc do

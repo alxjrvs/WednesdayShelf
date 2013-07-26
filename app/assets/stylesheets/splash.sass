@@ -1,0 +1,63 @@
+body.splash
+  overflow: hidden
+  background-color: $white
+
+  #splash-container
+    +grid-row
+
+    .teaser-text
+      +grid-column(8, $center: true)
+      padding-top: 100px
+      margin: 0 auto
+
+      h1
+        text-align: center
+        padding-bottom: 10px
+
+      p
+        font-weight: 100
+        font-size: 20px
+        line-height: 24px
+
+        span
+          +bold
+
+    .call-to-action
+      +grid-column(8, $center: true)
+      padding-top: 60px
+
+      &:before
+        content: ''
+        height: 800px
+        background-image: image-url("PaperBag.png")
+        background-size: 100%
+        background-repeat: no-repeat
+        width: 2000px
+        height: 800px
+        position: absolute
+        left: -670px
+        top: -95px
+
+      #mc_embed_signup
+        +grid-row($behavior: nest)
+        background: $white
+        clear: left
+        font: 24px
+
+      .cta-email-input
+        +grid-column(12)
+        height: 41px
+
+      .list-signup
+        +grid-column(12)
+        +button($bg: $blue)
+
+      @media #{$small}
+        .cta-email-input
+          +grid-column(8)
+
+        .list-signup
+          +grid-column(4)
+          margin-left: -35px
+
+      .legal
