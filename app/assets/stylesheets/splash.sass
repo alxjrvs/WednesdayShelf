@@ -34,6 +34,9 @@ body.splash
         font-weight: 100
         font-size: 20px
         line-height: 24px
+        text-align: left
+        @media #{$small}
+          text-align: center
 
         span
           +bold
@@ -46,7 +49,7 @@ body.splash
       padding-right: 2em
       position: relative
       z-index: 99
-      @media #{$small} 
+      @media #{$small}
         +grid-column(8, $center: true)
 
       &:before
@@ -66,21 +69,34 @@ body.splash
         font: 24px
         padding-top: 60px
         @media #{$small}
-          padding-left: 1em
 
-      .cta-email-input
-        +grid-column(12)
-        height: 41px
-        background: $white
-        @media #{$small}
-          +grid-column(8)
+        form
+          +clearfix
+          @media #{$small}
+            +grid-column(9, $center: true)
 
-      .list-signup
-        +grid-column(12)
-        +button($bg: $blue)
-        @media #{$small}
-          +grid-column(4)
-          margin-left: -35px
+          .list-signup-inputs
+            +grid-row
+
+            .cta-email-input
+              +grid-column(12)
+              height: 41px
+              background: $white
+              @media #{$small}
+                +grid-column(8)
+                margin-left: 2em
+
+            .list-signup
+              +grid-column(12)
+              padding: 0
+              @media #{$small}
+                +grid-column(4)
+                margin-left: -35px
+
+              .list-signup-button
+                +button($bg: $blue)
+                width: 100%
+                font-weight: 400
 
       a
         text-decoration: underline

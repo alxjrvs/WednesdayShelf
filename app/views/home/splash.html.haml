@@ -17,9 +17,11 @@
   .call-to-action
     #mc_embed_signup
       =form_tag 'http://wednesdayshelf.us7.list-manage.com/subscribe/post?u=42b12a1568382790ff1b506b6&amp;id=eadf96562b', method: :post, id: "mc-embedded-subscribe-form", name: "mc-embedded-subscribe-form", class: "validate custom cta-form", target: "_blank", novaidate: true do
-        =email_field_tag 'EMAIL', '', type: 'email', class: 'email email-input', id: 'mce-mceEMAIL', placeholder: 'Email Goes Here', class: 'cta-email-input', required: true
-        =button_tag type: 'submit', value: 'Subscribe', name: 'subscribe', id:'mc-embedded-subscribe', class: 'list-signup' do
-          Pull It
+        .list-signup-inputs
+          =email_field_tag 'EMAIL', '', type: 'email', class: 'email email-input', id: 'mce-mceEMAIL', placeholder: 'Email Goes Here', class: 'cta-email-input', required: true
+          .list-signup
+            =button_tag type: 'submit', value: 'Subscribe', name: 'subscribe', id:'mc-embedded-subscribe', class: 'list-signup-button' do
+              Pull It
 
     %p.legal
       We won't spam you. We Love you.
