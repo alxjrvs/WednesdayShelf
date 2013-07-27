@@ -1,20 +1,34 @@
-html
-  overflow: hidden
-
 body.splash
   background-color: $white
+  overflow: hidden
 
   #splash-container
     +grid-row
+    position: relative
+    overflow: hidden
+    padding-bottom: 50px
+    @media #{$small}
+      overflow: visible
+      padding-bottom: 0px
 
     .teaser-text
-      +grid-column(8, $center: true)
-      padding-top: 10%
+      +clearfix
+      +grid-column(12)
+      padding-top: 6%
       margin: 0 auto
+      @media #{$small}
+        padding-bottom: 20px
+        +grid-column(8, $center: true)
 
       h1
         text-align: center
         padding-bottom: 10px
+        span
+          background: $blue
+          color: white
+          padding-left: 10px
+          @media #{$small}
+            padding-left: 12.5px
 
       p
         font-weight: 100
@@ -25,12 +39,18 @@ body.splash
           +bold
 
     .call-to-action
-      +grid-column(8, $center: true)
-      padding-top: 60px
+      +clearfix
+      +grid-row
+      +grid-column(12)
+      padding-left: 2em
+      padding-right: 2em
+      position: relative
+      z-index: 99
+      @media #{$small} 
+        +grid-column(8, $center: true)
 
       &:before
         content: ''
-        height: 800px
         background-image: image-url("PaperBag.png")
         background-size: 100%
         background-repeat: no-repeat
@@ -42,24 +62,33 @@ body.splash
 
       #mc_embed_signup
         +grid-row($behavior: nest)
-        background: $white
         clear: left
         font: 24px
+        padding-top: 60px
+        @media #{$small}
+          padding-left: 1em
 
       .cta-email-input
         +grid-column(12)
         height: 41px
+        background: $white
+        @media #{$small}
+          +grid-column(8)
 
       .list-signup
         +grid-column(12)
         +button($bg: $blue)
-
-      @media #{$small}
-        .cta-email-input
-          +grid-column(8)
-
-        .list-signup
+        @media #{$small}
           +grid-column(4)
           margin-left: -35px
 
+      a
+        text-decoration: underline
+        color: white
+
       .legal
+        position: relative
+        z-index: 999
+        text-align: center
+        font-size: 14px
+        color: white
