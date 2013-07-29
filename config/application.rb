@@ -24,5 +24,10 @@ module WednesdayShelf
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    CbNitride.configure do |c|
+      c.username = ENV['USERNAME']
+      c.password = ENV['PASSWORD']
+      c.account_number = ENV['ACCOUNT_NUMBER']
+    end
   end
 end

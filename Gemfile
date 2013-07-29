@@ -17,7 +17,7 @@ gem 'stamp'
 gem 'font-awesome-rails'
 gem 'modernizr-rails'
 gem 'zurb-foundation', '~> 4.0.0'
-
+gem 'cb_nitride'
 gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
