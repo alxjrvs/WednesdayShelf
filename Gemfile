@@ -20,6 +20,9 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'cb_nitride'
 gem 'turbolinks'
 
+gem 'fog'
+gem 'carrierwave'
+
 gem 'jbuilder', '~> 1.2'
 
 group :test do

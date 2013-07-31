@@ -5,7 +5,7 @@ class ItemUplifter
   attr_reader :item
 
   def self.uplift(item)
-    new.(item).uplift
+    new(item).uplift
   end
 
   def initialize(item)
@@ -16,21 +16,22 @@ class ItemUplifter
     if item.nil?
       pp "Invalid Diamond Number"
       return nil
-    elsif item.product_type? :collection || :merchandise
+    elsif item.product_type? == :collection || item.product_type? == :merchandise
       pp "Not Currently Collecting Merchandise of Graphic Novels"
       return nil
     else
-    send(item.product_type)
+      send(item.product_type?)
+      puts "Recorded #{item.title} (#{item.diamond_number})"
     end
   end
 
   private
 
   def issue
-    @_issue ||= Issue.uplift(item)
+    @_issue ||= Issue.uplift!(item)
   end
 
   def variant
-    @_variant ||= Variant.uplift(item)
+    @_variant ||= Variant.uplift!(item)
   end
 end
