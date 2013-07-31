@@ -2,7 +2,6 @@ class CreateIssues < ActiveRecord::Migration
   def change
     create_table :issues do |t|
       t.string :title
-      t.string :series_frequency
       t.string :status
       t.string :stock_number
       t.string :item_code
