@@ -20,5 +20,6 @@ class CreateVariants < ActiveRecord::Migration
     end
 
     add_index :variants, :issue_id
+    add_index :variants, :diamond_number
   end
 end

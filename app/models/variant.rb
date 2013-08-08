@@ -5,23 +5,23 @@ class Variant < ActiveRecord::Base
   belongs_to :issue
 
   def self.uplift!(item)
-    variant = where(
-      diamond_number: item.diamond_number,
-      variant_description: item.variant_description,
-      raw_title: item.raw_title,
-      series_title: item.series_title,
-      issue_number: item.issue_number,
-      release_year: item.release_year,
-      author: item.author,
-      artist: item.artist,
-      cover_artist: item.cover_artist,
-      release_year: item.release_year,
-      price: item.price,
-      stock_number: item.stock_number,
-      release_date: item.release_date
-    ).first_or_create
+    variant = where(diamond_number: item.diamond_number).first_or_create do |variant|
+      variant.diamond_number = item.diamond_number
+      variant.variant_description= item.variant_description,
+      variant.raw_title= item.raw_title,
+      variant.series_title= item.series_title,
+      variant.issue_number= item.issue_number,
+      variant.release_year= item.release_year,
+      variant.author= item.author,
+      variant.artist= item.artist,
+      variant.cover_artist= item.cover_artist,
+      variant.release_year= item.release_year,
+      variant.price= item.price,
+      variant.stock_number= item.stock_number,
+      variant.release_date= item.release_date
+      #variant.cover = item.image
+    end
     variant.find_issue
-    #variant.update_cover(item.image)
   end
 
   def update_cover(image)

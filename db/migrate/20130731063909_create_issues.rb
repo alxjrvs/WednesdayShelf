@@ -26,5 +26,6 @@ class CreateIssues < ActiveRecord::Migration
 
     add_index :issues, :series_id
     add_index :issues, :release_id
+    add_index :issues, :diamond_number
   end
 end

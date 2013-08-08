@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20130731063917) do
     t.datetime "updated_at"
   end
 
+  add_index "issues", ["diamond_number"], name: "index_issues_on_diamond_number", using: :btree
   add_index "issues", ["release_id"], name: "index_issues_on_release_id", using: :btree
   add_index "issues", ["series_id"], name: "index_issues_on_series_id", using: :btree
 
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20130731063917) do
     t.datetime "updated_at"
   end
 
+  add_index "variants", ["diamond_number"], name: "index_variants_on_diamond_number", using: :btree
   add_index "variants", ["issue_id"], name: "index_variants_on_issue_id", using: :btree
 
 end
