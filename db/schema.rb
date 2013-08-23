@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20130731063917) do
   end
 
   create_table "releases", force: true do |t|
+    t.date "release_date"
   end
 
   create_table "series", force: true do |t|

@@ -3,12 +3,13 @@ class Issue < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   belongs_to :series
+  belongs_to :release
   has_many :variants
 
   def self.uplift!(item)
     publisher = Publisher.where(name: item.publisher).first_or_create
     series = Series.where(name: item.series_title, publisher: publisher).first_or_create
-    release = Release.where(release_date: item.release_date)
+    release = Release.where(release_date: item.release_date).first_or_create
     uplifted_issue = where(diamond_number: item.diamond_number).first_or_create do |issue|
       issue.raw_title = item.raw_title
       issue.stock_number = item.stock_number
@@ -27,14 +28,14 @@ class Issue < ActiveRecord::Base
       issue.series = series
       issue.release_year = item.release_year
       issue.release = release
-      #issue.cover = item.image
+      issue.cover = item.image
     end
     uplifted_issue.find_variants
   end
 
 
   def cover_file_name
-    series_title + issue_number.to_s + "Cover" + '.png'
+    series_title + issue_number.to_s + "_cover" + '.png'
   end
 
   def find_variants
