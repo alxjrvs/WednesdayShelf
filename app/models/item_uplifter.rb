@@ -17,7 +17,9 @@ class ItemUplifter
       pp "Invalid Diamond Number"
       return nil
     elsif item.product_type? == :collection || item.product_type? == :merchandise
-      pp "Not Currently Collecting Merchandise of Graphic Novels"
+      pp "#{item.title} is Merch or a Graphic Novel"
+      pp "Not Currently Collecting Merchandise or Graphic Novels"
+      DiamondItem.create(diamond_number: item.diamond_number)
       return nil
     else
       send(item.product_type?)

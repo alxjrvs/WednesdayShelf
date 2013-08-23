@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130731063917) do
+ActiveRecord::Schema.define(version: 20130823195237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "diamond_items", force: true do |t|
+    t.string "diamond_number"
+  end
 
   create_table "issues", force: true do |t|
     t.integer  "series_id"
