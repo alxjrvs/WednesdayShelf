@@ -5,32 +5,27 @@ class Variant < ActiveRecord::Base
   belongs_to :issue
 
   def self.uplift!(item)
-    variant = where(diamond_number: item.diamond_number).first_or_create do |variant|
+    uplifted_variant = where(diamond_number: item.diamond_number).first_or_create do |variant|
       variant.diamond_number = item.diamond_number
-      variant.variant_description= item.variant_description,
-      variant.raw_title= item.raw_title,
-      variant.series_title= item.series_title,
-      variant.issue_number= item.issue_number,
-      variant.release_year= item.release_year,
-      variant.author= item.author,
-      variant.artist= item.artist,
-      variant.cover_artist= item.cover_artist,
-      variant.release_year= item.release_year,
-      variant.price= item.price,
-      variant.stock_number= item.stock_number,
+      variant.variant_description= item.variant_description
+      variant.raw_title= item.raw_title
+      variant.series_title= item.series_title
+      variant.issue_number= item.issue_number
+      variant.release_year= item.release_year
+      variant.author= item.author
+      variant.artist= item.artist
+      variant.cover_artist= item.cover_artist
+      variant.release_year= item.release_year
+      variant.price= item.price
+      variant.stock_number= item.stock_number
       variant.release_date= item.release_date
-      #variant.cover = item.image
+      variant.cover = item.image
     end
-    variant.find_issue
-  end
-
-  def update_cover(image)
-    self.cover = image
-    self.cover.save!
+    uplifted_variant.find_issue
   end
 
   def cover_file_name
-    series_title + issue_number.to_s + variant_description+ "Cover" + '.png'
+    "#{series_title}_#{issue_number.to_s}_#{diamond_number}_variant.png"
   end
 
   def find_issue

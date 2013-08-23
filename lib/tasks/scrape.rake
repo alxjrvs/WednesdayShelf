@@ -11,8 +11,13 @@ namespace :scrape do
 
   task everything: :environment do
     generate_all_diamond_numbers.flatten.map do |diamond_number|
-      diamond_item = item(diamond_number)
-      ItemUplifter.uplift diamond_item
+      if Variant.where(diamond_number) ||
+          Issue.where(diamond_number)
+        puts "Already recorded."
+      else
+        diamond_item = item(diamond_number)
+        ItemUplifter.uplift diamond_item
+      end
     end.flatten
   end
 
