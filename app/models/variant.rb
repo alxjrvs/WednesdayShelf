@@ -4,6 +4,10 @@ class Variant < ActiveRecord::Base
 
   belongs_to :issue
 
+  def self.orphans
+    where("issue_id is null")
+  end
+
   def self.uplift!(item)
     uplifted_variant = where(diamond_number: item.diamond_number).first_or_create do |variant|
       variant.diamond_number = item.diamond_number

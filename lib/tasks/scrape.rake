@@ -11,17 +11,7 @@ namespace :scrape do
         ItemUplifter.uplift diamond_item
       end
     end
-  end
-
-  task everything: :environment do
-    generate_all_diamond_numbers.flatten.map do |diamond_number|
-      if recorded? diamond_number
-        puts "Already recorded."
-      else
-        diamond_item = item(diamond_number)
-        ItemUplifter.uplift diamond_item
-      end
-    end.flatten
+    Variant.orphans.destroy_all
   end
 
   def recorded?(diamond_number)
