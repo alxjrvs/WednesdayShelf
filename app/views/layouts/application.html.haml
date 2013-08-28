@@ -19,6 +19,12 @@
 
 %body{class: body_classes}
 
+  #navigation
+    #mobile
+      =content_for?(:mobilenav) ? yield(:mobilenav) : ""
+    #desktop
+      =content_for?(:sidebarnav) ? yield(:sidebarnav) : ""
+
   = yield
 
   = javascript_include_tag "application"

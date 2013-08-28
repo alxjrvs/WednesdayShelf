@@ -1,9 +1,10 @@
 #splash-container
   .teaser-text
     %h1
-      See 
+      See
       %span
-        W
+        %a.modal-spawn{href: '#', data: {reveal: {id: 'SecretKey'} } }
+          W
       hat's Coming.
     %p
       Wednesday is Comic Day.
@@ -12,7 +13,7 @@
         WednesdayShelf
       is here to manage it for you.
     %p
-      Sign up below 
+      Sign up below
       = link_to 'http://wednesdayshelf.tumblr.com' do
         or check out the blog
       to hear more.
@@ -33,4 +34,12 @@
         Made by This Guy.
     =link_to 'http://comicazi.com/site/' do
       %p.legal
-        We <3 Comicazi.
+        We
+        %i.icon-heart
+        Comicazi.
+
+  #SecretKey.reveal-modal
+    %h1 Do you have a Secret Password?
+    %p Enter it below to get early access!
+
+

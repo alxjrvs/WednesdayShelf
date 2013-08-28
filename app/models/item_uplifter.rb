@@ -22,12 +22,20 @@ class ItemUplifter
       DiamondItem.create(diamond_number: item.diamond_number)
       return nil
     else
+      return nil if item.series_title[0..2] == "DF "
       send(item.product_type?)
       puts "Recorded #{item.title} (#{item.diamond_number})"
     end
   end
 
   private
+
+  def fitler_for_df(item)
+   if item.series_title[0..2] == "DF "
+     binding.pry
+     item.series_title = item.series_title.gsub("DF ", "").strip
+   end
+  end
 
   def issue
     @_issue ||= Issue.uplift!(item)

@@ -1,9 +1,17 @@
 class Release < ActiveRecord::Base
   has_many :issues
   #I feel this will become truer with time.
+  has_many :series, through: :issues
 
   validates :release_date, presence: true, uniqueness: true
 
+  def self.future
+    Release.where("release_date >= ?", Date.today - 3.days)
+  end
+
+  def self.current
+    future[0]
+  end
 
   private
 
