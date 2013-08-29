@@ -64,6 +64,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     daemons (1.1.9)
+    database_cleaner (1.0.1)
     domain_name (0.5.13)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -240,6 +241,7 @@ DEPENDENCIES
   cb_nitride
   coffee-rails (~> 4.0.0)
   compass-rails!
+  database_cleaner
   factory_girl_rails
   fog (~> 1.3.1)
   font-awesome-rails

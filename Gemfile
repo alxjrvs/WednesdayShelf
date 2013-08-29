@@ -31,6 +31,7 @@ group :test do
 end
 
 group :test, :development do
+  gem 'database_cleaner'
   gem 'minitest-rails'
   gem 'pry-rails'
   gem 'thin'

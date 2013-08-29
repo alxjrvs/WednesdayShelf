@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def index
+    @release = Release.current
   end
 
 end

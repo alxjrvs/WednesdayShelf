@@ -4,6 +4,7 @@ class Release < ActiveRecord::Base
   has_many :series, through: :issues
 
   validates :release_date, presence: true, uniqueness: true
+  default_scope {order('release_date ASC')}
 
   def self.future
     Release.where("release_date >= ?", Date.today - 3.days)
