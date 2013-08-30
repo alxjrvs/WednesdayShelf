@@ -1,0 +1,23 @@
+#bar
+  +grid-row
+  position: relative
+  height: 50px
+
+  #logo-container
+    display: none
+  #header
+    +grid-column(4, push: 4 )
+  nav#main-nav
+    ul
+      list-style: none
+
+      li#nav-left
+        +grid-column(4, pull: 4 )
+        i
+        span
+          display: none
+      li#nav-right
+        +grid-column(4)
+        i
+        span
+          display: none

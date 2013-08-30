@@ -19,11 +19,20 @@
 
 %body{class: body_classes}
 
-  #navigation
-    #mobile
-      =content_for?(:mobilenav) ? yield(:mobilenav) : ""
-    #desktop
-      =content_for?(:sidebarnav) ? yield(:sidebarnav) : ""
+  #bar
+    #logo-container
+    #header
+      = content_for?(:header) ? yield(:header) : "WednesdayShelf"
+    %nav#main-nav
+      %ul
+        %li#nav-left
+          %i.icon-chevron-left
+          %span
+            Previous Week
+        %li#nav-right
+          %i.icon-chevron-right
+          %span
+            Next Week
 
   = yield
 
