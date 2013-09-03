@@ -24,15 +24,14 @@
     #header
       = content_for?(:header) ? yield(:header) : "WednesdayShelf"
     %nav#main-nav
-      %ul
-        %li#nav-left
-          %i.icon-chevron-left
-          %span
-            Previous Week
-        %li#nav-right
-          %i.icon-chevron-right
-          %span
-            Next Week
+      #nav-left
+        %i.icon-chevron-left
+        %span
+          Previous Week
+      #nav-right
+        %i.icon-chevron-right
+        %span
+          Next Week
 
   = yield
 

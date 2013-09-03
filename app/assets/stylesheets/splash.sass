@@ -1,6 +1,7 @@
 body.splash
   background-color: $white
   overflow: hidden
+  width: emCalc(1000px)
 
   #bar
     display: none
@@ -115,5 +116,29 @@ body.splash
         text-align: center
         font-size: 14px
         color: white
+
     #SecretKey
       text-align: center
+
+      #secret-form
+        +grid-row
+
+        .secret-key-input
+          +grid-column(12)
+          height: 41px
+          background: $white
+          @media #{$small}
+            +grid-column(8)
+            margin-left: 2em
+
+        .secret-key-signin
+          +grid-column(12)
+          padding: 0
+          
+        
+
+
+
+
+
+      

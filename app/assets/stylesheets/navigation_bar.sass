@@ -1,23 +1,68 @@
 #bar
-  +grid-row
+  width: 100%
   position: relative
-  height: 50px
+  height: 35px
+  color: $white
+  background: $blue
 
   #logo-container
     display: none
-  #header
-    +grid-column(4, push: 4 )
-  nav#main-nav
-    ul
-      list-style: none
 
-      li#nav-left
-        +grid-column(4, pull: 4 )
-        i
-        span
-          display: none
-      li#nav-right
-        +grid-column(4)
-        i
-        span
-          display: none
+  #header
+    +grid-column(4, $center: true)
+    padding-top: 8px
+    text-align: center
+
+  nav#main-nav
+    #nav-left
+      width: 25%
+      height: 100%
+      position: absolute
+      left: 2px
+      top: 9px
+      i
+      span
+        display: none
+    #nav-right
+      width: 25%
+      height: 100%
+      position: absolute
+      text-align: right
+      right: 2px
+      top: 9px
+      i
+      span
+        display: none
+  @media #{$small}
+    +grid-column(3)
+    position: fixed
+    height: 100%
+    padding: 0
+    background: $secondary-blue
+
+    #logo-container
+      display: block
+      width: 100%
+      height: emCalc(300px)
+      background: $blue
+      max-height: 50vh
+
+
+    #header
+      width: 100%
+
+    nav#main-nav
+      position: absolute
+      bottom: 0
+      padding-bottom: 15%
+      padding-right: 10px
+      padding-left: 10px
+      width: 100%
+      +clearfix
+
+      #nav-left, #nav-right
+        width: 100%
+        position: relative
+        height: $sidebar-button-height
+
+

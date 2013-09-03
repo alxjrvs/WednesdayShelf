@@ -20,6 +20,7 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'cb_nitride'
 gem 'turbolinks'
 
+gem 'simple_form'
 gem "fog", "~> 1.3.1"
 gem 'carrierwave'
 
@@ -28,6 +29,10 @@ gem 'jbuilder', '~> 1.2'
 group :test do
   gem 'factory_girl_rails'
   gem 'minitest-rails-capybara'
+end
+
+group :development do
+  gem 'meta_request'
 end
 
 group :test, :development do
