@@ -3,6 +3,10 @@ body.splash
   overflow: hidden
   width: emCalc(1000px)
 
+  #content
+    @media #{$small}
+      left: 0px
+      +grid-column(12)
   #bar
     display: none
 
@@ -134,11 +138,19 @@ body.splash
         .secret-key-signin
           +grid-column(12)
           padding: 0
-          
-        
+          @media #{$small}
+            +grid-column(4)
+            margin-left: -35px
+
+          .secret-key-signin-button
+            +button($bg: $blue)
+            width: 100%
+            font-weight: 400
 
 
 
 
 
-      
+
+
+

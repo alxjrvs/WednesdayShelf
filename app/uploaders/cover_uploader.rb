@@ -1,7 +1,7 @@
 class CoverUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
    storage :fog
@@ -13,6 +13,10 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
 
+  version :grid_cover do
+    process resize_to_fill: [200, 300]
+  end
+  #
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #

@@ -23,6 +23,7 @@ gem 'turbolinks'
 gem 'simple_form'
 gem "fog", "~> 1.3.1"
 gem 'carrierwave'
+gem 'rmagick'
 
 gem 'jbuilder', '~> 1.2'
 

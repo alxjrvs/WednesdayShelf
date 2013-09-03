@@ -29,10 +29,19 @@
         %span
           Previous Week
       #nav-right
-        %i.icon-chevron-right
         %span
           Next Week
+        %i.icon-chevron-right
+    %nav#secondary_nav
+      =content_for?(:seconadry_nav) ? yield(:secondary_nav) : nil
 
-  = yield
+  #content
+    #flash-box
+      .notice 
+        =notice
+      .alert
+        =alert
+
+    = yield
 
   = javascript_include_tag "application"

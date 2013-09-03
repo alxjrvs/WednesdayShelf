@@ -41,5 +41,11 @@
   #SecretKey.reveal-modal
     %h1 Do you have a Secret Password?
     %p Enter it below to get early access!
+    #secret-form
+      =form_tag(controller: 'home', action: 'secret_key_entrance') do
+        = search_field('secret-key-here', '', placeholder: 'Secret Key Here!', require: true, class: 'secret-key-input')
+        .secret-key-signin
+          =button_tag type: 'submit', name: 'Secrets', class: 'secret-key-signin-button' do
+            Enter
 
 

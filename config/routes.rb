@@ -5,6 +5,7 @@ WednesdayShelf::Application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'home#splash'
    get 'test' => 'home#index'
+   post 'secret-entrance' => 'home#secret_key_entrance'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

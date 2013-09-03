@@ -6,4 +6,7 @@ module ApplicationHelper
       params[:action]
     ]
   end
+
+  def comic_list(collection)
+  end
 end
