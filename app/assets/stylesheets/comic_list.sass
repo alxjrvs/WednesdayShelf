@@ -4,23 +4,22 @@ ul#comic-list
 
   li.comic
     position: relative
+    padding-top: $bar-mobile-height + 10px
     overflow: hidden
-    max-height: 500px
 
     .comic-issue-cover
+      border-right: 10px solid $white
       max-width: none
+      width: 100%
 
     &:hover
       overflow: visible
-      z-index: 2
-
-      .comic-issue-cover
-        border-right: 10px solid $white
-
+      z-index: $low-mid
 
 
   @media #{$small}
     +block-grid(5)
+    max-height: 500px
 
 
 

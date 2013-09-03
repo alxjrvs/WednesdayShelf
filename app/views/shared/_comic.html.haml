@@ -1,4 +1,5 @@
 %li.comic{id: issue.diamond_number}
   =image_tag(issue.cover.grid_cover.url, class: 'comic-issue-cover')
-  = issue.title
-  = issue.diamond_number
+  .comic-info
+    = issue.title
+    = issue.diamond_number
