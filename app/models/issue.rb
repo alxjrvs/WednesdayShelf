@@ -35,9 +35,8 @@ class Issue < ActiveRecord::Base
 
 
   def cover_file_name
-    series_title +
-      issue_number.to_s +
-      "_cover" + '.png'
+    title.parameterize +
+    "_cover" + '.png'
   end
 
   def find_variants

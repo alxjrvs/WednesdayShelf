@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
   def index
     @release = Release.current
+    @next = @release.next
+    @previous = @release.previous
   end
 
   def secret_key_entrance

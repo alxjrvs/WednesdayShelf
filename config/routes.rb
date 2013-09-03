@@ -6,6 +6,7 @@ WednesdayShelf::Application.routes.draw do
    root 'home#splash'
    get 'test' => 'home#index'
    post 'secret-entrance' => 'home#secret_key_entrance'
+   resources :releases
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

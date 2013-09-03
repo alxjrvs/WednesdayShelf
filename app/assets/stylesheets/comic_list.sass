@@ -1,9 +1,23 @@
 ul#comic-list
   text-align: center
+  background-color: $white
 
   li.comic
     position: relative
+    overflow: hidden
     max-height: 500px
+
+    .comic-issue-cover
+      max-width: none
+
+    &:hover
+      overflow: visible
+      z-index: 2
+
+      .comic-issue-cover
+        border-right: 10px solid $white
+
+
 
   @media #{$small}
     +block-grid(5)

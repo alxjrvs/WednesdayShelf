@@ -24,14 +24,16 @@
     #header
       = content_for?(:header) ? yield(:header) : "WednesdayShelf"
     %nav#main-nav
-      #nav-left
-        %i.icon-chevron-left
-        %span
-          Previous Week
-      #nav-right
-        %span
-          Next Week
-        %i.icon-chevron-right
+      =link_to release_path(@previous) do
+        #nav-left{class: navigation_helper(@previous)}
+          %i.icon-chevron-left
+          %span
+            Previous Week
+      =link_to release_path(@next) do
+        #nav-right{class: navigation_helper(@next)}
+          %span
+            Next Week
+          %i.icon-chevron-right
     %nav#secondary_nav
       =content_for?(:seconadry_nav) ? yield(:secondary_nav) : nil
 

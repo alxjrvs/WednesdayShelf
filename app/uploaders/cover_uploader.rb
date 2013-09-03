@@ -14,7 +14,7 @@ class CoverUploader < CarrierWave::Uploader::Base
 
 
   version :grid_cover do
-    process resize_to_fill: [200, 300]
+    process resize_to_limit: [nil, 300]
   end
   #
   # Process files as they are uploaded:

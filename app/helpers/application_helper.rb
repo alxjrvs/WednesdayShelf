@@ -7,6 +7,9 @@ module ApplicationHelper
     ]
   end
 
-  def comic_list(collection)
+  def navigation_helper(release)
+    if release.nil?
+      "nav-disabled"
+    end
   end
 end
