@@ -10,16 +10,19 @@ ul#comic-list
     .comic-issue-cover
       border-right: 10px solid $white
       max-width: none
-      width: 100%
+      min-width: 100%
 
     &:hover
       overflow: visible
       z-index: $low-mid
 
-
   @media #{$small}
     +block-grid(5)
     max-height: 500px
+    padding-top: 0
+
+    .comic-issue-cover
+
 
 
 
