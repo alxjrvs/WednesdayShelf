@@ -1,10 +1,18 @@
 class ReleasesController < ApplicationController
-  before_action :validate_session, only: [:show]
+
+  respond_to :json
+
+  def index
+    respond_with Release.all
+  end
 
   def show
-    @release = Release.find(params[:id])
-    @next = @release.next
-    @previous = @release.previous
+    case params[:id]
+    when 'current'
+      respond_with Release.current
+    else
+      respond_with Release.find(params[:id])
+    end
   end
 
 end

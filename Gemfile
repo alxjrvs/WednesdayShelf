@@ -18,7 +18,11 @@ gem 'modernizr-rails'
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'cb_nitride'
 gem 'turbolinks'
+gem 'jquery-rails'
+gem 'ember-rails'
+gem 'hamlbars'
 
+gem 'active_model_serializers'
 gem 'simple_form'
 gem "fog", "~> 1.3.1"
 gem 'carrierwave'

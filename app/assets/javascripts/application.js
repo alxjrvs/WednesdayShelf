@@ -13,6 +13,14 @@
 //= require jquery
 //= require foundation
 //= require turbolinks
-//= require_tree .
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require wednesday_shelf
 
+// for more details see: http://emberjs.com/guides/application/
+
+//= require_tree .
+WS = Ember.Application.create();
 $(document).foundation();
