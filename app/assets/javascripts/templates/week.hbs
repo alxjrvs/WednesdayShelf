@@ -1,0 +1,8 @@
+<h2> {{long_release_date}}</h2>
+{{#linkTo 'week' next}}<p>Previous week</p>{{/linkTo}}
+{{#linkTo 'week' previous}}<p>Next Week</p>{{/linkTo}}
+<ul>
+  {{#each issues}}
+    <li> {{series_title}}</li>
+  {{/each}}
+</ul>

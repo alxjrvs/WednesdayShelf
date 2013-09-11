@@ -1,5 +1,9 @@
 <ul>
-  {{#each model}}
-    <li>{{release_date}}</li>
+  {{#each singleWeek in model}}
+    <li>
+      {{#linkTo "week" singleWeek}}
+      {{singleWeek.release_date}}
+      {{/linkTo}}
+    </li>
   {{/each}}
 </ul>
