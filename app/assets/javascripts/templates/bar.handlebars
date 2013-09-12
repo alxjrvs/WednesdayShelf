@@ -1,6 +1,10 @@
   <div id=bar>
     <div id=logo-container></div>
-    <div id=header>
+    <div id=bigHeader>
+      {{week.long_release_date}}
+    </div>
+    <div id=smallHeader>
+      {{week.short_release_date}}
     </div>
     <nav id=main-nav>
       {{#linkTo 'week' week.previous}}

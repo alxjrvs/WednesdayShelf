@@ -9,7 +9,15 @@
   #logo-container
     display: none
 
-  #header
+  #smallHeader
+    +grid-column(8, $center: true)
+    padding-top: 8px
+    text-align: center
+    display: block
+
+  #bigHeader
+    display: none
+    width: 100%
     +grid-column(8, $center: true)
     padding-top: 8px
     text-align: center
@@ -54,7 +62,11 @@
       max-height: 50vh
 
 
-    #header
+    #smallHeader
+      display: none
+
+    #bigHeader
+      display: block
       width: 100%
 
     nav#main-nav
