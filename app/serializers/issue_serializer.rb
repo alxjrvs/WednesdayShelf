@@ -14,7 +14,7 @@ class IssueSerializer < ActiveModel::Serializer
     :author,
     :artist,
     :cover_artist,
-    :series,
+    #:series,
     :grid_cover_url,
     :cover_url
   has_many :variants
