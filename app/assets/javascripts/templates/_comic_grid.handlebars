@@ -1,0 +1,7 @@
+<ul id=comic-list>
+  {{#each issue in week.issues}}
+    {{#view WS.GridComicView issueBinding="this"}}
+    <p>{{issue.series_title}}</p>
+    {{/view}}
+  {{/each}}
+</ul>

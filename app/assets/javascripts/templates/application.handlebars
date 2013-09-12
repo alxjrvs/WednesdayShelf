@@ -1,9 +1,7 @@
-<div id=container>
-  <h1 class='callout'>
-    Hey! Hey, you!
-  </h1>
-  <h2>
-  {{#linkTo "weeks"}}Weeks{{/linkTo}}
-  </h2>
-  {{outlet}}
-</div>
+<main id=container>
+    {{outlet sidebar}}
+  <div id=content>
+    {{outlet}}
+  </div>
+
+</main>

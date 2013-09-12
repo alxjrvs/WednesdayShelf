@@ -1,0 +1,25 @@
+  <div id=bar>
+    <div id=logo-container></div>
+    <div id=header>
+    </div>
+    <nav id=main-nav>
+      {{#linkTo 'week' week.previous}}
+        <div id=nav-left>
+          <i class=icon-chevron-left></i>
+          <span>
+            Previous Week
+          </span>
+        </div>
+
+      {{/linkTo}}
+      {{#linkTo 'week' week.next}}
+        <div id=nav-right>
+          <span>
+            Next Week
+          </span>
+          <i class=icon-chevron-right></i>
+        </div>
+
+      {{/linkTo}}
+    </nav>
+  </div>
