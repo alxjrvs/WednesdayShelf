@@ -16,3 +16,9 @@ WS.Issue = DS.Model.extend
   series_title: DS.attr 'string'
   grid_cover_url: DS.attr 'string'
   cover_url: DS.attr 'string'
+  release_id: DS.attr 'number'
+
+  release: (->
+    WS.Release.find(@get('release_id'))
+  ).property('release_id')
+

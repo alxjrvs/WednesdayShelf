@@ -1,0 +1,33 @@
+<div id=issue-nav>
+  <div id='credits'>
+
+    <p class='credit'>Written By</p>
+
+    <p class='issue-value'>
+    {{model.author}}
+    </p>
+
+    <p class='credit'>Art By</p>
+
+    <p class='issue-value'>
+    {{model.artist}}
+    </p>
+
+    <p class='credit'>Cover By</p>
+
+    <p class='issue-value'>
+    {{model.cover_artist}}
+    </p>
+
+    <p class='credit'>Price</p>
+
+    <p class='issue-value'>
+    $
+    {{model.price}}
+    </p>
+  </div>
+
+  {{#linkTo 'week' issue.release}}
+    <p class='bottom-nav'>Return to the Release Week</p>
+  {{/linkTo}}
+</div>

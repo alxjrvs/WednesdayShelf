@@ -1,29 +1,21 @@
   <div id=bar>
     <div id=logo-container></div>
     <div id=bigHeader>
-      {{week.long_release_date}}
+      {{bigHeader}}
     </div>
     <div id=smallHeader>
-      {{week.short_release_date}}
+      {{smallHeader}}
     </div>
     <nav id=main-nav>
-      {{#linkTo 'week' week.previous}}
-        <div id=nav-left>
-          <i class=icon-chevron-left></i>
-          <span>
-            Previous Week
-          </span>
-        </div>
-
-      {{/linkTo}}
-      {{#linkTo 'week' week.next}}
-        <div id=nav-right>
-          <span>
-            Next Week
-          </span>
-          <i class=icon-chevron-right></i>
-        </div>
-
-      {{/linkTo}}
+      {{#if isRelease}}
+        {{partial release_navigation}}
+      {{/if}}
+      {{#if isIssue}}
+        {{partial issue_navigation}}
+      {{/if}}
+      {{#if isUser}}
+        {{partial user_navigation}}
+      {{/if}}
+      
     </nav>
   </div>

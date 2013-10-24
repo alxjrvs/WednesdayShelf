@@ -6,11 +6,31 @@
   background: $blue
   z-index: $top
 
+  #issue-nav
+    display: none
+    text-align: center
+
+    #credits
+      padding-rop: 15px
+      p.credit
+        font-size: 12px
+        color: $white
+        margin-bottom: 0px
+
+      p.issue-value
+        color: $white
+        font-size: 16px
+    .bottom-nav
+      //position: absolute
+      bottom: 10px
+      right: 20px
+      left: 20px
+
   #logo-container
     display: none
 
   #smallHeader
-    +grid-column(8, $center: true)
+    +grid-column(10, $center: true)
     padding-top: 8px
     text-align: center
     display: block
@@ -47,6 +67,7 @@
       i
       span
         display: none
+
   @media #{$small}
     +grid-column(3)
     position: fixed
@@ -54,6 +75,8 @@
     padding: 0
     background: $secondary-blue
 
+    #issue-nav
+      display: block
     #logo-container
       display: block
       width: 100%

@@ -1,11 +1,13 @@
 <ul id=comic-list>
   {{#each issue in week.issues}}
-    {{#view WS.GridComicView issueBinding="this"}}
-    <img {{bindAttr src="issue.grid_cover_url"}} class='comic-issue-cover' >
-    <div class='comic-info'>
-      <p>{{issue.title}}</p>
-      <p>{{issue.diamond_number}}</p>
-    </div>
-    {{/view}}
+  <li class='comic'{{bindAttr id="issue.id"}}>
+      {{#linkTo 'comic' issue}}
+      <img {{bindAttr src="issue.grid_cover_url" }} class='comic-issue-cover' >
+      {{/linkTo}}
+      <div class='comic-info'>
+        <p>{{issue.title}}</p>
+        <p>{{issue.diamond_number}}</p>
+      </div>
+    </li>
   {{/each}}
 </ul>

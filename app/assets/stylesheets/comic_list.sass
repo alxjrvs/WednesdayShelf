@@ -1,6 +1,16 @@
+#focusIssue
+  background: $white
+  position: absolute
+  display: none
+  z-index: $top
+  height: 100%
+  width: 100%
+
+
 ul#comic-list
   text-align: center
   background-color: $white
+  padding-left: 0.9375em
 
   li.comic
     position: relative
@@ -11,6 +21,7 @@ ul#comic-list
       border-right: 10px solid $white
       max-width: none
       min-width: 100%
+      max-height: 300px
 
     &:hover
       overflow: visible
@@ -19,11 +30,7 @@ ul#comic-list
   @media #{$small}
     +block-grid(5)
     max-height: 500px
+    padding-left: 0.9375em
     padding-top: 0
-
-    .comic-issue-cover
-
-
-
 
 

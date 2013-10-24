@@ -13,13 +13,18 @@ class IssueSerializer < ActiveModel::Serializer
     :max_issue,
     :author,
     :artist,
+    :release,
     :cover_artist,
+    :release_id,
     #:series,
     :grid_cover_url,
     :cover_url
   has_many :variants
 
 
+  def release_id
+    object.release.id
+  end
   def grid_cover_url
     object.cover.grid_cover.url
   end
