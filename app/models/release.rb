@@ -4,32 +4,20 @@ class Release < ActiveRecord::Base
   has_many :series, through: :issues
 
   validates :release_date, presence: true, uniqueness: true
-  default_scope {order('release_date ASC')}
 
-  def self.future
-    Release.where("release_date >= ?", Date.today - 3.days)
-  end
+  default_scope {order('release_date ASC')}
+  scope :future, -> {where("release_date >= ?", Date.today - 3.days)}
 
   def self.current
     future[0]
   end
 
   def next
-    return @_next if @_next.present?
-    if current_index == Release.all.size
-      @_next = nil
-    else
-      @_next= Release.all[current_index + 1]
-    end
+    @_next ||= Release.all[current_index + 1]
   end
 
   def previous
-    return @_previous if @_previous.present?
-    if current_index == 0
-      @_previous = nil
-    else
-      @_previous = Release.all[current_index - 1]
-    end
+    @_previous ||= Release.all[current_index - 1]
   end
 
 
