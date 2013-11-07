@@ -4,7 +4,7 @@ class ReleaseTest < ModelTests
 
   def setup
     super
-    populate_calendar
+    #populate_calendar
   end
 
   def teardown
@@ -22,9 +22,6 @@ class ReleaseTest < ModelTests
   end
 
   def test_valid_factory
-    assert_equal true, Release.first.valid?
-  end
-
-  def test_release_gives_correct_current
+    factory_is_valid? :release
   end
 end

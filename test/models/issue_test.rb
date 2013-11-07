@@ -1,8 +1,14 @@
 require 'test_helper'
 
-describe Issue do
-  it "has a valid category" do
-    issue = create :issue
-    issue.must_be :valid?
+class IssueTest < ModelTests
+  def setup
+    super
+  end
+  def teardown
+    super
+  end
+
+  def test_it_has_a_valid_factory
+    factory_is_valid? :issue
   end
 end

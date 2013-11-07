@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   end
 
   def secret_key_entrance
-    redirect_to test_path
+    redirect_to beta_path
   end
 
 end
