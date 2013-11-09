@@ -1,5 +1,4 @@
 class ReleasesController < ApplicationController
-  before_action :validate_session, only: [:show]
 
   def show
     @release = Release.find(params[:id])

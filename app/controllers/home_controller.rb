@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
 
-  before_action :validate_session, only: [:secret_key_entrance, :index]
-
   def splash
   end
 

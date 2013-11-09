@@ -3,10 +3,9 @@ WednesdayShelf::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'home#splash'
-   get 'beta' => 'home#index'
-   post 'secret-entrance' => 'home#secret_key_entrance'
+   root 'home#index'
    resources :releases
+   resources :issues, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

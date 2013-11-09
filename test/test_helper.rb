@@ -5,7 +5,6 @@ require "minitest/rails"
 require "minitest/unit"
 require "minitest/pride"
 require "database_cleaner"
-require "minitest/rails/capybara"
 
 Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
@@ -16,7 +15,6 @@ class ActiveSupport::TestCase
 end
 
 module ModelMethods
-
   def setup
     DatabaseCleaner.start
   end
@@ -33,7 +31,19 @@ module ModelMethods
   def start_cleaner
     DatabaseCleaner.start
   end
+end
 
+module AcceptanceMethods
+  def teardown
+    Capybara.reset_session!
+    Capybara.use_default_driver
+  end
+end
+
+class AcceptanceTests < MiniTest::Unit::TestCase
+  include Rails.application.routes.url_helpers
+  include Capybara::DSL
+  include AcceptanceMethods
 end
 
 class ModelTests < MiniTest::Unit::TestCase

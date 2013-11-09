@@ -2,14 +2,6 @@ require 'test_helper'
 
 class ReleaseTest < ModelTests
 
-  def setup
-    super
-  end
-
-  def teardown
-    super
-  end
-
   def test_valid_factory
     release = build :release
     assert release.valid?, "Release isn't valid"

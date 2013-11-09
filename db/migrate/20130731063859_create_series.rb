@@ -2,7 +2,7 @@ class CreateSeries < ActiveRecord::Migration
   def change
     create_table :series do |t|
       t.belongs_to :publisher
-      t.string :name
+      t.string :title
 
       t.timestamps
     end
