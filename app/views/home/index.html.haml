@@ -1,5 +1,5 @@
 - content_for :header do
-  = @release.release_date.stamp "Wednesday, August 31st"
+  = @release.pretty_release_date
 
 %ul#comic-list
   = render partial: 'shared/comic', collection: @release.issues, as: :issue

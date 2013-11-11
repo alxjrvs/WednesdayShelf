@@ -26,6 +26,7 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'jbuilder', '~> 1.2'
+gem 'devise'
 
 group :test do
   gem 'factory_girl_rails'

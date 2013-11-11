@@ -20,6 +20,9 @@ class Release < ActiveRecord::Base
     @_previous ||= Release.all[current_index - 1]
   end
 
+  def pretty_release_date
+    release_date.stamp "Wednesday, August 31st"
+  end
 
   private
 
