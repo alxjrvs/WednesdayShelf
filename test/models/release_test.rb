@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReleaseTest < ModelTests
+class ReleaseTest < ModelTest
 
   def test_that_it_has_a_valid_factory
     assert_valid_factory :release
@@ -32,7 +32,6 @@ class ReleaseTest < ModelTests
   def test_release_is_not_current_four_days_after?
     last_release = create :release, release_date: canonical_date - 4.days
     new_release = create :release, release_date: last_release.release_date + 7.days
-
     refute_equal Release.current, last_release
     assert_equal Release.current, new_release
   end

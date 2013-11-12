@@ -4,11 +4,9 @@ class SeriesTest < ModelTest
 
   def assemble_series
     @series = create :series
-    i = 1
-    3.times do
-      issue = create :issue, issue_number: i, release: (create :release, release_date: Date.current + (7 * i).days)
-      series.issues < issue
-      i + 1
+    3.times do |i|
+      issue = create :issue, issue_number: (i +1), release: (create :release, release_date: Date.current + (7 * i + 1).days)
+      @series.issues << issue
     end
   end
 

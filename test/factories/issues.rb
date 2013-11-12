@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :issue do
     release
+    series
     raw_title 'STORMWATCH #25'
     stock_number 'STK624619'
     series_title 'STORMWATCH'

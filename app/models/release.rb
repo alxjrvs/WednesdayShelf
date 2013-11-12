@@ -6,7 +6,7 @@ class Release < ActiveRecord::Base
   validates :release_date, presence: true, uniqueness: true
 
   default_scope {order('release_date ASC')}
-  scope :future, -> {where("release_date >= ?", Date.today - 3.days)}
+  scope :future, -> {where("release_date >= ?", Date.current - 3.days)}
 
   def self.current
     future[0]

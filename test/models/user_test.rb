@@ -1,12 +1,12 @@
-require 'test_helper'
+require "test_helper"
 
 class UserTest < ModelTest
   def test_that_it_has_a_valid_factory
     assert_valid_factory :user
   end
 
-  def test_that_a_user_can_add_series_to_their_pull_list
+  def test_that_a_user_has_a_pull_list
     user = create :user
-    series = create :series
+    assert user.pull_list, "User has no Pull list"
   end
 end
