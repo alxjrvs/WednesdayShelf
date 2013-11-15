@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  after_create :pull_list
+  after_create :add_pull_list
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   private
 
   def add_pull_list
-    self.pull_list ||= PullList.create
+    self.pull_list ||= PullList.create!
   end
 end
