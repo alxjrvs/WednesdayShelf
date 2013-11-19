@@ -1,9 +1,7 @@
 class ReleasesController < ApplicationController
 
   def show
-    @release = Release.find(params[:id])
-    @next = @release.next
-    @previous = @release.previous
+    @release = ReleaseFacade.new(Release.find(params[:id]))
   end
 
 end

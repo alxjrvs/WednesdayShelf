@@ -1,6 +1,10 @@
 - content_for :header do
-  = @release.release_date.stamp "Wednesday, August 31st"
+  = @release.current.pretty_release_date
+
+-content_for :sidebar do
+  = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @release.previous, next_release: @release.next}
+
 
 %ul#comic-list
-  = render partial: 'shared/comic', collection: @release.issues, as: :issue
+  = render partial: 'shared/comic', collection: @release.current.issues, as: :issue
 

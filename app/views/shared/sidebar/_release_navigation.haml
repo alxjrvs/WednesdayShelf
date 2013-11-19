@@ -1,0 +1,10 @@
+=link_to release_path(previous_release) do
+  #nav-left{class: release_navigation_helper(previous_release)}
+    %i.icon-chevron-left
+    %span
+      Previous Week
+=link_to release_path(next_release) do
+  #nav-right{class: release_navigation_helper(next_release)}
+    %span
+      Next Week
+    %i.icon-chevron-right

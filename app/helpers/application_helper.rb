@@ -7,7 +7,7 @@ module ApplicationHelper
     ]
   end
 
-  def navigation_helper(release)
+  def release_navigation_helper(release)
     if release.nil?
       "nav-disabled"
     end

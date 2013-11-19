@@ -1,6 +1,9 @@
 - content_for :header do
-  = @release.pretty_release_date
+  = @home.current_release.pretty_release_date
+
+-content_for :sidebar do
+  = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @home.previous_release, next_release: @home.next_release}
 
 %ul#comic-list
-  = render partial: 'shared/comic', collection: @release.issues, as: :issue
+  = render partial: 'shared/comic', collection: @home.current_release.issues, as: :issue
 
