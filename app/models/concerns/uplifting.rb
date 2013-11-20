@@ -6,7 +6,7 @@ module Concerns::Uplifting
 
   module ClassMethods
     def generate_homing_string(item)
-      "#{item.series_title}_#{item.special_number}_#{item.release_year}"
+      "#{item.series_title}_#{item.special_number}_#{item.release_year}".parameterize
     end
   end
 end

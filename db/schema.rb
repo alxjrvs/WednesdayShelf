@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213003147) do
+ActiveRecord::Schema.define(version: 20131215002356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20131213003147) do
   add_index "pulls", ["series_id"], name: "index_pulls_on_series_id", using: :btree
 
   create_table "releases", force: true do |t|
-    t.date "release_date"
+    t.date "date"
   end
 
   create_table "series", force: true do |t|

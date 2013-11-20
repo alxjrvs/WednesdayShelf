@@ -22,6 +22,15 @@ class IssueTest < ModelTest
     assert_equal @issue.hero_cover, @hero
   end
 
+  def test_that_first_cover_is_hero_cover_when_there_is_no_hero_cover
+    cover = create :cover, diamond_number: "NOT THE HERO", issue: @issue
+    assert_equal @issue.hero_cover, cover
+  end
+
+  def test_that_default_cover_is_hero_cover_when_there_are_no_covers
+    assert_equal @issue.hero_cover, Cover.default_hero
+  end
+
   def test_validations
     assert_homing_string_uniqueness
     assert_diamond_number_uniqueness

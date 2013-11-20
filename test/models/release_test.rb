@@ -8,9 +8,17 @@ class ReleaseTest < ModelTest
 
   def test_future_scope
     populate_releases
-    past_release = Release.where(release_date: canonical_date - 7.days)
+    past_release = Release.where(date: canonical_date - 7.days)
     futures = Release.future
     refute_includes futures, past_release
+  end
+
+  def test_current_is_never_nil
+    @old_release = create :release, date: Date.current - 5.months
+    assert_equal Release.current, @old_release
+
+    @modern_release = create :release, date: Date.current
+    assert_equal Release.current, @modern_release
   end
 
   def test_next_and_previous_releases
@@ -20,25 +28,13 @@ class ReleaseTest < ModelTest
   end
 
   def test_today_is_current?
-    release = create :release, release_date: canonical_date
+    release = create :release, date: canonical_date
     assert_equal Release.current, release
   end
 
-  def test_release_is_current_for_three_days_after?
-    release = create :release, release_date: canonical_date - 3.days
-    assert_equal Release.current, release
-  end
-
-  def test_release_is_not_current_four_days_after?
-    last_release = create :release, release_date: canonical_date - 4.days
-    new_release = create :release, release_date: last_release.release_date + 7.days
-    refute_equal Release.current, last_release
-    assert_equal Release.current, new_release
-  end
-
-  def test_pretty_release_date
-    release = create :release, release_date: Date.new(2013, 10, 31)
-    assert_equal release.pretty_release_date, "Thursday, October 31st"
+  def test_pretty_date
+    release = create :release, date: Date.new(2013, 10, 31)
+    assert_equal release.pretty_date, "Thursday, October 31st"
   end
 
   private
@@ -48,9 +44,9 @@ class ReleaseTest < ModelTest
   end
 
   def populate_releases
-    @current_release = create :release, release_date: canonical_date
-    @past_release = create :release, release_date: canonical_date - 7.days
-    @next_release = create :release, release_date: canonical_date + (7 * 1).days
+    @current_release = create :release, date: canonical_date
+    @past_release = create :release, date: canonical_date - 7.days
+    @next_release = create :release, date: canonical_date + (7 * 1).days
   end
 
   def next_release_in_order_and_correct?

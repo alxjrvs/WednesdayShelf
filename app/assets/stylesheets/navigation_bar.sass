@@ -39,36 +39,83 @@
       i
       span
         display: none
+
   @media #{$small}
     +grid-column(3)
     position: fixed
     height: 100%
     padding: 0
-    background: $secondary-blue
+    background: whitesmoke
 
-    #logo-container
-      display: block
-      width: 100%
-      height: emCalc(300px)
-      background: $blue
-      max-height: 50vh
-
-
-    #header
-      width: 100%
-
-    nav#main-nav
-      padding-bottom: 15%
-      padding-right: 10px
-      padding-left: 10px
-      width: 100%
-      +clearfix
-
-      #nav-left, #nav-right
-        +grid-column(6)
+    .inner-bar-content
+      margin-left: 15%
+      +grid-column(10, $center: true)
+      #logo-container
+        display: block
+        background: $blue
+        width: 180px
+        height: 180px
         position: relative
-        +clearfix
-        height: $sidebar-button-height
+        margin: 0 auto
+        margin-top: 35px
 
-        i, span
-          display: inline-block
+
+      #header
+        width: 100%
+        color: $black
+
+      nav#main-nav
+        padding: 16px
+        width: 100%
+        +clearfix
+
+        #nav-left, #nav-right
+          +grid-column(12)
+          position: relative
+          +clearfix
+          height: $sidebar-button-height
+          text-align: center
+          color: $black
+
+          i, span
+            display: inline-block
+
+  @media #{$medium}
+    +grid-column(3)
+    position: fixed
+    height: 100%
+    padding: 0
+    background: whitesmoke
+
+    .inner-bar-content
+      +grid-column(10, $center: true)
+      #logo-container
+        display: block
+        background: $blue
+        width: 240px
+        height: 240px
+        position: relative
+        margin: 0 auto
+        margin-top: 35px
+
+
+      #header
+        width: 100%
+        color: $black
+
+      nav#main-nav
+        padding: 16px
+        width: 100%
+        +clearfix
+
+        #nav-left, #nav-right
+          +grid-column(12)
+          position: relative
+          +clearfix
+          height: $sidebar-button-height
+          text-align: center
+          color: $black
+
+          i, span
+            display: inline-block
+

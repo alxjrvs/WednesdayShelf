@@ -4,8 +4,8 @@ require "rails/test_help"
 require "minitest/rails"
 require "minitest/unit"
 require "minitest/pride"
-require "database_cleaner"
 require "capybara/rails"
+require "database_cleaner"
 
 Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
@@ -32,7 +32,7 @@ class WednesdayShelfTest < MiniTest::Unit::TestCase
   end
 end
 
-class AcceptanceTest < WednesdayShelfTest
+class FeatureTest < WednesdayShelfTest
   include Rails.application.routes.url_helpers
   include Capybara::DSL
   include Capybara::Assertions
@@ -41,6 +41,10 @@ class AcceptanceTest < WednesdayShelfTest
     super
     Capybara.reset_session!
     Capybara.use_default_driver
+  end
+
+  def setup
+    super
   end
 
 end

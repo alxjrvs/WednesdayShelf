@@ -1,0 +1,10 @@
+- content_for :title do 
+  = "#{@show.issue.clean_title} - WednesdayShelf"
+
+- content_for :header do
+  = @show.issue.series.title
+
+-content_for :sidebar do
+  = render partial: 'issue_sidebar', locals: {issue: @show.issue, user: @show.user}
+
+= render partial: 'issue_info', locals: {issue: @show.issue}

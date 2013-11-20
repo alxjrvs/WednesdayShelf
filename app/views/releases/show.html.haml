@@ -1,5 +1,5 @@
 - content_for :header do
-  = @release.current.pretty_release_date
+  = @release.current.pretty_date
 
 -content_for :sidebar do
   = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @release.previous, next_release: @release.next}

@@ -3,6 +3,7 @@ ul#comic-list
   background-color: $white
 
   li.comic
+    +clearfix
     position: relative
     padding-top: $bar-mobile-height
     overflow: hidden
@@ -12,22 +13,41 @@ ul#comic-list
       min-width: 100%
 
   @media #{$small}
-    +block-grid(5)
+    +block-grid(4)
 
     li.comic
       max-height: 500px
-      padding: 5px 0 0 0
+      position: relative
+
+      .comic-issue-cover
+        height: 200px
+        position: relative
+        margin: 0 auto
+        min-width: 145px
+        max-width: 145px
+
+      .comic-info
+        margin: 0 auto
+        left: 0
+        right: 0
+        bottom: 0
+        position: absolute
+        color: $white
+        background: $secondary-blue
+        min-width: 145px
+        max-width: 145px
+
+
+  @media #{$medium}
+    +block-grid(4)
+
+    li.comic
 
       .comic-issue-cover
         height: 300px
-        margin-left: 5px
-        margin-right: 5px
+        min-width: 215px
+        max-width: 215px
 
       .comic-info
-        margin-left: 5px
-        margin-right: 5px
-        position: absolute
-        bottom: 0
-        color: $white
-        background: $secondary-blue
-        width: 100%
+        min-width: 215px
+        max-width: 215px

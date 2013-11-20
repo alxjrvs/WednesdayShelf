@@ -28,6 +28,11 @@ GEM
     arel (4.0.0)
     atomic (1.1.13)
     bcrypt-ruby (3.1.2)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     callsite (0.0.11)
     capybara (2.1.0)
@@ -61,6 +66,7 @@ GEM
       compass (>= 0.12.2, < 0.14)
     daemons (1.1.9)
     database_cleaner (1.0.1)
+    debug_inspector (0.0.2)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -243,6 +249,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   carrierwave
   cb_nitride
   coffee-rails (~> 4.0.0)

@@ -4,7 +4,7 @@ class IssueUplifter
   def self.uplift!(item)
     publisher = Publisher.where(name: item.publisher).first_or_create
     series = Series.where(title: item.series_title, publisher: publisher).first_or_create
-    release = Release.where(release_date: item.release_date).first_or_create
+    release = Release.where(date: item.release_date).first_or_create
 
     homing_string = generate_homing_string(item)
     generate_issue(item, series, release, homing_string)

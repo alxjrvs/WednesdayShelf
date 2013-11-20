@@ -20,11 +20,12 @@
 %body{class: body_classes}
 
   #bar
-    #logo-container
-    #header
-      = content_for?(:header) ? yield(:header) : "WednesdayShelf"
-    %nav#main-nav
-      = content_for?(:sidebar) ? yield(:sidebar) : ''
+    .inner-bar-content
+      #logo-container
+      #header
+        = content_for?(:header) ? yield(:header) : "WednesdayShelf"
+      %nav#main-nav
+        = content_for?(:sidebar) ? yield(:sidebar) : ''
 
   #content
     #flash-box

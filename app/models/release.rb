@@ -1,37 +1,41 @@
 class Release < ActiveRecord::Base
-  has_many :issues, -> {order('issues.series_title')}
+  has_many :issues, -> {order('issues.title')}
   #I feel this will become truer with time.
   has_many :series, through: :issues
 
-  validates :release_date, presence: true, uniqueness: true
+  validates :date, presence: true, uniqueness: true
 
-  default_scope {order('release_date ASC')}
-  scope :future, -> {where("release_date >= ?", Date.current - 3.days)}
+  default_scope {order('date ASC')}
+  scope :nearest, -> {where("date >= ? OR date<=?",Date.current, Date.current).order('date DESC')}
+
+  def self.future(date = Date.current)
+    where("date > ?", date)
+  end
+
+  def self.past(date = Date.current)
+    where("date < ?", date)
+  end
 
   def self.current
-    future[0]
+    nearest.first
   end
 
   def next
-    @_next ||= Release.all[current_index + 1]
+    @_next ||= Release.future(date).first
   end
 
   def previous
-    @_previous ||= Release.all[current_index - 1]
+    @_previous ||= Release.past(date).first
   end
 
-  def pretty_release_date
-    release_date.stamp "Wednesday, August 31st"
+  def pretty_date
+    date.stamp "Wednesday, August 31st"
   end
 
   private
 
-  def current_index
-    Release.all.index(self)
-  end
-
   def is_a_wednesday
-    release_date.strftime('%A') == 'Wednesday'
+    date.strftime('%A') == 'Wednesday'
   end
 
 end
