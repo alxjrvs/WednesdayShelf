@@ -11,6 +11,11 @@ Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
 DatabaseCleaner.strategy = :transaction
 
+CarrierWave.configure do |config|
+  config.storage = :file #this will be ignored. Need better solution
+  config.enable_processing = false
+end
+
 class WednesdayShelfTest < MiniTest::Unit::TestCase
   include FactoryGirl::Syntax::Methods
 
@@ -42,6 +47,14 @@ end
 
 class ModelTest < WednesdayShelfTest
   include FactoryGirl::Syntax::Methods
+
+  def assert_valid(model)
+    assert model.valid?
+  end
+
+  def refute_valid(model)
+    refute model.valid?
+  end
 
   def assert_valid_factory(model)
     model_var = create model

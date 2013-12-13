@@ -3,7 +3,7 @@ class CoverUploader < CarrierWave::Uploader::Base
    storage :fog
 
   def store_dir
-    "uploads/#{model.series_title}/#{model.issue_number}/"
+    "uploads/covers/#{model.diamond_number}"
   end
 
   version :grid_cover do

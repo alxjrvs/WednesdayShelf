@@ -14,34 +14,50 @@ class ItemUplifter
 
   def uplift
     if item.nil?
-      pp "Invalid Diamond Number"
-      return nil
+      nil_response
     elsif item.product_type? == :collection || item.product_type? == :merchandise
-      pp "#{item.title} is Merch or a Graphic Novel"
-      pp "Not Currently Collecting Merchandise or Graphic Novels"
-      DiamondItem.create(diamond_number: item.diamond_number)
-      return nil
+      collection_merch_response(item)
     else
-      return nil if item.series_title[0..2] == "DF "
-      send(item.product_type?)
-      puts "Recorded #{item.title} (#{item.diamond_number})"
+      issue_response(item)
     end
   end
 
   private
 
-  def fitler_for_df(item)
-   if item.series_title[0..2] == "DF "
-     binding.pry
-     item.series_title = item.series_title.gsub("DF ", "").strip
-   end
+  def nil_response
+    pp "Invalid Diamond Number"
+    return nil
   end
 
-  def issue
-    @_issue ||= Issue.uplift!(item)
+  def collection_merch_response(item)
+      pp "#{item.title} is Merch or a Graphic Novel"
+      pp "Not Currently Collecting Merchandise or Graphic Novels"
+      record_diamond_item(item)
   end
 
-  def variant
-    @_variant ||= Variant.uplift!(item)
+  def issue_response(item)
+      return nil if item.series_title[0..2] == "DF "
+      if item.product_type? == :issue
+        record_issue(item)
+      else
+        record_diamond_item(item)
+      end
+       record_cover(item)
   end
+
+  def record_diamond_item(item)
+    DiamondItem.create(diamond_number: item.diamond_number)
+    puts "Recorded Diamond Item #{item.diamond_number}"
+  end
+
+  def record_issue(item)
+    IssueUplifter.uplift!(item)
+    puts "Recorded #{item.title} (#{item.diamond_number})"
+  end
+
+  def record_cover(item)
+    CoverUplifter.uplift!(item)
+    puts "Recorded Cover for #{item.title} (#{item.diamond_number})"
+  end
+
 end

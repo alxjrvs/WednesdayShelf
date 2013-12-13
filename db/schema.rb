@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112034044) do
+ActiveRecord::Schema.define(version: 20131213003147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "covers", force: true do |t|
+    t.integer "issue_id"
+    t.string  "image"
+    t.string  "homing_string"
+    t.string  "cover_artist"
+    t.string  "diamond_number"
+  end
 
   create_table "diamond_items", force: true do |t|
     t.string "diamond_number"
@@ -23,23 +31,20 @@ ActiveRecord::Schema.define(version: 20131112034044) do
   create_table "issues", force: true do |t|
     t.integer  "series_id"
     t.integer  "release_id"
-    t.string   "cover"
     t.string   "raw_title"
     t.string   "stock_number"
-    t.string   "series_title"
     t.string   "diamond_number"
     t.text     "description"
     t.float    "price"
     t.string   "title"
-    t.integer  "release_year"
     t.string   "special_issue_number"
     t.integer  "issue_number"
     t.integer  "max_issue"
     t.string   "author"
-    t.string   "cover_artist"
     t.string   "artist"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "homing_string"
   end
 
   add_index "issues", ["diamond_number"], name: "index_issues_on_diamond_number", using: :btree
@@ -103,27 +108,5 @@ ActiveRecord::Schema.define(version: 20131112034044) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "variants", force: true do |t|
-    t.integer  "issue_id"
-    t.string   "cover"
-    t.integer  "release_year"
-    t.string   "diamond_number"
-    t.string   "raw_title"
-    t.string   "series_title"
-    t.integer  "issue_number"
-    t.float    "price"
-    t.string   "stock_number"
-    t.string   "variant_description"
-    t.string   "author"
-    t.string   "artist"
-    t.string   "cover_artist"
-    t.date     "release_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "variants", ["diamond_number"], name: "index_variants_on_diamond_number", using: :btree
-  add_index "variants", ["issue_id"], name: "index_variants_on_issue_id", using: :btree
 
 end

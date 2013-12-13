@@ -11,11 +11,10 @@ namespace :scrape do
         ItemUplifter.uplift diamond_item
       end
     end
-    Variant.orphans.destroy_all
   end
 
   def recorded?(diamond_number)
-    (Issue.where(diamond_number: diamond_number).size > 0 || Variant.where(diamond_number: diamond_number).size > 0 || DiamondItem.where(diamond_number: diamond_number).size > 0)
+    (Issue.where(diamond_number: diamond_number).size > 0 || Cover.where(diamond_number: diamond_number).size > 0 || DiamondItem.where(diamond_number: diamond_number).size > 0)
   end
 
   def generate_imminent_diamond_numbers

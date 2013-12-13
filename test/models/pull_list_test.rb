@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class PullListTest < ModelTest
-  def test_that_it_has_a_valid_factory
-    assert_valid_factory :pull_list
-  end
 
   def test_that_it_can_contain_series
     populate
@@ -27,7 +24,7 @@ class PullListTest < ModelTest
     @series = create :series
     @release = create :release
     3.times do |i|
-      create :issue, issue_number: i + 1, series: @series, release: @release, price: 2.99
+      create :issue, diamond_number: i, homing_string: i, issue_number: i + 2, series: @series, release: @release, price: 2.99
     end
     @pull_list = create :pull_list
     @pull_list.series << @series
