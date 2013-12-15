@@ -1,0 +1,10 @@
+#lateral-nav
+  =link_to issue_path(previous_issue), class: "lateral-navigation-button #{navigation_helper(previous_issue)}", id: "nav-left" do
+    %i.icon-chevron-left
+    %span
+      Last Issue
+
+  =link_to issue_path(next_issue), class: "lateral-navigation-button #{navigation_helper(next_issue)}", id: "nav-right" do
+    %span
+      Next Issue
+    %i.icon-chevron-right

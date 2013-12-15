@@ -1,4 +1,5 @@
 class HomePageFacade
+  attr_reader :user
 
   def initialize(user)
     @user = user
@@ -13,7 +14,7 @@ class HomePageFacade
   end
 
   def previous_release
-    @_previous_release ||= current_release.next
+    @_previous_release ||= current_release.previous
   end
 
 end

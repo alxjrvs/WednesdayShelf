@@ -6,18 +6,17 @@ class Release < ActiveRecord::Base
   validates :date, presence: true, uniqueness: true
 
   default_scope {order('date ASC')}
-  scope :nearest, -> {where("date >= ? OR date<=?",Date.current, Date.current).order('date DESC')}
 
   def self.future(date = Date.current)
-    where("date > ?", date)
+    where("date >= ?", date).order('date ASC')
   end
 
   def self.past(date = Date.current)
-    where("date < ?", date)
+    where("date < ?", date).order('date DESC')
   end
 
   def self.current
-    nearest.first
+    future.first
   end
 
   def next

@@ -6,5 +6,7 @@
 
 -content_for :sidebar do
   = render partial: 'issue_sidebar', locals: {issue: @show.issue, user: @show.user}
+  = render partial: 'shared/sidebar/user_sidebar', locals: {user: @show.user}
+  = render partial: 'series_navigation', locals: {previous_issue: @show.previous_issue, next_issue: @show.next_issue}
 
 = render partial: 'issue_info', locals: {issue: @show.issue}

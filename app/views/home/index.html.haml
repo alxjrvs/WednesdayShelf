@@ -2,8 +2,9 @@
   = @home.current_release.pretty_date
 
 -content_for :sidebar do
+  = render partial: 'home_sidebar'
+  = render partial: 'shared/sidebar/user_sidebar', locals: {user: @home.user}
   = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @home.previous_release, next_release: @home.next_release}
 
-%ul#comic-list
-  = render partial: 'shared/comic', collection: @home.current_release.issues, as: :issue
+= render partial: "shared/comic_list", locals: {user: @home.user, issues: @home.current_release.issues}
 

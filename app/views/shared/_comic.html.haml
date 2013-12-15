@@ -1,5 +1,6 @@
 %li.comic{id: issue.diamond_number}
-  =link_to issue_path(issue) do
+  =link_to issue_path(issue), class: "issue_link" do
     =image_tag(issue.hero_cover.grid_cover.url, class: 'comic-issue-cover')
-    .comic-info
-      = issue.clean_title
+  = link_to comic_info_link(user, issue), class: 'comic-info' do
+    .title= issue.clean_title
+    .pull_it_text= pull_it_text(user, issue)

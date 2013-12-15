@@ -6,14 +6,32 @@ class Issue < ActiveRecord::Base
   belongs_to :release
   has_many :covers
 
+
   def hero_cover
     covers.where(issue_id: id, diamond_number: diamond_number).first ||
       covers.first ||
       Cover.default_hero
   end
 
+  def next
+    @_next ||= future.first
+  end
+
+  def previous
+    @_previous ||= past.first
+
+  end
+
   def clean_title
     humancase("#{series.title} ##{issue_number}")
+  end
+
+  def future
+    Issue.where('raw_title > ? AND series_id = ?', raw_title, series.id).order('raw_title ASC')
+  end
+
+  def past
+    Issue.where('raw_title < ? AND series_id = ?', raw_title, series.id).order('raw_title DESC')
   end
 
   private

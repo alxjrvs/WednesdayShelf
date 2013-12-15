@@ -1,0 +1,3 @@
+%ul#comic-list
+  - issues.each do |issue|
+    = render partial: 'shared/comic', locals: {user: user, issue: issue}

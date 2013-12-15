@@ -1,8 +1,9 @@
 class ReleaseFacade
-  attr_reader :release
+  attr_reader :release, :user
 
-  def initialize(release)
+  def initialize(release, user)
     @release = release
+    @user = user
   end
 
   def current

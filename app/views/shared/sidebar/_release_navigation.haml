@@ -1,10 +1,10 @@
-=link_to release_path(previous_release) do
-  #nav-left{class: release_navigation_helper(previous_release)}
+#lateral-nav
+  =link_to release_path(previous_release), class: "lateral-navigation-button #{navigation_helper(previous_release)}", id: "nav-left" do
     %i.icon-chevron-left
     %span
-      Previous Week
-=link_to release_path(next_release) do
-  #nav-right{class: release_navigation_helper(next_release)}
+      Last Week
+
+  =link_to release_path(next_release), class: "lateral-navigation-button #{navigation_helper(next_release)}", id: "nav-right" do
     %span
       Next Week
     %i.icon-chevron-right

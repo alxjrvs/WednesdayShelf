@@ -19,14 +19,19 @@ ul#comic-list
       max-height: 500px
       position: relative
 
-      .comic-issue-cover
-        height: 200px
-        position: relative
+      a.issue_link
+        width: 145px
+        display: block
         margin: 0 auto
-        min-width: 145px
-        max-width: 145px
+        overflow: hidden
 
-      .comic-info
+        .comic-issue-cover
+          height: 200px
+          position: relative
+          margin: 0 auto
+
+      a.comic-info
+        +clearfix
         margin: 0 auto
         left: 0
         right: 0
@@ -36,6 +41,20 @@ ul#comic-list
         background: $secondary-blue
         min-width: 145px
         max-width: 145px
+        padding: 0 5px
+        height: 28px
+
+        .title
+          display: block
+        .pull_it_text
+          display: none
+        &:hover
+          .title
+            display: none
+          .pull_it_text
+            display: block
+
+
 
 
   @media #{$medium}
@@ -43,11 +62,12 @@ ul#comic-list
 
     li.comic
 
-      .comic-issue-cover
-        height: 300px
-        min-width: 215px
-        max-width: 215px
+      a.issue_link
+        width: 215px
 
-      .comic-info
+        .comic-issue-cover
+          height: 300px
+
+      a.comic-info
         min-width: 215px
         max-width: 215px
