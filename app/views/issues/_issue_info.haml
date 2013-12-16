@@ -4,7 +4,21 @@
       =image_tag issue.hero_cover.highlight_cover.url, class: "issue_cover"
     .maintext
       %h1.issue_title= issue.clean_title
-
+      #creators
+        .labels
+          %p.label
+            Written By
+          %p.label
+            Drawn by
+          %p.label
+            Cover by
+        .values
+          %p.value= " #{issue.author || "Unknown"}"
+          %p.value= " #{issue.artist || "Unknown"}"
+          %p.value= " #{issue.cover_artist|| "Unknown"}"
+      %p.label Description
+      %p.description= issue.description
+  
 
 
 

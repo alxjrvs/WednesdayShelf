@@ -1,11 +1,55 @@
 .issues.show
+  #main-nav
+
+    .sidebar_data
+      margin-top: 10px
+
+      p.sidebar_heading
+        +ws-label
+        text-align: center
+        width: 100%
+
+
+      p.sidebar_value
+        margin: 5px 0
+        text-align: center
+
   #issue_display
     margin-top: 35px
+
     .issue_info
       +grid-row
+
       .cover_container
         +grid-column(4)
+        overflow: hidden
+
         .issue_cover
+          width: 100%
+
       .maintext
         +grid-column(8)
+
         h1.issue_title
+          text-align: center
+
+        .label
+          +ws-label
+          margin-bottom: 5px
+          text-align: center
+          width: 100%
+
+        #creators
+          +grid-row
+
+          .labels, .values
+            +clearfix
+
+          p.label, p.value
+            +grid-column(4)
+            text-align: center
+
+          p.value
+            font-weight: normal
+
+

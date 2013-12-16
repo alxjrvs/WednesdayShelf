@@ -1,3 +1,9 @@
-#title= issue.clean_title
-#pull_it PULL IT
-
+.sidebar_data
+  %p.sidebar_heading
+    Publisher
+  %p.sidebar_value
+    =issue.publisher.name
+  %p.sidebar_heading
+    Run
+  %p.sidebar_value
+    =series_range(issue.series)

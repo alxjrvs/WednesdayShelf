@@ -32,7 +32,7 @@ class Release < ActiveRecord::Base
   end
 
   def pretty_date
-    date.stamp "Wednesday, August 31st"
+    date.stamp "Wednesday, August 31st, 1988"
   end
 
   private

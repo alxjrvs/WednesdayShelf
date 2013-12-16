@@ -5,12 +5,19 @@ class Issue < ActiveRecord::Base
   belongs_to :series
   belongs_to :release
   has_many :covers
+  delegate :cover_artist, to: :hero_cover
+  delegate :publisher, to: :series
+  delegate :date, to: :release
 
 
   def hero_cover
     covers.where(issue_id: id, diamond_number: diamond_number).first ||
       covers.first ||
       Cover.default_hero
+  end
+
+  def variant_covers
+    covers - hero_cover
   end
 
   def next
@@ -27,11 +34,13 @@ class Issue < ActiveRecord::Base
   end
 
   def future
-    Issue.where('raw_title > ? AND series_id = ?', raw_title, series.id).order('raw_title ASC')
+    @_future ||=
+      Issue.joins(:release).where('releases.date >= ? AND raw_title > ? AND series_id = ?', date, raw_title, series.id).order('releases.date ASC, raw_title ASC')
   end
 
   def past
-    Issue.where('raw_title < ? AND series_id = ?', raw_title, series.id).order('raw_title DESC')
+    @_past ||=
+      Issue.joins(:release).where('releases.date <= ? AND raw_title < ? AND series_id = ?', date, raw_title, series.id).order('releases.date DESC, raw_title DESC')
   end
 
   private

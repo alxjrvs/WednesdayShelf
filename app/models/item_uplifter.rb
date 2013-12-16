@@ -14,7 +14,7 @@ class ItemUplifter
 
   def uplift
     if item.nil?
-      nil_response
+      nil_response(item)
     elsif item.product_type? == :collection || item.product_type? == :merchandise
       collection_merch_response(item)
     else
@@ -24,9 +24,9 @@ class ItemUplifter
 
   private
 
-  def nil_response
+  def nil_response(item)
+    DiamondItem.create(diamond_number: item.diamond_number, valid_diamond_number: false)
     pp "Invalid Diamond Number"
-    return nil
   end
 
   def collection_merch_response(item)
@@ -46,7 +46,7 @@ class ItemUplifter
   end
 
   def record_diamond_item(item)
-    DiamondItem.create(diamond_number: item.diamond_number)
+    DiamondItem.create(diamond_number: item.diamond_number, valid_diamond_number: true)
     puts "Recorded Diamond Item #{item.diamond_number}"
   end
 

@@ -45,7 +45,7 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
-    cb_nitride (0.1.25)
+    cb_nitride (0.1.40)
       mechanize (~> 2.7)
       mechanize_clip (~> 0.1)
       nokogiri (~> 1.5)

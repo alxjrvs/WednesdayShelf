@@ -10,7 +10,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :highlight_cover do
-    process resize_to_limit: [260, nil]
+    process resize_to_limit: [nil, 460]
   end
 
    def filename
