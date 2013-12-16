@@ -5,7 +5,7 @@ class SeriesTest < ModelTest
   def assemble_series
     @series = create :series
     3.times do |i|
-      issue = create :issue, homing_string: i, diamond_number: i, issue_number: (i +1), release: (create :release, date: Date.current + (7 * i + 1).days), raw_title: "PUG LOVER ##{i}"
+      issue = create :issue, homing_string: i, diamond_number: i, issue_number: (i +1), release: (create :release, date: (Date.current + (7 * i + 1).days)), raw_title: "PUG LOVER ##{i}"
       @series.issues << issue
     end
   end

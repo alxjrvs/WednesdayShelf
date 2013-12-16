@@ -49,6 +49,30 @@ class FeatureTest < WednesdayShelfTest
 
 end
 
+module LateralNavigation
+
+  def assert_next_nav(start_path: prime_path, target_path: target_path)
+    visit start_path
+
+    within "#lateral-nav" do
+      click_on "nav-right"
+    end
+
+    assert_equal target_path, page.current_path
+  end
+
+  def assert_previous_nav(start_path: start_path, target_path: target_path)
+    visit start_path
+
+    within "#lateral-nav" do
+      click_on "nav-left"
+    end
+
+    assert_equal target_path, page.current_path
+  end
+
+end
+
 class ModelTest < WednesdayShelfTest
   include FactoryGirl::Syntax::Methods
 

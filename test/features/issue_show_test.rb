@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class IssueShowTest < FeatureTest
+  include LateralNavigation
 
   def setup
     super
@@ -18,6 +19,13 @@ class IssueShowTest < FeatureTest
     assert_content @issue.issue_number
     assert_content @issue.description
     assert_link "Pull It"
+  end
+
+  def test_lateral_navigation
+    previous_issue = create :issue, :previous, series: @issue.series
+    next_issue = create :issue, :next, series: @issue.series
+    assert_previous_nav(start_path: issue_path(@issue), target_path: issue_path(previous_issue))
+    assert_next_nav(start_path: issue_path(@issue), target_path: issue_path(next_issue))
   end
 
   private

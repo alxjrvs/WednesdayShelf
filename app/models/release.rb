@@ -20,7 +20,11 @@ class Release < ActiveRecord::Base
   end
 
   def next
-    @_next ||= Release.future(date).first
+    if Release.future(date).include?(self)
+      Release.future(date)[1]
+    else
+      Release.future(date).first
+    end
   end
 
   def previous

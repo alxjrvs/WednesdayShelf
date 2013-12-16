@@ -6,6 +6,11 @@ class ReleaseTest < ModelTest
     assert_valid_factory :release
   end
 
+  def test_that_next_is_never_today
+    populate_releases
+    assert_equal @next_release, @current_release.next
+  end
+
   def test_today_is_current?
     release = create :release, date: canonical_date
     assert_equal Release.current, release

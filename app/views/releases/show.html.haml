@@ -2,7 +2,6 @@
   = @release.current.pretty_date
 
 -content_for :sidebar do
-
   = render partial: 'shared/sidebar/user_sidebar', locals: {user: @release.user}
   = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @release.previous, next_release: @release.next}
 
