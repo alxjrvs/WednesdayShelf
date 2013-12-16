@@ -19,11 +19,11 @@ class Issue < ActiveRecord::Base
 
   def previous
     @_previous ||= past.first
-
   end
 
   def clean_title
-    humancase("#{series.title} ##{issue_number}")
+    number = issue_number ? "##{issue_number}" : ''
+    humancase("#{series.title} #{number}")
   end
 
   def future

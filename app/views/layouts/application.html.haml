@@ -21,7 +21,8 @@
 
   #bar
     .inner-bar-content
-      #logo-container
+      =link_to root_path do
+        #logo-container
       #header
         = content_for?(:header) ? yield(:header) : "WednesdayShelf"
       %nav#main-nav
