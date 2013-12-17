@@ -9,8 +9,7 @@ namespace :scrape do
   end
 
   def sort_through_and_record(numbers)
-    numbers.each.with_index do |diamond_number, i|
-      trash_cb_agent if i % 307 == 0
+    numbers.each do |diamond_number|
       record_item(diamond_number)
     end
     return nil
@@ -36,6 +35,6 @@ namespace :scrape do
   end
 
   def cb_agent
-    @_cb_agent ||= CbNitride.qualified? ? agent = CbNitride::DiamondLogin.agent : agent = Mechanize.new
+    @_cb_agent ||= CbNitride.qualified? ? CbNitride::DiamondLogin.agent : Mechanize.new
   end
 end
