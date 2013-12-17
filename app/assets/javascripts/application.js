@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require foundation
+//= require angular
+//= require angular-animate
+//= require angular-route
+//= require app
+//= require_tree ./angular
 //= require_tree .
 
 $(document).foundation();

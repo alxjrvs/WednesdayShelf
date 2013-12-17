@@ -1,40 +1,35 @@
 !!! 5
-/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
-/[if lt IE 7 ] <html class=\"ie6\" lang=\"en\">
-/[if IE 7 ]    <html class=\"ie7\" lang=\"en\">
-/[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
-/[if IE 9 ]    <html class=\"ie9\" lang=\"en\">
-/[if (gt IE 9)|!(IE)] <!--> <html lang=\"en\">
 
-%head
-  %meta{ :charset => "utf-8" }
+%html{ng: {app: "WednesdayShelf", controller: "WSController"}}
+  %head
+    %meta{ :charset => "utf-8" }
 
-  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title= content_for?(:title) ? yield(:title) : "WednesdayShelf"
+    %title= content_for?(:title) ? yield(:title) : "WednesdayShelf"
 
-  = stylesheet_link_tag "application"
-  = javascript_include_tag :modernizr
-  = csrf_meta_tag
+    = stylesheet_link_tag "application"
+    = javascript_include_tag :modernizr
+    = csrf_meta_tag
 
-%body{class: body_classes}
+  %body{class: body_classes}
 
-  #bar
-    .inner-bar-content
-      =link_to root_path do
-        #logo-container
-      #header
-        = content_for?(:header) ? yield(:header) : "WednesdayShelf"
-      %nav#main-nav
-        = content_for?(:sidebar) ? yield(:sidebar) : ''
+    #bar
+      .inner-bar-content
+        =link_to root_path do
+          #logo-container
+        #header
+          = content_for?(:header) ? yield(:header) : "WednesdayShelf"
+        %nav#main-nav
+          = content_for?(:sidebar) ? yield(:sidebar) : ''
 
-  #content
-    #flash-box
-      .notice 
-        =notice
-      .alert
-        =alert
+    #content
+      #flash-box
+        .notice
+          =notice
+        .alert
+          =alert
 
-    = yield
+      = yield
 
-  = javascript_include_tag "application"
+    = javascript_include_tag "application"
