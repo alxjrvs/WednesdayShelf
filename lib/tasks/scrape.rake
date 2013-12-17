@@ -1,18 +1,41 @@
 namespace :scrape do
 
+  task imminent_fast: :environment do
+    sort_and_record_fast(imminent_diamond_numbers)
+  end
+
+  task recent_fast: :environment do
+    sort_and_record_fast(recent_diamond_numbers)
+  end
+
   task imminent: :environment do
-    sort_through_and_record(imminent_diamond_numbers)
+    sort_and_record(imminent_diamond_numbers)
   end
 
   task recent: :environment do
-    sort_through_and_record(recent_diamond_numbers)
+    sort_and_record(recent_diamond_numbers)
   end
 
-  def sort_through_and_record(numbers)
+  def sort_and_record(numbers)
     numbers.each do |diamond_number|
       record_item(diamond_number)
     end
     return nil
+  end
+
+  def sort_and_record_fast(numbers)
+    numbers.each do |diamond_number|
+      if recorded?(diamond_number)
+        puts "Already recorded"
+      else
+        record_item(diamond_number)
+      end
+    end
+    return nil
+  end
+
+  def recorded?(diamond_number)
+    DiamondItem.where(diamond_number: diamond_number).count > 0
   end
 
   def record_item(diamond_number)

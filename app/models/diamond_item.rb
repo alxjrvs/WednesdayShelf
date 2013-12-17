@@ -1,4 +1,5 @@
 class DiamondItem < ActiveRecord::Base
+  scope :valid, -> {where(valid_diamond_number: true)}
   has_one :cover
 
   module ProductTypes
@@ -39,6 +40,8 @@ class DiamondItem < ActiveRecord::Base
     @_special_number ||= title_formatter.special_number
   end
 
+  alias_method :special_issue_number, :special_number
+
   def issue_number
     @issue_number ||= title_formatter.issue_number
   end
@@ -47,8 +50,27 @@ class DiamondItem < ActiveRecord::Base
     @_limited_series_max_issue ||= title_formatter.limited_series_max_issue
   end
 
+  alias_method :max_issue, :limited_series_max_issue
+
   def variant_description
     @_variant_description ||= title_formatter.variant_description
+  end
+
+  def is_collection?
+    @_is_collection ||= CategorySorter::COLLECTION_CODE  == category_code
+  end
+
+  def is_merch?
+    @_is_merch ||= CategorySorter::MERCHANDISE_CODES.include? category_code
+  end
+
+  def is_issue?
+    @_is_issue ||=
+      category_code == CategorySorter::ISSUE_CODE && category_sorter.is_issue?
+  end
+
+  def is_variant?
+    @_is_variant ||= category_code == CategorySorter::ISSUE_CODE && category_sorter.is_variant?
   end
 
   private
@@ -88,24 +110,8 @@ class DiamondItem < ActiveRecord::Base
     @_formatted_title ||= TitleFormatter.new(raw_title)
   end
 
-  def is_collection?
-    @_is_collection ||= CategorySorter::COLLECTION_CODE  == category_code
-  end
-
-  def is_merch?
-    @_is_merch ||= CategorySorter::MERCHANDISE_CODES.include? category_code
-  end
-
-  def is_issue?
-    @_is_issue ||=
-      category_code == CategorySorter::ISSUE_CODE && category_sorter.is_issue?
-  end
-
   def category_sorter
     @_category_sorter ||= CategorySorter.new({title: title, category_code: category_code  })
   end
 
-  def is_variant?
-    @_is_variant ||= category_code == CategorySorter::ISSUE_CODE && category_sorter.is_variant?
-  end
 end

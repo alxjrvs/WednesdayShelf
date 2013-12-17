@@ -1,28 +1,22 @@
 class DiamondUplifter
   include Concerns::Uplifting
 
-  def self.uplift!(item)
-    generate_diamond_item(item)
+  ATTRIBUTES = :raw_title, :category_code, :publisher, :stock_number, :release_date, :diamond_number, :description, :creators, :price, :state
+
+  def self.uplift!(source)
+    generate_diamond_item(source)
   end
 
   private
 
-  def self.generate_diamond_item(item)
-    diamond_item = DiamondItem.where(diamond_number: item.diamond_number).first_or_create.tap do |diamond_item|
-      diamond_item.raw_title = item.raw_title
-      diamond_item.category_code = item.category_code
-      diamond_item.publisher = item.publisher
-      diamond_item.stock_number = item.stock_number
-      diamond_item.release_date = item.release_date
-      diamond_item.diamond_number = item.diamond_number
-      diamond_item.description = item.description
-      diamond_item.creators = item.creators
-      diamond_item.price = item.price
-      diamond_item.state = item.state
-      diamond_item.valid_diamond_number = true
+  def self.generate_diamond_item(source)
+    diamond_item = DiamondItem.where(diamond_number: source.diamond_number).first_or_initialize
+    unless same_records?(diamond_item.attributes, get_attributes(source))
+      diamond_item.attributes = get_attributes(source)
+      diamond_item.save
     end
-    puts "Recorded Diamond Item for #{item.diamond_number}, Title: #{item.raw_title}" if diamond_item.save
-    diamond_item
+    puts "Recorded Diamond Item for #{diamond_item.diamond_number}, Title: #{diamond_item.raw_title}"
+    return diamond_item
   end
 
 end
