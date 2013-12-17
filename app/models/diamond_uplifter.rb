@@ -25,4 +25,12 @@ class DiamondUplifter
     diamond_item
   end
 
+  def self.new_generate_diamond_item(item)
+    diamond_item = DiamondItem.where(diamond_number: item.diamond_number).first_or_initialize
+    diamond_item.attributes(item.attributes)
+    diamond_item.save
+    puts "Recorded Diamond Item for #{item.diamond_number}, Title: #{item.raw_title}" if diamond_item.save
+    diamond_item
+  end
+
 end
