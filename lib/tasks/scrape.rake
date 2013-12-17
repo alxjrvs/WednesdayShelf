@@ -17,17 +17,19 @@ namespace :scrape do
   end
 
   def sort_and_record(numbers)
-    numbers.each do |diamond_number|
+    numbers.shuffle.each.with_index do |diamond_number, i|
+      trash_cb_agent if i % 616
       record_item(diamond_number)
     end
     return nil
   end
 
   def sort_and_record_fast(numbers)
-    numbers.each do |diamond_number|
+    numbers.shuffle.each do |diamond_number|
       if recorded?(diamond_number)
         puts "Already recorded"
       else
+        trash_cb_agent if i % 616
         record_item(diamond_number)
       end
     end
