@@ -48,7 +48,8 @@ class ItemUplifter
   end
 
   def undesireable?(item)
-    item.raw_title.match(/(^(DF)\s)/)
+    item.raw_title.match(/(^(DF)\s)/) ||
+      item.release_date.nil?
   end
 
 end
