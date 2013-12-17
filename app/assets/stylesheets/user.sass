@@ -1,0 +1,45 @@
+.devise-registrations
+  +grid-row
+
+  #header
+    text-align: center
+
+  .user-form
+    +grid-column(6, $center: true)
+
+    .error
+      color: $white
+      padding: 7px
+      background: red
+      position: relative
+      top: -15px
+      display: block
+      width: 100%
+      text-align: center
+
+    .form-inputs
+      label
+        clear: both
+
+  .button
+    width: 100%
+
+  .shared-link
+    +grid-column(12)
+    text-align: center
+
+.devise-sessions
+  +grid-row
+
+  #header
+    text-align: center
+
+  .user-form
+    +grid-column(6, $center: true)
+
+  .button
+    width: 100%
+
+  .shared-link
+    +grid-column(6)
+    text-align: center

@@ -1,11 +1,11 @@
-ul#comic-list
+ul.comic-list
   text-align: center
   background-color: $white
 
   li.comic
     +clearfix
     position: relative
-    padding-top: $bar-mobile-height
+    margin-bottom: $bar-mobile-height
     overflow: hidden
 
     .comic-issue-cover
@@ -30,7 +30,7 @@ ul#comic-list
           position: relative
           margin: 0 auto
 
-      a.comic-info
+      form.comic-info
         +clearfix
         margin: 0 auto
         left: 0
@@ -41,7 +41,6 @@ ul#comic-list
         background: $secondary-blue
         min-width: 145px
         max-width: 145px
-        padding: 0 5px
         height: 28px
 
         .title
@@ -53,6 +52,15 @@ ul#comic-list
             display: none
           .pull_it_text
             display: block
+            background: $secondary-blue
+            color: $white
+            font-size: 16px
+            border: 0
+            height: 100%
+            width: 100%
+            outline: 0
+            text-align: center
+            cursor: pointer
 
 
 
@@ -68,6 +76,6 @@ ul#comic-list
         .comic-issue-cover
           height: 300px
 
-      a.comic-info
+      form.comic-info
         min-width: 215px
         max-width: 215px

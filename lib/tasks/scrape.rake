@@ -18,7 +18,7 @@ namespace :scrape do
 
   def sort_and_record(numbers)
     numbers.shuffle.each.with_index do |diamond_number, i|
-      trash_cb_agent if i % 616
+      trash_cb_agent if i % 52 == 0
       record_item(diamond_number)
     end
     return nil
@@ -29,7 +29,7 @@ namespace :scrape do
       if recorded?(diamond_number)
         puts "Already recorded"
       else
-        trash_cb_agent if i % 616
+        trash_cb_agent if i % 52 == 0
         record_item(diamond_number)
       end
     end

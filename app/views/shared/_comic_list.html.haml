@@ -1,3 +1,19 @@
-%ul#comic-list
-  - issues.each do |issue|
-    = render partial: 'shared/comic', locals: {user: user, issue: issue}
+- if user
+  %ul#your-pulls.comic-list
+    - unless release.subscribed_issues.empty?
+      %h2 Your Pulls
+      - release.subscribed_issues.each do |issue|
+        = render partial: 'shared/comic', locals: {user: user, issue: issue}
+
+    - else
+      %h2 Nothing on your list this week. Try something new!
+  %ul#also-arriving.comic-list
+    %h2="Also Arriving This Week" unless release.subscribed_issues.empty?
+    - release.unsubscribed_issues.each do |issue|
+      = render partial: 'shared/comic', locals: {user: user, issue: issue}
+
+
+- else
+  %ul#released-comics.comic-list
+    - release.issues.each do |issue|
+      = render partial: 'shared/comic', locals: {user: user, issue: issue}

@@ -4,9 +4,9 @@
   %p.sidebar_value
     =issue.publisher.name
   %p.sidebar_heading
-    Run
+    Release Date
   %p.sidebar_value
-    =series_range(issue.series)
+    =link_to  issue.release.date.stamp("August 31, 1988"), release_path(issue.release)
   - if issue.price
     %p.sidebar_heading
       Price

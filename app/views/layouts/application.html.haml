@@ -23,17 +23,14 @@
     .inner-bar-content
       =link_to root_path do
         #logo-container
+          -if current_user
+            = image_tag current_user.avatar_url
       #header
         = content_for?(:header) ? yield(:header) : "WednesdayShelf"
       %nav#main-nav
         = content_for?(:sidebar) ? yield(:sidebar) : ''
 
   #content
-    #flash-box
-      .notice 
-        =notice
-      .alert
-        =alert
 
     = yield
 

@@ -1,7 +1,17 @@
+#flash-box
+  .notice
+    =notice
+  .alert
+    =alert
+
 - if user
   #user-tools
+    =link_to "My Pulls", pull_list_user_path(current_user), class: "sidebar-button", id: "my-pulls"
+    =link_to "Settings", settings_user_path(current_user), class: "sidebar-button", id: "settings"
+    =link_to "Sign Out", destroy_user_session_path, class: 'secondary-link', id: 'sign-out'
+
 - else
   #generate-user
-    =link_to "Sign In", "" , class: "sidebar-button", id: "sign-in"
-    =link_to "Create Account", "" , class: "sidebar-button", id: "create-account"
+    =link_to "Sign In", new_user_session_path, class: "sidebar-button", id: "sign-in"
+    =link_to "Create Account", new_user_registration_path , class: "sidebar-button", id: "create-account"
 

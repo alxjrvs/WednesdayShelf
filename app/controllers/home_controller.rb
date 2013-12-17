@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @home = HomePageFacade.new(current_user)
+    @home = ReleaseFacade.new(Release.current, current_user)
   end
 
 end

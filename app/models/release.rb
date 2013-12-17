@@ -1,5 +1,5 @@
 class Release < ActiveRecord::Base
-  has_many :issues, -> {order('issues.title')}
+  has_many :issues, -> {order('issues.title').includes :covers}
   #I feel this will become truer with time.
   has_many :series, through: :issues
 
@@ -29,10 +29,6 @@ class Release < ActiveRecord::Base
 
   def previous
     @_previous ||= Release.past(date).first
-  end
-
-  def pretty_date
-    date.stamp "August 31st, 1988"
   end
 
   private

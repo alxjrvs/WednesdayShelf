@@ -1,9 +1,30 @@
-class IssueFacade
-  attr_reader :issue, :user
+IssueFacade = Struct.new(:issue, :user) do
+  delegate :id, :clean_title, :series, :covers, :hero_cover, :diamond_number, :release, to: :issue
 
-  def initialize(issue, user)
-    @issue = issue
-    @user = user
+  def real
+    return issue
+  end
+
+  def subscribed?
+    user.subscribed_to? issue
+  end
+
+  def subscribed_class
+    return nil unless user
+    if subscribed? 
+      "subscribed"
+    else
+      nil
+    end
+  end
+
+  def pull_it_text
+    return "Pull It" if user.nil?
+    if user.pull_list.series.include? issue.series
+      "Remove from List"
+    else
+      "Pull It"
+    end
   end
 
   def next_issue

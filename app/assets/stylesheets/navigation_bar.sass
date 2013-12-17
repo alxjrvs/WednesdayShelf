@@ -58,15 +58,24 @@
         position: relative
         +clearfix
 
-        #generate-user
+        #flash-box
+          margin-top: 20px
+          text-align: center
+          color: $black
+
+        .sidebar-button
+          +grid-column(12)
+          +ws-button
+
+        .secondary-link
+          text-align: center
+          display: block
+
+        #generate-user, #user-tools
           position: absolute
           width: 100%
           bottom: 375px
           +clearfix
-
-          .sidebar-button
-            +grid-column(12)
-            +ws-button
 
         #lateral-nav
           +grid-column(12, $collapse: true)

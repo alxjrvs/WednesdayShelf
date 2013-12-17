@@ -1,0 +1,7 @@
+- content_for :header do
+  = "Pull list for #{@pull_list.user.name}"
+
+-content_for :sidebar do
+  = render partial: 'shared/sidebar/user_sidebar', locals: {user: @pull_list.user}
+
+%h2 Still Building this!

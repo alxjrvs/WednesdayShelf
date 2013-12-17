@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5, h6, p
   font-family: 'Roboto', sans-serif
   color: $black
 
+#logo-container
+  img
+    width: 100%
+    height: 100%
 #flash-box
   text-align: center
 
@@ -19,5 +23,9 @@ h1, h2, h3, h4, h5, h6, p
   background-color: $white
   @media #{$small}
     +grid-column(9, $push: 3)
+    padding-top: $bar-mobile-height
 a
   color: $secondary-blue
+
+.button
+  +ws-button

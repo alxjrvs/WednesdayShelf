@@ -3,16 +3,16 @@ class PullList < ActiveRecord::Base
   has_many :pulls
   has_many :series, through: :pulls
 
-  #def issues
-    #Issue.where(series_id: series.pluck(:id))
-  #end
+  def issues
+    Issue.where(series_id: series.pluck(:id))
+  end
 
-  #def issues_by_release(release)
-    #issues.where(release: release)
-  #end
+  def issues_by_release(release)
+    issues.where(release: release)
+  end
 
-  #def total_price_per_release(release)
-    #issues_by_release(release).sum(:price)
-  #end
+  def total_price_per_release(release)
+    issues_by_release(release).sum(:price)
+  end
 
 end

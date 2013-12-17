@@ -1,10 +1,10 @@
 - content_for :header do
-  = @home.current_release.pretty_date
+  = @home.pretty_date
 
 -content_for :sidebar do
   = render partial: 'home_sidebar'
-  = render partial: 'shared/sidebar/user_sidebar', locals: {user: @home.user}
-  = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @home.previous_release, next_release: @home.next_release}
+  = render partial: 'shared/sidebar/user_sidebar', locals: {user: current_user}
+  = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @home.previous, next_release: @home.next}
 
-= render partial: "shared/comic_list", locals: {user: @home.user, issues: @home.current_release.issues}
+= render partial: "shared/comic_list", locals: {user: current_user, release: @home}
 

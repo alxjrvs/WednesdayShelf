@@ -5,9 +5,10 @@ class HomescreenTest < FeatureTest
 
   def setup
     super
-    @release = create :release, :current
-    @next_release = create :release, :next
-    @previous_release = create :release, :previous
+    @release = ReleaseFacade.new((create :release, :current), nil)
+    create :release, :next
+    create :release, :previous
+
   end
 
   def test_basic_content
@@ -17,8 +18,8 @@ class HomescreenTest < FeatureTest
   end
 
   def test_lateral_nagivation
-    assert_previous_nav(start_path: root_path, target_path: release_path(@previous_release))
-    assert_next_nav(start_path:root_path, target_path: release_path(@next_release))
+    assert_previous_nav(start_path: root_path, target_path: release_path(@release.previous))
+    assert_next_nav(start_path:root_path, target_path: release_path(@release.next))
   end
 
   def test_issue_content

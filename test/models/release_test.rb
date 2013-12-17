@@ -16,11 +16,6 @@ class ReleaseTest < ModelTest
     assert_equal Release.current, release
   end
 
-  def test_pretty_date
-    release = create :release, date: Date.new(2013, 10, 31)
-    assert_equal release.pretty_date, "October 31st, 2013"
-  end
-
   private
 
   def canonical_date
