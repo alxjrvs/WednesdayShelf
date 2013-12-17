@@ -1,24 +1,25 @@
 class CoverUplifter
   include Concerns::Uplifting
 
-  def self.uplift!(item)
-    homing_string = generate_homing_string(item)
-    generate_cover(item, homing_string)
+  def self.uplift!(item, image)
+    cover = generate_cover(item, image)
+    find_issue(cover)
   end
 
   private
 
-  def self.generate_cover(item, homing_string)
-    Cover.where(diamond_number: item.diamond_number).first_or_create do |c|
-      c.homing_string= homing_string
-      c.image = item.image
-      c.issue= found_issue(homing_string)
+  def self.generate_cover(item, image)
+    cover = Cover.where(diamond_number: item.diamond_number).first_or_create.tap do |c|
+      c.homing_string = generate_homing_string(item)
+      c.image = image
       c.cover_artist= item.cover_artist
     end
+    puts "Recorded Cover for #{item.diamond_number}" if cover.save
+    cover
   end
 
-  def self.found_issue(homing_string)
-    Issue.where(homing_string: homing_string).first
+  def self.find_issue(cover)
+    issue = Issue.where(homing_string: cover.homing_string).first
+    cover.update_attributes(issue: issue) unless issue.nil?
   end
-
 end

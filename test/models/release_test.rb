@@ -18,7 +18,7 @@ class ReleaseTest < ModelTest
 
   def test_pretty_date
     release = create :release, date: Date.new(2013, 10, 31)
-    assert_equal release.pretty_date, "Thursday, October 31st"
+    assert_equal release.pretty_date, "October 31st, 2013"
   end
 
   private

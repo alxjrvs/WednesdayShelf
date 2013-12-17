@@ -2,32 +2,30 @@ class IssueUplifter
   include Concerns::Uplifting
 
   def self.uplift!(item)
-    publisher = Publisher.where(name: item.publisher).first_or_create
-    series = Series.where(title: item.series_title, publisher: publisher).first_or_create
-    release = Release.where(date: item.release_date).first_or_create
-
-    homing_string = generate_homing_string(item)
-    generate_issue(item, series, release, homing_string)
-
+    issue = generate_issue(item)
+    find_covers(issue)
   end
 
   private
 
-  def self.generate_cover(item, homing_string, issue)
-    Cover.where(diamond_number: item.diamond_number).first_or_create do |c|
-      c.homing_string= homing_string
-      c.image= item.image
-      c.issue= issue
-      c.cover_artist= item.cover_artist
-    end
+  def self.series(item)
+    Series.where(title: item.series_title, publisher: publisher(item)).first_or_create
   end
 
-  def self.generate_issue(item, series, release, homing_string)
-    Issue.where(diamond_number: item.diamond_number).first_or_create do |issue|
+  def self.publisher(item)
+    Publisher.where(name: item.publisher).first_or_create
+  end
+
+  def self.release(item)
+    Release.where(date: item.release_date).first_or_create
+  end
+
+  def self.generate_issue(item)
+    iss = Issue.where(diamond_number: item.diamond_number).first_or_create.tap do |issue|
       issue.raw_title = item.raw_title
       issue.stock_number = item.stock_number
       issue.diamond_number = item.diamond_number
-      issue.homing_string = homing_string
+      issue.homing_string = generate_homing_string(item)
       issue.description = item.description
       issue.price = item.price
       issue.title = item.title
@@ -36,16 +34,16 @@ class IssueUplifter
       issue.max_issue = item.limited_series_max_issue
       issue.author = item.author
       issue.artist = item.artist
-      issue.series = series
-      issue.release = release
+      issue.series = series(item)
+      issue.release = release(item)
     end
+    "Recorded Issue for #{iss.diamond_number}, Title: #{iss.raw_title}" if iss.save
+    iss
   end
 
-  def self.find_variants(uplifted_issue)
-    covers = Cover.where(
-      homing_string: uplifted_issue.homing_string,
-      hero_cover: false
-    )
-    covers.each {|c| c.update_attributes(issue: uplifted_issue)} if covers
+  def self.find_covers(issue)
+    Cover.where(
+      homing_string: issue.homing_string,
+    ).each {|c| c.update_attributes(issue: uplifted_issue)}
   end
 end

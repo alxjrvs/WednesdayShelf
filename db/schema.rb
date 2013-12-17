@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216092912) do
+ActiveRecord::Schema.define(version: 20131216225342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20131216092912) do
   create_table "diamond_items", force: true do |t|
     t.string  "diamond_number"
     t.boolean "valid_diamond_number"
+    t.string  "state"
+    t.string  "raw_title"
+    t.string  "stock_number"
+    t.string  "publisher"
+    t.string  "creators"
+    t.text    "description"
+    t.date    "release_date"
+    t.float   "price"
+    t.integer "category_code"
   end
 
   create_table "issues", force: true do |t|

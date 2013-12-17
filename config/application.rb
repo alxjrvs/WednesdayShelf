@@ -26,6 +26,7 @@ module WednesdayShelf
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(
       #{config.root}/app/facades
+      #{config.root}/app/models/valuables
     )
 
     CbNitride.configure do |c|

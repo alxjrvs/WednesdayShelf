@@ -15,10 +15,8 @@ class ItemUplifter
   def uplift
     if item.nil?
       nil_response(item)
-    elsif item.product_type? == :collection || item.product_type? == :merchandise
-      collection_merch_response(item)
     else
-      issue_response(item)
+      record(item)
     end
   end
 
@@ -29,35 +27,21 @@ class ItemUplifter
     pp "Invalid Diamond Number"
   end
 
-  def collection_merch_response(item)
-      pp "#{item.title} is Merch or a Graphic Novel"
-      pp "Not Currently Collecting Merchandise or Graphic Novels"
-      record_diamond_item(item)
-  end
-
-  def issue_response(item)
-      return nil if item.series_title[0..2] == "DF "
-      if item.product_type? == :issue
-        record_issue(item)
-      else
-        record_diamond_item(item)
-      end
-       record_cover(item)
+  def record(item)
+    diamond_item = record_diamond_item(item)
+    record_issue(diamond_item) if diamond_item.product_type? == DiamondItem::ProductTypes::ISSUE_CODE
+    record_cover(diamond_item, item.image) if diamond_item.product_type? == (DiamondItem::ProductTypes::ISSUE_CODE || DiamondItem::ProductTypes::VARIANT_CODE)
   end
 
   def record_diamond_item(item)
-    DiamondItem.create(diamond_number: item.diamond_number, valid_diamond_number: true)
-    puts "Recorded Diamond Item #{item.diamond_number}"
+    DiamondUplifter.uplift!(item)
   end
 
-  def record_issue(item)
-    IssueUplifter.uplift!(item)
-    puts "Recorded #{item.title} (#{item.diamond_number})"
+  def record_cover(diamond_item, image)
+    CoverUplifter.uplift!(diamond_item, image)
   end
 
-  def record_cover(item)
-    CoverUplifter.uplift!(item)
-    puts "Recorded Cover for #{item.title} (#{item.diamond_number})"
+  def record_issue(diamond_item)
+    IssueUplifter.uplift!(diamond_item)
   end
-
 end

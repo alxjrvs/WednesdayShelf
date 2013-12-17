@@ -1,7 +1,9 @@
 class Cover < ActiveRecord::Base
   validates :diamond_number, uniqueness: true
+
   delegate :grid_cover, to: :image
   delegate :highlight_cover, to: :image
+
   belongs_to :issue
 
   mount_uploader :image, CoverUploader
