@@ -15,6 +15,8 @@ class ItemUplifter
   def uplift
     if item.nil?
       nil_response(item)
+    elsif undesireable?(item)
+      nil_response(item)
     else
       record(item)
     end
@@ -44,4 +46,9 @@ class ItemUplifter
   def record_issue(diamond_item)
     IssueUplifter.uplift!(diamond_item)
   end
+
+  def undesireable?(item)
+    item.raw_title.match(/(^(DF)\s)/)
+  end
+
 end

@@ -15,41 +15,41 @@ class DiamondItem < ActiveRecord::Base
     return ProductTypes::MERCHANDISE_CODE if is_merch?
   end
 
-    def author
-      @_author ||= creators_hash["W"]
-    end
+  def author
+    @_author ||= creators_hash["W"]
+  end
 
-    def artist
-      @_artist ||= creators_hash["A"]
-    end
+  def artist
+    @_artist ||= creators_hash["A"]
+  end
 
-    def cover_artist
-      @_cover_artist ||= creators_hash["CA"]
-    end
+  def cover_artist
+    @_cover_artist ||= creators_hash["CA"]
+  end
 
-    def series_title
-      @_series_title ||= title_formatter.series_title || title
-    end
+  def series_title
+    @_series_title ||= title_formatter.series_title || title
+  end
 
-    def title
-      @_title ||= title_formatter.clean_title
-    end
+  def title
+    @_title ||= title_formatter.clean_title
+  end
 
-    def special_number
-      @_special_number ||= title_formatter.special_number
-    end
+  def special_number
+    @_special_number ||= title_formatter.special_number
+  end
 
-    def issue_number
-      @issue_number ||= title_formatter.issue_number
-    end
+  def issue_number
+    @issue_number ||= title_formatter.issue_number
+  end
 
-    def limited_series_max_issue
-      @_limited_series_max_issue ||= title_formatter.limited_series_max_issue
-    end
+  def limited_series_max_issue
+    @_limited_series_max_issue ||= title_formatter.limited_series_max_issue
+  end
 
-    def variant_description
-      @_variant_description ||= title_formatter.variant_description
-    end
+  def variant_description
+    @_variant_description ||= title_formatter.variant_description
+  end
 
   private
 

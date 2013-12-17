@@ -16,7 +16,7 @@ class Release < ActiveRecord::Base
   end
 
   def self.current
-    future.first
+    future.first || past.first
   end
 
   def next

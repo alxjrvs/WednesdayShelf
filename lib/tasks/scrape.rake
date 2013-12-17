@@ -9,7 +9,7 @@ namespace :scrape do
   end
 
   def sort_through_and_record(numbers)
-    numbers.map.with_index do |diamond_number, i|
+    numbers.each.with_index do |diamond_number, i|
       trash_cb_agent if i % 307 == 0
       record_item(diamond_number)
     end
@@ -17,17 +17,9 @@ namespace :scrape do
   end
 
   def record_item(diamond_number)
-    if recorded? diamond_number
-      puts "Already recorded"
-    else
-      puts "Looking for #{diamond_number}"
-      diamond_item = CbNitride.item(diamond_number, agent: cb_agent)
-      return ItemUplifter.uplift diamond_item
-    end
-  end
-
-  def recorded?(diamond_number)
-    DiamondItem.where(diamond_number: diamond_number).count > 0
+    puts "Looking for #{diamond_number}"
+    diamond_item = CbNitride.item(diamond_number, agent: cb_agent)
+    return ItemUplifter.uplift diamond_item
   end
 
   def imminent_diamond_numbers

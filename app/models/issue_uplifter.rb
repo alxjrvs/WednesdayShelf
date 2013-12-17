@@ -37,13 +37,13 @@ class IssueUplifter
       issue.series = series(item)
       issue.release = release(item)
     end
-    "Recorded Issue for #{iss.diamond_number}, Title: #{iss.raw_title}" if iss.save
+    puts "Recorded Issue for #{iss.diamond_number}, Title: #{iss.raw_title}" if iss.save
     iss
   end
 
   def self.find_covers(issue)
     Cover.where(
       homing_string: issue.homing_string,
-    ).each {|c| c.update_attributes(issue: uplifted_issue)}
+    ).each {|c| c.update_attributes(issue: issue)}
   end
 end

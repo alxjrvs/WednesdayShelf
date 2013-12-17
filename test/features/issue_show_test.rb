@@ -18,6 +18,8 @@ class IssueShowTest < FeatureTest
     assert_content @issue.clean_title
     assert_content @issue.issue_number
     assert_content @issue.description
+    assert_content @issue.series.title
+    assert_content @issue.price
   end
 
   def test_lateral_navigation
