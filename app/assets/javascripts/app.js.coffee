@@ -1,21 +1,22 @@
-app = angular.module 'WednesdayShelf', []
-
-app.controller "SidebarCtrl", ($scope) ->
+app = angular.module 'WednesdayShelf', ['ngRoute', 'ngAnimate'], ($routeProvider, $locationProvider) ->
 
   TEMPLATES = {
     "generateUser" : "/assets/generate_user_template.html",
     "createAccount" : "/assets/create_account_template.html",
     "signIn" : "/assets/sign_in_template.html",
   }
-  $scope.templateUrl= TEMPLATES.generateUser
+  $routeProvider.when('/Newcomer', {
+        templateUrl: TEMPLATES.generateUser
+  }).
+  when('/Sign_in', {
+        templateUrl: TEMPLATES.signIn
+  }).
+  when('/Create_Account', {
+    templateUrl: TEMPLATES.createAccount
+  }).
+  otherwise({
+    redirectTo: '/Newcomer'
+  })
 
-  $scope.showSignIn = ->
-    $scope.templateUrl = TEMPLATES.signIn
-
-  $scope.showCreateAccount = ->
-    $scope.templateUrl = TEMPLATES.createAccount
-
-  $scope.showGenerateUser = ->
-    $scope.templateUrl = TEMPLATES.generateUser
-
+app.controller "SidebarCtrl", ($scope) ->
 

@@ -26,6 +26,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     angularjs-rails (1.2.5)
+    animate-scss (0.0.5)
+      sass
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -252,6 +254,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  animate-scss
   better_errors
   binding_of_caller
   carrierwave

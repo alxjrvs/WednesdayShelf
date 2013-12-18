@@ -10,13 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require foundation
 //= require angular
 //= require angular-animate
-//= require angular-route
 //= require app
 //= require_tree ./angular
 //= require_tree .
+//= require angular-route
+//= require jquery
+//= require foundation
 
 $(document).foundation();
