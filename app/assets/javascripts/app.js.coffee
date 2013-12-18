@@ -1,25 +1,21 @@
-WednesdayShelf = angular.module('WednesdayShelf', ['ngAnimate', 'ngRoute'])
+app = angular.module 'WednesdayShelf', []
 
+app.controller "SidebarCtrl", ($scope) ->
 
-WednesdayShelf.controller "WSController", ($scope) ->
+  TEMPLATES = {
+    "generateUser" : "/assets/generate_user_template.html",
+    "createAccount" : "/assets/create_account_template.html",
+    "signIn" : "/assets/sign_in_template.html",
+  }
+  $scope.templateUrl= TEMPLATES.generateUser
 
-  $scope.signIn= ->
-    $scope.isNonUserPathVisible = false
-    $scope.isSignInVisible = true
+  $scope.showSignIn = ->
+    $scope.templateUrl = TEMPLATES.signIn
 
-  $scope.createAccount= ->
-    $scope.isNonUserPathVisible = false
-    $scope.isCreateAccountVisible = true
+  $scope.showCreateAccount = ->
+    $scope.templateUrl = TEMPLATES.createAccount
 
-  $scope.resetToDefaults = ->
-    $scope.isNonUserPathVisible = true
-    $scope.isSignInvisible = false
-    $scope.isCreateAccountVisible = false
-
-  $scope.isNonUserPathVisible = true
-  $scope.isSignInvisible = false
-  $scope.isCreateAccountVisible = false
-
-
+  $scope.showGenerateUser = ->
+    $scope.templateUrl = TEMPLATES.generateUser
 
 

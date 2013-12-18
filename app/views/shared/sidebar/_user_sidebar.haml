@@ -1,12 +1,4 @@
 - if user
   #user-tools
 - else
-  #generate-user{ng: {show: 'isNonUserPathVisible'}}
-    %a{href: 'javascript:;', class: "sidebar-button", id: "sign-in", ng: {click: "signIn"} } Sign In
-    =link_to "Create Account", new_user_registration_path , class: "sidebar-button", id: "create-account"
-
-  #sign-in{ng: {show: 'isSignInVisible'}}
-    "SIGN IN"
-
-  #create-account{ng: {show: 'isCreateAccountVisible'} }
-    "CREATE ACCOUNT"
+  .living-window{ng: { include: "templateUrl" } }

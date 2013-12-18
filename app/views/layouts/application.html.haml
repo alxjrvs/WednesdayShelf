@@ -1,6 +1,6 @@
 !!! 5
 
-%html{ng: {app: "WednesdayShelf", controller: "WSController"}}
+%html{ng: {app: "WednesdayShelf"}}
   %head
     %meta{ :charset => "utf-8" }
 
@@ -14,7 +14,7 @@
 
   %body{class: body_classes}
 
-    #bar
+    #bar{ng: {controller: "SidebarCtrl"}}
       .inner-bar-content
         =link_to root_path do
           #logo-container
