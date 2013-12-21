@@ -1,4 +1,3 @@
-#sign-in
-  %p SIGN IN
-
-
+= form_for(resource, as: resource_name) do |f|
+  -binding.pry
+  = f.input, :userame
