@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url
-    "/assets/default.png"
+    ActionController::Base.helpers.image_tag("default.png")
   end
 
   private
