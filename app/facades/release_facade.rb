@@ -22,8 +22,9 @@ ReleaseFacade = Struct.new(:release, :user) do
   end
 
   def unsubscribed_issues
-    return release.issues unless user
+    return issues unless user
     series_ids = user.pull_list.series.map(&:id)
+    return issues if series_ids.empty?
     release.issues.where("series_id NOT in (?)", series_ids).map {|issue| IssueFacade.new(issue, user)}
   end
 
