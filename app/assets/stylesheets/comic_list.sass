@@ -1,3 +1,5 @@
+h2.list-header
+  text-align: center
 ul.comic-list
   text-align: center
   background-color: $white
@@ -12,7 +14,8 @@ ul.comic-list
       max-width: none
       min-width: 100%
 
-  @media #{$small}
+@media #{$small}
+  ul.comic-list
     +block-grid(4)
 
     li.comic
@@ -62,10 +65,8 @@ ul.comic-list
             text-align: center
             cursor: pointer
 
-
-
-
-  @media #{$medium}
+@media #{$medium}
+  ul.comic-list
     +block-grid(4)
 
     li.comic
