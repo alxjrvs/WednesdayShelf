@@ -29,8 +29,10 @@
             = image_tag 'default.png'
       #header
         = content_for?(:header) ? yield(:header) : "WednesdayShelf"
-      %nav#main-nav
-        = content_for?(:sidebar) ? yield(:sidebar) : ''
+      #sidebar-info
+        = content_for?(:sidebar_info) ? yield(:sidebar_info) : ''
+      #user-interaction
+        = content_for?(:user_interaction) ? yield(:user_interaction) : ''
 
   #content
 

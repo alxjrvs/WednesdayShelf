@@ -43,9 +43,10 @@
         display: block
         background: $blue
         width: 100%
-        height: 180px
+        height: 25%
         position: relative
         margin-top: 35px
+        text-align: center
 
       #header
         width: 100%
@@ -66,6 +67,7 @@
         .sidebar-button
           +grid-column(12)
           +ws-button
+          margin: 1% 0
 
         .secondary-link
           text-align: center
@@ -74,18 +76,19 @@
         #generate-user, #user-tools
           position: absolute
           width: 100%
-          bottom: 375px
+          bottom: 290px
           +clearfix
 
         #lateral-nav
           +grid-column(12, $collapse: true)
           position: absolute
-          bottom: 315px
+          bottom: 245px
 
           .lateral-navigation-button
             +ws-button
             +grid-column(6)
             margin: 0
+            font-size: 14px
 
             span
               display: none
@@ -105,16 +108,24 @@
   @media #{$medium}
 
     .inner-bar-content
-      margin-right: 5%
+
       #logo-container
-        height: 240px
+        height: 30%
 
       #header
 
-      nav#main-nav
+      nav#sidebar-info, #user-interaction
+        .sidebar-button
+          margin: 1% 0
+      nav#sidebar-info
+        #flash-box
+
+        #generate-user, #user-tools
+          bottom: 375px
+
         #lateral-nav
+          bottom: 315px
+
           .lateral-navigation-button
-            i, span
-          #nav-left
-          #nav-right
+            font-size: 16px
 

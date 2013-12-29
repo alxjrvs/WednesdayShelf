@@ -16,7 +16,7 @@ ul.comic-list
 
 @media #{$small}
   ul.comic-list
-    +block-grid(4)
+    +block-grid(5)
 
     li.comic
       max-height: 500px
@@ -25,7 +25,6 @@ ul.comic-list
       a.issue_link
         width: 145px
         display: block
-        margin: 0 auto
         overflow: hidden
 
         .comic-issue-cover
@@ -35,9 +34,6 @@ ul.comic-list
 
       form.comic-info
         +clearfix
-        margin: 0 auto
-        left: 0
-        right: 0
         bottom: 0
         position: absolute
         color: $white
@@ -48,8 +44,12 @@ ul.comic-list
 
         .title
           display: block
+          font-size: 14px
+          padding-top: 5px
         .pull_it_text
           display: none
+          font-size: 14px
+
         &:hover
           .title
             display: none
@@ -57,7 +57,6 @@ ul.comic-list
             display: block
             background: $secondary-blue
             color: $white
-            font-size: 16px
             border: 0
             height: 100%
             width: 100%
@@ -66,6 +65,8 @@ ul.comic-list
             cursor: pointer
 
 @media #{$medium}
+  ul.comic-list > li:nth-of-type(5n+1)
+    clear: none
   ul.comic-list
     +block-grid(4)
 
