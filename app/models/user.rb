@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     pull_list.series.include? issue.series
   end
 
-  def avatar_url
+  def avatar
     ActionController::Base.helpers.image_tag("default.png")
   end
 
