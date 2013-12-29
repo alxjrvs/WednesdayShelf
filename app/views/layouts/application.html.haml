@@ -25,6 +25,8 @@
         #logo-container
           -if current_user
             = image_tag current_user.avatar_url
+          -else
+            = image_tag 'default.png'
       #header
         = content_for?(:header) ? yield(:header) : "WednesdayShelf"
       %nav#main-nav
