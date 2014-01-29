@@ -80,6 +80,7 @@ class DiamondItem < ActiveRecord::Base
     @_creators_hash ||=
     array = creators.split('(').map {|x| x.split(')')}.flatten.map {|x| x.strip}
     hash ={}
+    return hash unless array
     array.each_with_index do |val, i|
       if i.even? || i == 0
         if val.include? '/'
