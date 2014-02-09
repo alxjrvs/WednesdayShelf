@@ -1,15 +1,14 @@
 #comic_release_nav
-  %ul.navigation
-    %li.previous{style: navigation_helper(data.previous)}
-      =link_to release_path(data.previous), class: "lateral-navigation-button", id: "nav-left" do
-        = fa_icon "chevron-left"
-        %span
-          Last Week
+  .previous{style: navigation_helper(data.previous)}
+    =link_to release_path(data.previous), class: "lateral-navigation-button", id: "nav-left" do
+      = fa_icon "chevron-left"
+      %span
+        Last Week
 
-    %li.context
-      =link_to '', root_path, id: 'context-box'
-    %li.next{style: navigation_helper(data.next)}
-      =link_to release_path(data.next), class: "lateral-navigation-button", id: "nav-right" do
-        %span
-          Next Week
-        =fa_icon "chevron-right"
+  .context
+    =link_to '', root_path, id: 'context-box'
+  .next{style: navigation_helper(data.next)}
+    =link_to release_path(data.next), class: "lateral-navigation-button", id: "nav-right" do
+      %span
+        Next Week
+      =fa_icon "chevron-right"
