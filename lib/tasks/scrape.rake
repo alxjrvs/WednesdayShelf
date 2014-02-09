@@ -25,7 +25,7 @@ namespace :scrape do
   end
 
   def sort_and_record_fast(numbers)
-    numbers.shuffle.each do |diamond_number|
+    numbers.shuffle.each.with_index do |diamond_number, i|
       if recorded?(diamond_number)
         puts "Already recorded"
       else
