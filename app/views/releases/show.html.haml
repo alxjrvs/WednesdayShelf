@@ -1,8 +1,5 @@
-- content_for :header do
-  = @release.pretty_date
-
--content_for :sidebar do
-  = render partial: 'shared/sidebar/user_sidebar', locals: {user: current_user}
-  = render partial: 'shared/sidebar/release_navigation', locals: {previous_release: @release.previous, next_release: @release.next}
+= render partial: "shared/top_bar"
 
 = render partial: "shared/comic_list", locals: {user: current_user, release: @release}
+
+= render partial: "shared/comic_nav", locals: {data: @release}

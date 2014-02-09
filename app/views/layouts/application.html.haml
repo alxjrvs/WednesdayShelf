@@ -1,5 +1,4 @@
 !!! 5
-/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 /[if lt IE 7 ] <html class=\"ie6\" lang=\"en\">
 /[if IE 7 ]    <html class=\"ie7\" lang=\"en\">
 /[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
@@ -18,24 +17,7 @@
   = csrf_meta_tag
 
 %body{class: body_classes}
-
-  #bar
-    .inner-bar-content
-      =link_to root_path do
-        #logo-container
-          -if current_user
-            = current_user.avatar
-          -else
-            = image_tag 'default.png'
-      #header
-        = content_for?(:header) ? yield(:header) : "WednesdayShelf"
-      #sidebar-info
-        = content_for?(:sidebar_info) ? yield(:sidebar_info) : ''
-      #user-interaction
-        = content_for?(:user_interaction) ? yield(:user_interaction) : ''
-
   #content
-
     = yield
 
   = javascript_include_tag "application"
