@@ -1,27 +1,17 @@
 #comic_release_nav
   position: fixed
   bottom: 0px
-  width: 98%
+  width: 99%
   text-align: center
 
   .previous
     margin-right: -4px
 
-  .context
-    display: inline-block
-    min-width: 75px
-    margin-bottom: -11px
-
-    #context-box
-      width: 100px
-      height: 100px
-      background: $blue
-      display: block
-
   .next
     margin-left: -4px
 
   .next, .previous
+    +color-on-hover($blue)
     display: inline-block
     text-align: center
     background: $secondary-blue
@@ -40,7 +30,3 @@
         color: white
         position: relative
         top: 1px
-    &:hover
-      background: $blue
-
-

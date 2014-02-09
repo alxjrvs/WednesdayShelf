@@ -5,8 +5,6 @@
       %span
         Last Week
 
-  .context
-    =link_to '', root_path, id: 'context-box'
   .next{style: navigation_helper(data.next)}
     =link_to release_path(data.next), class: "lateral-navigation-button", id: "nav-right" do
       %span

@@ -1,9 +1,13 @@
 %li.comic{id: issue.diamond_number}
-  =link_to issue_path(issue.real), class: "issue_link #{issue.subscribed_class}" do
-    =image_tag(issue.hero_cover.grid_cover.url, class: "comic-issue-cover")
-  = form_tag(pull_list_link(issue), method: :post, class: "comic-info") do
-    .title= issue.clean_title
-    = hidden_field_tag(:issue_id, issue.id)
-    = hidden_field_tag(:redirect_path, issue_path(issue.real))
-    =submit_tag(issue.pull_it_text, class: 'pull_it_text')
+  .card-flip-container
+    .front
+      =image_tag(issue.hero_cover.grid_cover.url, class: "comic-issue-cover")
+    .back
+      .title= issue.clean_title
+      .lower-buttons
+        = form_tag(pull_list_link(issue), method: :post, class: "comic-info") do
+          = hidden_field_tag(:issue_id, issue.id)
+          = hidden_field_tag(:redirect_path, issue_path(issue.real))
+          =submit_tag(issue.pull_it_text, class: 'card-link')
+        =link_to 'More Info', issue_path(issue.id),class: ' card-link'
 

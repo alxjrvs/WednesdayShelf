@@ -20,3 +20,12 @@
   font-weight: normal
   margin: 0
 
+@mixin color-on-hover($color)
+  background: $color
+  +transition-property(background)
+  +transition-duration(.5s)
+
+  &:hover
+    background: darken($color, 10%)
+  
+

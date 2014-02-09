@@ -6,8 +6,8 @@ ul.comic-list
 
   li.comic
     +clearfix
+    margin-bottom: 10px
     position: relative
-    margin-bottom: $bar-mobile-height
     overflow: hidden
 
     .comic-issue-cover
@@ -18,56 +18,72 @@ ul.comic-list
   ul.comic-list
     +block-grid(6)
     margin: 0px
-    padding-bottom: 60px
+    padding-bottom: 10px
 
     li.comic
-      max-height: 500px
+      +perspective(1000)
+      +transform-style(preserve-3d)
+      height: 200px
       position: relative
 
-      a.issue_link
-        width: 100%
-        display: block
-        overflow: hidden
+      &:hover
+        .card-flip-container
+          .back
+            +transform(rotateY(0deg))
+          .front
+            +transform(rotateY(180deg))
 
-        .comic-issue-cover
-          width: 100%
-          height: 200px
-          position: relative
-          margin: 0 auto
-
-      form.comic-info
-        +clearfix
-        bottom: 0
-        color: $white
-        background: $tertiary-blue
-        min-width: 100%
-        max-width: 100%
-        height: 28px
-        margin: 0
-        top: -6px
+      .card-flip-container
+        +transition(0.4s)
+        +transform-style(preserve-3d)
         position: relative
+        width: 100%
+        height: 200px
 
-        .title
-          display: block
-          font-size: 14px
-          padding-top: 5px
-        .pull_it_text
-          display: none
-          font-size: 14px
+        .front, .back
+          background: $tertiary-blue
+          width: 100%
+          height: 100%
+          +backface-visibility(hidden)
+          +transition(0.4s)
+          +transform-style(preserve-3d)
+          position: absolute
+          top: 0
+          left: 0
 
-        &:hover
-          .title
-            display: none
-          .pull_it_text
-            display: block
-            background: $blue
-            color: $white
-            border: 0
-            height: 100%
+        .front
+          z-index: 2
+          +transform(rotateY(0deg))
+
+          .comic-issue-cover
             width: 100%
-            outline: 0
-            text-align: center
-            cursor: pointer
+            height: 200px
+            position: relative
+            margin: 0 auto
+
+        .back
+          +transform(rotateY(-180deg))
+          color: $white
+
+          .title
+            margin-top: 10px
+
+          .lower-buttons
+            position: absolute
+            bottom: 0
+            width: 100%
+
+            .card-link
+              +color-on-hover($blue)
+              color: $white
+              border: 0
+              width: 100%
+              cursor: pointer
+              font-size: 14px
+              display: block
+              font-weight: 100
+              margin-bottom: 10%
+
 
 @media #{$medium}
   ul.comic-list > li:nth-of-type(5n+1)
@@ -75,15 +91,14 @@ ul.comic-list
 
   ul.comic-list
     +block-grid(6)
-    padding-bottom: 60px
+    padding-bottom: 10px
 
     li.comic
+      height: 320px
       padding-right: 0px
 
-      a.issue_link
-        width: 100%
-
-        .comic-issue-cover
-          height: 320px
-
-      form.comic-info
+      .card-flip-container
+        height: 320px
+        .front
+          .comic-issue-cover
+            height: 320px
