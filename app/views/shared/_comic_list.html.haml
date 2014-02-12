@@ -2,7 +2,7 @@
   - if release.subscribed_issues.empty?
 
     %h2.list-header Nothing on your list this week.Try something new!
-    %ul#also-arriving.comic-list
+    %ul#released-comics.comic-list
       - release.unsubscribed_issues.each do |issue|
         = render partial: 'shared/comic', locals: {user: user, issue: issue}
   -else
@@ -12,7 +12,7 @@
       - release.subscribed_issues.each do |issue|
         = render partial: 'shared/comic', locals: {user: user, issue: issue}
 
-    %ul#also-arriving.comic-list
+    %ul#released-comics.comic-list
       %h2.list-header Also Arriving This Week
       - release.unsubscribed_issues.each do |issue|
         = render partial: 'shared/comic', locals: {user: user, issue: issue}
@@ -21,3 +21,9 @@
   %ul#released-comics.comic-list
     - release.issues.each do |issue|
       = render partial: 'shared/comic', locals: {user: user, issue: issue}
+
+:javascript
+  $(function(){
+    new WednesdayShelf.AddOrRemoveToPullList("ul#your-pulls", "ul#released-comics", #{current_user.present? ? true : false});
+  });
+

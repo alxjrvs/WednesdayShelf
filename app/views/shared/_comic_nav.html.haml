@@ -5,6 +5,7 @@
       %span
         Last Week
 
+  .date= data.pretty_date
   .next{style: navigation_helper(data.next)}
     =link_to release_path(data.next), class: "lateral-navigation-button", id: "nav-right" do
       %span

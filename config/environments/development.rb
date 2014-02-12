@@ -28,4 +28,10 @@ WednesdayShelf::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = {host: 'wednesdayshelf.dev'}
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+  end
 end

@@ -5,9 +5,6 @@
     .back
       .title= issue.clean_title
       .lower-buttons
-        = form_tag(pull_list_link(issue), method: :post, class: "comic-info") do
-          = hidden_field_tag(:issue_id, issue.id)
-          = hidden_field_tag(:redirect_path, issue_path(issue.real))
-          =submit_tag(issue.pull_it_text, class: 'card-link')
+        %a.card-link.js-card-link{data: {id: issue.id}}
         =link_to 'More Info', issue_path(issue.id),class: ' card-link'
 

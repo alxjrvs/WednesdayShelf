@@ -1,5 +1,5 @@
 class Release < ActiveRecord::Base
-  has_many :issues, -> {order('issues.title').includes :covers}
+  has_many :issues, -> {order('issues.title')}
   #I feel this will become truer with time.
   has_many :series, through: :issues
 

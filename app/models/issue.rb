@@ -9,6 +9,7 @@ class Issue < ActiveRecord::Base
   delegate :publisher, to: :series
   delegate :date, to: :release
 
+  default_scope {includes(:series)}
 
   def hero_cover
     covers.where(issue_id: id, diamond_number: diamond_number).first ||

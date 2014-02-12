@@ -34,6 +34,7 @@ group :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'meta_request'
   gem 'better_errors'
   gem 'binding_of_caller'
