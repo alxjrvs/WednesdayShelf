@@ -1,26 +1,13 @@
-- if user
-  - if release.subscribed_issues.empty?
+%ul#your-pulls.comic-list
+  %h2.list-header
+  - release.subscribed_issues.each do |issue|
+    = render partial: 'shared/comic', locals: {user: user, issue: issue}
 
-    %h2.list-header Nothing on your list this week.Try something new!
-    %ul#released-comics.comic-list
-      - release.unsubscribed_issues.each do |issue|
-        = render partial: 'shared/comic', locals: {user: user, issue: issue}
-  -else
+%ul#released-comics.comic-list
+  %h2.list-header
+  - release.unsubscribed_issues.each do |issue|
+    = render partial: 'shared/comic', locals: {user: user, issue: issue}
 
-    %ul#your-pulls.comic-list
-      %h2.list-header Your Pulls
-      - release.subscribed_issues.each do |issue|
-        = render partial: 'shared/comic', locals: {user: user, issue: issue}
-
-    %ul#released-comics.comic-list
-      %h2.list-header Also Arriving This Week
-      - release.unsubscribed_issues.each do |issue|
-        = render partial: 'shared/comic', locals: {user: user, issue: issue}
-
-- else
-  %ul#released-comics.comic-list
-    - release.issues.each do |issue|
-      = render partial: 'shared/comic', locals: {user: user, issue: issue}
 
 :javascript
   $(function(){
