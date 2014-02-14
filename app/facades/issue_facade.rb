@@ -9,9 +9,15 @@ IssueFacade = Struct.new(:issue, :user) do
     user.subscribed_to? issue
   end
 
+  def pull_id
+    return false unless user.present?
+    pull = Pull.where(pull_list_id: user.pull_list.id, series_id: real.series_id).first
+    return pull.id if pull.present?
+  end
+
   def subscribed_class
     return nil unless user
-    if subscribed? 
+    if subscribed?
       "subscribed"
     else
       nil

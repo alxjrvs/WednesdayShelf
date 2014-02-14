@@ -1,9 +1,10 @@
 WednesdayShelf::Application.routes.draw do
   devise_for :users
   resources :users do
+    resources :pull_lists, only: [:show]
+    resources :pulls, only: [:create, :destroy]
     member do
       get :settings
-      get :pull_list, as: :pull_list
     end
   end
 

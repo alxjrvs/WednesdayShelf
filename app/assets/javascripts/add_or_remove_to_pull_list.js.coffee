@@ -48,34 +48,40 @@ class AddOrRemoveToPullList
   formatLink: (link, text, f) ->
     link = $(link)
     diamondCode = link.closest('li').attr("id")
+    pullId = link.closest('li').attr("data-pull-id")
     link.html(text)
     link.off "click"
-    link.on "click", {id: link.data("id"), diamondCode: diamondCode}, f
+    link.on "click", {id: link.data("id"), pullId: pullId, diamondCode: diamondCode}, f
 
+  moveCard: (card, destination, link) =>
+      destination.append(card)
+      @formatLink(link, "Pull It", link)
+      destination.find('li.comic').tsort()
+      card.show()
+      @regulateLists()
 
   removeFromList: (evt) =>
     evt.preventDefault()
     evt.stopPropagation()
     card = $("#" + evt.data.diamondCode)
     link = card.find("a.js-card-link")
+    pullId = evt.data.pullId
+    url = "/users/#{@currentUserId}/pulls/#{pullId}"
     card.hide()
-    @releaseGrid.append(card)
-    @formatLink(link, "Pull It", @addToList)
-    @releaseGrid.find('li.comic').tsort()
-    card.show()
-    @regulateLists()
+    $.ajax(url, {type: 'DELETE', issue_diamond_number : evt.data.diamondCode})
+      .done =>
+        @moveCard(card, @releaseGrid, @addToList)
 
   addToList: (evt) =>
     evt.preventDefault()
     evt.stopPropagation()
     card = $("#" + evt.data.diamondCode)
     link = card.find("a.js-card-link")
+    url = "/users/#{@currentUserId}/pulls"
+    params = {issue_diamond_number : evt.data.diamondCode}
     card.hide()
-    @pullGrid.append(card)
-    @formatLink(link, "Remove From Pulls", @removeFromList)
-    @pullGrid.find('li.comic').tsort()
-    card.show()
-    @regulateLists()
+    $.post url, params, (data) =>
+      @moveCard(card, @pullGrid, @removeFromList)
 
 @WednesdayShelf ||= {}
 @WednesdayShelf.AddOrRemoveToPullList = AddOrRemoveToPullList

@@ -1,4 +1,4 @@
-%li.comic{id: issue.diamond_number, data:{name: issue.clean_title}}
+%li.comic(id="#{issue.diamond_number}" data-name="#{issue.clean_title}" data-pull-id="#{issue.pull_id}")
   .card-flip-container
     .front
       =image_tag(issue.hero_cover.grid_cover.url, class: "comic-issue-cover")

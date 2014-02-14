@@ -11,6 +11,6 @@
 
 :javascript
   $(function(){
-    new WednesdayShelf.AddOrRemoveToPullList("ul#your-pulls", "ul#released-comics", #{current_user.present? ? true : false});
+    new WednesdayShelf.AddOrRemoveToPullList("ul#your-pulls", "ul#released-comics", #{current_user.present? ? current_user.id : false});
   });
 

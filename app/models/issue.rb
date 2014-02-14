@@ -11,6 +11,10 @@ class Issue < ActiveRecord::Base
 
   default_scope {includes(:series)}
 
+  def self.find_by_diamond_number(dn)
+    where(diamond_number: dn).first
+  end
+
   def hero_cover
     covers.where(issue_id: id, diamond_number: diamond_number).first ||
       covers.first ||
