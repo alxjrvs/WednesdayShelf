@@ -2,8 +2,9 @@ class PullsController < ApplicationController
 
   def create
     if request.xhr?
-      if Pull.create(series_id: series_id, pull_list_id: pull_list_id)
-        render text: "It Worked!"
+      @pull = Pull.new(series_id: series_id, pull_list_id: pull_list_id)
+      if @pull.save
+        render json: {pull_id: @pull.id}
         return 200
       else
         render text: "It Didn't Work!"
