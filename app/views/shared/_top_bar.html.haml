@@ -3,10 +3,16 @@
     %ul.title-area
     %section.top-bar-section
       %ul.right
-        %li
-          %a Login
-        %li
-          %a Sign In
+        - if current_user.present?
+          %li
+            %a My WS
+          %li
+            =link_to "Sign Out", destroy_user_session_path
+        -else
+          %li
+            =link_to "Log in", new_user_session_path
+          %li
+            =link_to "Sign In", new_user_registration_path
       %ul.left
         %li
           =link_to "WednesdayShelf", root_path, class: 'top-bar-h1'
