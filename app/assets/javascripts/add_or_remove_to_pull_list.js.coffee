@@ -67,7 +67,8 @@ class AddOrRemoveToPullList
         card.data().pullId = false
         @releaseGrid.find('li.comic').tsort()
         card.show()
-        @formatLink(card, "Pull It", @addToList)
+        link = card.find('a.js-card-link')
+        @formatLink(link, "Pull It", @addToList)
         @regulateLists()
 
   addToList: (e) =>
@@ -79,11 +80,12 @@ class AddOrRemoveToPullList
     params = {issue_diamond_number : e.data.diamondCode}
     card.hide()
     $.post url, params, (data) =>
+      card.attr('data-pull-id',  data.pull_id)
       @pullGrid.append(card)
-      card.data().pullId = data.pull_id
       @pullGrid.find('li.comic').tsort()
       card.show()
-      @formatLink(card, "Remove from List", @removeFromList)
+      link = card.find('a.js-card-link')
+      @formatLink(link, "Remove from List", @removeFromList)
       @regulateLists()
 
 @WednesdayShelf ||= {}

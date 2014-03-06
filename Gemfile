@@ -45,6 +45,7 @@ group :test, :development do
   gem 'minitest-rails'
   gem 'pry-rails'
   gem 'thin'
+  gem 'byebug'
 end
 
 group :doc do

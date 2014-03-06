@@ -2,9 +2,9 @@ class PullsController < ApplicationController
 
   def create
     if request.xhr?
-      @pull = Pull.new(series_id: series_id, pull_list_id: pull_list_id)
-      if @pull.save
-        render json: {pull_id: @pull.id}
+      pull = Pull.new(series_id: series_id, pull_list_id: pull_list_id)
+      if pull.save!
+        render json: {pull_id: pull.id}
         return 200
       else
         render text: "It Didn't Work!"
@@ -15,7 +15,8 @@ class PullsController < ApplicationController
 
   def destroy
     if request.xhr?
-      if Pull.find(params[:id]).destroy
+      pull = Pull.find(params[:id])
+      if pull.destroy!
         render text: "It Worked!"
         return 200
       else
