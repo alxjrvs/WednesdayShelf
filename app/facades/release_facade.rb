@@ -35,7 +35,7 @@ ReleaseFacade = Struct.new(:release, :user) do
 
   def issues
     @_issues ||= begin
-      release.issues.map do |issue|
+      current.issues.map do |issue|
         IssueFacade.new(issue, user)
       end
     end
