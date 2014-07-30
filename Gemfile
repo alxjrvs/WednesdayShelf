@@ -28,10 +28,6 @@ gem 'rmagick'
 gem 'jbuilder'
 gem 'devise'
 
-group :test do
-  gem 'factory_girl_rails'
-end
-
 group :development do
   gem 'bullet'
   gem 'meta_request'
@@ -41,11 +37,14 @@ group :development do
 end
 
 group :test do
+  gem 'factory_girl'
 end
 
 group :test, :development do
+  gem 'rspec-rails'
   gem 'thin'
   gem 'pry-byebug'
+  gem 'pry-remote'
 end
 
 group :doc do
