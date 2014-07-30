@@ -41,8 +41,6 @@ group :development do
 end
 
 group :test do
-  gem 'minitest-rails'
-  gem 'minitest-rails-capybara'
 end
 
 group :test, :development do
