@@ -1,3 +1,3 @@
 if (Rails.env == "test" || Rails.env == "development")
-  MiniTest::Rails::Testing.default_tasks << "features"
+  #Minitest::Rails::Testing.default_tasks << "features"
 end

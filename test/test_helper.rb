@@ -2,34 +2,26 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
+require 'minitest/autorun'
 require "minitest/unit"
 require "minitest/pride"
-require "capybara/rails"
-require "database_cleaner"
+require "minitest/rails/capybara"
+require 'pry'
+require "factory_girl"
 
 Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
-DatabaseCleaner.strategy = :transaction
 
 CarrierWave.configure do |config|
   config.storage = :file #this will be ignored. Need better solution
   config.enable_processing = false
 end
 
-class WednesdayShelfTest < MiniTest::Unit::TestCase
+class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
+end
 
-  def setup
-    DatabaseCleaner.start
-  end
-
-  def teardown
-    DatabaseCleaner.clean
-  end
-
-  def start_cleaner
-    DatabaseCleaner.start
-  end
+class WednesdayShelfTest < ActiveSupport::TestCase
 end
 
 class FeatureTest < WednesdayShelfTest

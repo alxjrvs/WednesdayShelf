@@ -1,5 +1,5 @@
 class CoverUploader < CarrierWave::Uploader::Base
-   include CarrierWave::RMagick
+   #include CarrierWave::RMagick
 
   def store_dir
     "uploads/covers/#{model.diamond_number}"
