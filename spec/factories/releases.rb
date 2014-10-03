@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :release do
-    date Date.current
+    date Date.current - 7.days
 
     trait :current do
       date Date.current
